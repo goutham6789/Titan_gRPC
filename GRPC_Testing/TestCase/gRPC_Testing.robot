@@ -12,7 +12,7 @@ Resource          ../TestSuit/grpc_keywords.robot
 *** Test Cases ***
 
 Testcase
-    Test Case To Check    ${sender}    ${reciver}
+    Test Case To Check    ${sender}    ${receiver}
 
 GRPC_Test_01
         [Documentation]    DESIGN STEPS
