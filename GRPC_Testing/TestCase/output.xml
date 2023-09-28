@@ -1,11 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 6.0.1 (Python 3.7.7 on win32)" generated="20230927 18:51:35.054" rpa="false" schemaversion="3">
-<suite id="s1" name="gRPC Testing" source="C:\Users\gouthama\Desktop\Titan\27092023_GRPC_Testing\TestCase\gRPC_Testing.robot">
-<test id="s1-t1" name="Testcase1" line="11">
+<robot generator="Robot 6.0.1 (Python 3.7.7 on win32)" generated="20230928 10:39:04.942" rpa="false" schemaversion="3">
+<suite id="s1" name="gRPC Testing" source="C:\Users\gouthama\Desktop\gRPC_git\Titan_gRPC\GRPC_Testing\TestCase\gRPC_Testing.robot">
+<kw name="Suite Setup Demo" library="grpc_keywords" type="SETUP">
+<kw name="Log" library="BuiltIn">
+<arg>Suite Setup Demo is executed</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230928 10:39:05.650" level="INFO">Suite Setup Demo is executed</msg>
+<status status="PASS" starttime="20230928 10:39:05.650" endtime="20230928 10:39:05.650"/>
+</kw>
+<status status="PASS" starttime="20230928 10:39:05.649" endtime="20230928 10:39:05.650"/>
+</kw>
+<test id="s1-t1" name="GRPC_Test_01" line="15">
+<kw name="test setup demo" library="grpc_keywords" type="SETUP">
+<kw name="Log" library="BuiltIn">
+<arg>the test setup demo keyword is executed</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230928 10:39:05.653" level="INFO">the test setup demo keyword is executed</msg>
+<status status="PASS" starttime="20230928 10:39:05.651" endtime="20230928 10:39:05.653"/>
+</kw>
+<status status="PASS" starttime="20230928 10:39:05.651" endtime="20230928 10:39:05.653"/>
+</kw>
+<kw name="Transfer File With Specified Location Using gRPC Protocol Via SSH" library="grpc_keywords">
+<var>${status}</var>
+<arg>${sender}</arg>
+<arg>${reciver}</arg>
 <kw name="Log To Console" library="BuiltIn">
 <arg>\n\n********* Establishing connection with the remote server ***********\n</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" starttime="20230927 18:51:35.722" endtime="20230927 18:51:35.724"/>
+<status status="PASS" starttime="20230928 10:39:05.654" endtime="20230928 10:39:05.654"/>
 </kw>
 <kw name="Reciver command" library="grpc_keywords">
 <var>${rec_res}</var>
@@ -20,67 +42,68 @@
 <kw name="Open Connection" library="SSHLibrary">
 <arg>${host}</arg>
 <doc>Opens a new SSH connection to the given ``host`` and ``port``.</doc>
-<status status="PASS" starttime="20230927 18:51:35.729" endtime="20230927 18:51:35.729"/>
+<status status="PASS" starttime="20230928 10:39:05.657" endtime="20230928 10:39:05.657"/>
 </kw>
 <kw name="Login" library="SSHLibrary">
 <arg>${user}</arg>
 <arg>${pwd}</arg>
 <doc>Logs into the SSH server with the given ``username`` and ``password``.</doc>
-<msg timestamp="20230927 18:51:35.730" level="INFO">Logging into '192.168.29.11:22' as 'admin'.</msg>
-<msg timestamp="20230927 18:51:37.012" level="INFO">Read output: Activate the web console with: systemctl enable --now cockpit.socket
+<msg timestamp="20230928 10:39:05.659" level="INFO">Logging into '192.168.29.11:22' as 'admin'.</msg>
+<msg timestamp="20230928 10:39:07.050" level="INFO">Read output: Activate the web console with: systemctl enable --now cockpit.socket
 
-Last login: Wed Sep 27 09:06:12 2023 from 192.168.29.98
+Last login: Wed Sep 27 09:30:24 2023 from 192.168.29.98
 [admin@gRPCreceiver ~]$</msg>
-<status status="PASS" starttime="20230927 18:51:35.729" endtime="20230927 18:51:37.012"/>
+<status status="PASS" starttime="20230928 10:39:05.657" endtime="20230928 10:39:07.050"/>
 </kw>
-<status status="PASS" starttime="20230927 18:51:35.728" endtime="20230927 18:51:37.012"/>
+<status status="PASS" starttime="20230928 10:39:05.657" endtime="20230928 10:39:07.050"/>
 </kw>
 <kw name="Write" library="SSHLibrary">
 <arg>cd ${reciver.bin_dir}</arg>
 <doc>Writes the given ``text`` on the remote machine and appends a newline.</doc>
-<msg timestamp="20230927 18:51:37.018" level="INFO">cd /home/admin/project/bin</msg>
-<status status="PASS" starttime="20230927 18:51:37.012" endtime="20230927 18:51:37.018"/>
+<msg timestamp="20230928 10:39:07.055" level="INFO">cd /home/admin/project/bin</msg>
+<status status="PASS" starttime="20230928 10:39:07.050" endtime="20230928 10:39:07.055"/>
 </kw>
 <kw name="Write" library="SSHLibrary">
 <arg>${cmd}</arg>
 <doc>Writes the given ``text`` on the remote machine and appends a newline.</doc>
-<msg timestamp="20230927 18:51:37.022" level="INFO">[admin@gRPCreceiver bin]$ /home/admin/project/bin/grpc_receiver -c 1 -l 3 -D -d //tmp</msg>
-<status status="PASS" starttime="20230927 18:51:37.018" endtime="20230927 18:51:37.022"/>
+<msg timestamp="20230928 10:39:07.059" level="INFO">[admin@gRPCreceiver bin]$ /home/admin/project/bin/grpc_receiver -c 1 -l 3 -D -d //tmp</msg>
+<status status="PASS" starttime="20230928 10:39:07.055" endtime="20230928 10:39:07.059"/>
 </kw>
 <kw name="Read" library="SSHLibrary">
 <var>${output}</var>
 <arg>delay=2s</arg>
 <doc>Consumes and returns everything available on the server output.</doc>
-<msg timestamp="20230927 18:51:41.024" level="INFO">2023-09-27 09:21:50 [TRACE] log level is set to trace
-2023-09-27 09:21:50 [INFO] default receiving path is: /tmp
-2023-09-27 09:21:50 [INFO] Starting GRPC Receiver...
-2023-09-27 09:21:50 [TRACE] set compression algorithm: GRPC_COMPRESS_DEFLATE, set compression level to: GRPC_COMPRESS_LEVEL_HIGH
-2023-09-27 09:21:50 [TRACE] The server has a default compression algorithm set
-2023-09-27 09:21:50 [INFO] Server listening on 0.0.0.0:50051 . Press Ctrl-C to end.</msg>
-<msg timestamp="20230927 18:51:41.024" level="INFO">${output} = 2023-09-27 09:21:50 [TRACE] log level is set to trace
-2023-09-27 09:21:50 [INFO] default receiving path is: /tmp
-2023-09-27 09:21:50 [INFO] Starting GRPC Receiver...
-2023-09-27 09:21:50 [TRACE] set...</msg>
-<status status="PASS" starttime="20230927 18:51:37.022" endtime="20230927 18:51:41.024"/>
+<msg timestamp="20230928 10:39:11.062" level="INFO">2023-09-27 17:46:42 [TRACE] log level is set to trace
+2023-09-27 17:46:42 [INFO] default receiving path is: /tmp
+2023-09-27 17:46:42 [INFO] Starting GRPC Receiver...
+2023-09-27 17:46:42 [TRACE] set compression algorithm: GRPC_COMPRESS_DEFLATE, set compression level to: GRPC_COMPRESS_LEVEL_HIGH
+2023-09-27 17:46:42 [TRACE] The server has a default compression algorithm set
+2023-09-27 17:46:42 [INFO] Server listening on 0.0.0.0:50051 . Press Ctrl-C to end.</msg>
+<msg timestamp="20230928 10:39:11.062" level="INFO">${output} = 2023-09-27 17:46:42 [TRACE] log level is set to trace
+2023-09-27 17:46:42 [INFO] default receiving path is: /tmp
+2023-09-27 17:46:42 [INFO] Starting GRPC Receiver...
+2023-09-27 17:46:42 [TRACE] set...</msg>
+<status status="PASS" starttime="20230928 10:39:07.060" endtime="20230928 10:39:11.062"/>
 </kw>
 <kw name="Log To Console" library="BuiltIn">
 <arg>${output}</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" starttime="20230927 18:51:41.024" endtime="20230927 18:51:41.026"/>
+<status status="PASS" starttime="20230928 10:39:11.062" endtime="20230928 10:39:11.064"/>
 </kw>
 <kw name="List Directory" library="SSHLibrary">
 <var>${open_home}</var>
 <arg>${reciver.bin_dir}</arg>
 <doc>Returns and logs items in the remote ``path``, optionally filtered with ``pattern``.</doc>
-<msg timestamp="20230927 18:51:41.185" level="INFO">[chan 1] Opened sftp connection (server version 3)</msg>
-<msg timestamp="20230927 18:51:41.207" level="INFO">2 items:
+<msg timestamp="20230928 10:39:11.170" level="INFO">[chan 1] Opened sftp connection (server version 3)</msg>
+<msg timestamp="20230928 10:39:11.187" level="INFO">3 items:
 grpc_receiver
-grpc_sender</msg>
-<msg timestamp="20230927 18:51:41.207" level="INFO">${open_home} = ['grpc_receiver', 'grpc_sender']</msg>
-<status status="PASS" starttime="20230927 18:51:41.027" endtime="20230927 18:51:41.207"/>
+grpc_sender
+test.txt</msg>
+<msg timestamp="20230928 10:39:11.187" level="INFO">${open_home} = ['grpc_receiver', 'grpc_sender', 'test.txt']</msg>
+<status status="PASS" starttime="20230928 10:39:11.064" endtime="20230928 10:39:11.187"/>
 </kw>
-<msg timestamp="20230927 18:51:41.207" level="INFO">${rec_res} = ['grpc_receiver', 'grpc_sender']</msg>
-<status status="PASS" starttime="20230927 18:51:35.725" endtime="20230927 18:51:41.207"/>
+<msg timestamp="20230928 10:39:11.187" level="INFO">${rec_res} = ['grpc_receiver', 'grpc_sender', 'test.txt']</msg>
+<status status="PASS" starttime="20230928 10:39:05.654" endtime="20230928 10:39:11.187"/>
 </kw>
 <kw name="Sender command specifed path" library="grpc_keywords">
 <var>${snd_result}</var>
@@ -94,28 +117,28 @@ grpc_sender</msg>
 <arg>${sender}</arg>
 <arg>${element}</arg>
 <doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
-<msg timestamp="20230927 18:51:41.209" level="INFO">${sender_info} = {'usr1': 'admin', 'pwd': 'admin123', 'file_name': 'test.txt'}</msg>
-<status status="PASS" starttime="20230927 18:51:41.209" endtime="20230927 18:51:41.209"/>
+<msg timestamp="20230928 10:39:11.189" level="INFO">${sender_info} = {'usr1': 'admin', 'pwd': 'admin123', 'file_name': 'test.txt'}</msg>
+<status status="PASS" starttime="20230928 10:39:11.188" endtime="20230928 10:39:11.189"/>
 </kw>
 <kw name="Log To Console" library="BuiltIn">
 <arg>Sender IP: ${element}</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" starttime="20230927 18:51:41.209" endtime="20230927 18:51:41.210"/>
+<status status="PASS" starttime="20230928 10:39:11.189" endtime="20230928 10:39:11.190"/>
 </kw>
 <kw name="Log To Console" library="BuiltIn">
 <arg>User: ${sender_info.usr1}</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" starttime="20230927 18:51:41.210" endtime="20230927 18:51:41.211"/>
+<status status="PASS" starttime="20230928 10:39:11.190" endtime="20230928 10:39:11.192"/>
 </kw>
 <kw name="Log To Console" library="BuiltIn">
 <arg>Password: ${sender_info.pwd}</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" starttime="20230927 18:51:41.211" endtime="20230927 18:51:41.212"/>
+<status status="PASS" starttime="20230928 10:39:11.192" endtime="20230928 10:39:11.194"/>
 </kw>
 <kw name="Log To Console" library="BuiltIn">
 <arg>filename: ${sender_info.file_name}</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" starttime="20230927 18:51:41.213" endtime="20230927 18:51:41.215"/>
+<status status="PASS" starttime="20230928 10:39:11.194" endtime="20230928 10:39:11.195"/>
 </kw>
 <kw name="Establish SSH Connection" library="grpc_keywords">
 <arg>${element}</arg>
@@ -124,20 +147,20 @@ grpc_sender</msg>
 <kw name="Open Connection" library="SSHLibrary">
 <arg>${host}</arg>
 <doc>Opens a new SSH connection to the given ``host`` and ``port``.</doc>
-<status status="PASS" starttime="20230927 18:51:41.216" endtime="20230927 18:51:41.217"/>
+<status status="PASS" starttime="20230928 10:39:11.196" endtime="20230928 10:39:11.196"/>
 </kw>
 <kw name="Login" library="SSHLibrary">
 <arg>${user}</arg>
 <arg>${pwd}</arg>
 <doc>Logs into the SSH server with the given ``username`` and ``password``.</doc>
-<msg timestamp="20230927 18:51:41.217" level="INFO">Logging into '192.168.29.141:22' as 'admin'.</msg>
-<msg timestamp="20230927 18:51:42.461" level="INFO">Read output: Activate the web console with: systemctl enable --now cockpit.socket
+<msg timestamp="20230928 10:39:11.197" level="INFO">Logging into '192.168.29.141:22' as 'admin'.</msg>
+<msg timestamp="20230928 10:39:12.665" level="INFO">Read output: Activate the web console with: systemctl enable --now cockpit.socket
 
-Last login: Wed Sep 27 09:05:53 2023 from 192.168.29.98
+Last login: Wed Sep 27 09:30:23 2023 from 192.168.29.98
 [admin@gRPCSender ~]$</msg>
-<status status="PASS" starttime="20230927 18:51:41.217" endtime="20230927 18:51:42.461"/>
+<status status="PASS" starttime="20230928 10:39:11.196" endtime="20230928 10:39:12.665"/>
 </kw>
-<status status="PASS" starttime="20230927 18:51:41.215" endtime="20230927 18:51:42.462"/>
+<status status="PASS" starttime="20230928 10:39:11.195" endtime="20230928 10:39:12.665"/>
 </kw>
 <kw name="Execute Command" library="SSHLibrary">
 <var>${stdout}</var>
@@ -145,26 +168,26 @@ Last login: Wed Sep 27 09:05:53 2023 from 192.168.29.98
 <arg>return_stdout=False</arg>
 <arg>return_stdout=True</arg>
 <doc>Executes ``command`` on the remote machine and returns its outputs.</doc>
-<msg timestamp="20230927 18:51:42.466" level="INFO">Executing command '/home/admin/project/bin/grpc_sender -D -s 192.168.29.11:50051 -f /home/admin/project/bin/test.txt -v 1 -b 1MB -o /tmp'.</msg>
-<msg timestamp="20230927 18:51:42.719" level="INFO">Command exited with return code 0.</msg>
-<msg timestamp="20230927 18:51:42.719" level="INFO">${stdout} = 2023-09-27 09:21:56 [INFO] Buffer chunk size is set to: 1MB
-2023-09-27 09:21:56 [INFO] GRPC destination pod service is: 192.168.29.11:50051
-2023-09-27 09:21:56 [INFO] Output Path: /tmp
-2023-09-27 09:2...</msg>
-<status status="PASS" starttime="20230927 18:51:42.462" endtime="20230927 18:51:42.719"/>
+<msg timestamp="20230928 10:39:12.668" level="INFO">Executing command '/home/admin/project/bin/grpc_sender -D -s 192.168.29.11:50051 -f /home/admin/project/bin/test.txt -v 1 -b 1MB -o /tmp'.</msg>
+<msg timestamp="20230928 10:39:12.872" level="INFO">Command exited with return code 0.</msg>
+<msg timestamp="20230928 10:39:12.872" level="INFO">${stdout} = 2023-09-27 17:46:21 [INFO] Buffer chunk size is set to: 1MB
+2023-09-27 17:46:21 [INFO] GRPC destination pod service is: 192.168.29.11:50051
+2023-09-27 17:46:21 [INFO] Output Path: /tmp
+2023-09-27 17:4...</msg>
+<status status="PASS" starttime="20230928 10:39:12.665" endtime="20230928 10:39:12.872"/>
 </kw>
 <kw name="Should Contain" library="BuiltIn">
 <arg>${stdout}</arg>
 <arg>File ${sender.bin_dir}/${sender_info.file_name} transfer succeeded.</arg>
 <doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
-<status status="PASS" starttime="20230927 18:51:42.719" endtime="20230927 18:51:42.720"/>
+<status status="PASS" starttime="20230928 10:39:12.872" endtime="20230928 10:39:12.874"/>
 </kw>
-<status status="PASS" starttime="20230927 18:51:41.209" endtime="20230927 18:51:42.720"/>
+<status status="PASS" starttime="20230928 10:39:11.188" endtime="20230928 10:39:12.874"/>
 </iter>
-<status status="PASS" starttime="20230927 18:51:41.208" endtime="20230927 18:51:42.720"/>
+<status status="PASS" starttime="20230928 10:39:11.187" endtime="20230928 10:39:12.874"/>
 </for>
-<msg timestamp="20230927 18:51:42.720" level="INFO">${snd_result} = None</msg>
-<status status="PASS" starttime="20230927 18:51:41.208" endtime="20230927 18:51:42.720"/>
+<msg timestamp="20230928 10:39:12.874" level="INFO">${snd_result} = None</msg>
+<status status="PASS" starttime="20230928 10:39:11.187" endtime="20230928 10:39:12.874"/>
 </kw>
 <kw name="Establish SSH Connection" library="grpc_keywords">
 <arg>${reciver.host}</arg>
@@ -173,27 +196,27 @@ Last login: Wed Sep 27 09:05:53 2023 from 192.168.29.98
 <kw name="Open Connection" library="SSHLibrary">
 <arg>${host}</arg>
 <doc>Opens a new SSH connection to the given ``host`` and ``port``.</doc>
-<status status="PASS" starttime="20230927 18:51:42.724" endtime="20230927 18:51:42.725"/>
+<status status="PASS" starttime="20230928 10:39:12.875" endtime="20230928 10:39:12.876"/>
 </kw>
 <kw name="Login" library="SSHLibrary">
 <arg>${user}</arg>
 <arg>${pwd}</arg>
 <doc>Logs into the SSH server with the given ``username`` and ``password``.</doc>
-<msg timestamp="20230927 18:51:42.725" level="INFO">Logging into '192.168.29.11:22' as 'admin'.</msg>
-<msg timestamp="20230927 18:51:43.982" level="INFO">Read output: Activate the web console with: systemctl enable --now cockpit.socket
+<msg timestamp="20230928 10:39:12.876" level="INFO">Logging into '192.168.29.11:22' as 'admin'.</msg>
+<msg timestamp="20230928 10:39:14.132" level="INFO">Read output: Activate the web console with: systemctl enable --now cockpit.socket
 
-Last login: Wed Sep 27 09:21:49 2023 from 192.168.29.98
+Last login: Wed Sep 27 17:46:41 2023 from 192.168.29.98
 [admin@gRPCreceiver ~]$</msg>
-<status status="PASS" starttime="20230927 18:51:42.725" endtime="20230927 18:51:43.984"/>
+<status status="PASS" starttime="20230928 10:39:12.876" endtime="20230928 10:39:14.132"/>
 </kw>
-<status status="PASS" starttime="20230927 18:51:42.722" endtime="20230927 18:51:43.984"/>
+<status status="PASS" starttime="20230928 10:39:12.874" endtime="20230928 10:39:14.132"/>
 </kw>
 <kw name="List Directory" library="SSHLibrary">
 <var>${open_home}</var>
 <arg>${reciver.target_dir}</arg>
 <doc>Returns and logs items in the remote ``path``, optionally filtered with ``pattern``.</doc>
-<msg timestamp="20230927 18:51:44.153" level="INFO">[chan 1] Opened sftp connection (server version 3)</msg>
-<msg timestamp="20230927 18:51:44.172" level="INFO">12 items:
+<msg timestamp="20230928 10:39:14.223" level="INFO">[chan 1] Opened sftp connection (server version 3)</msg>
+<msg timestamp="20230928 10:39:14.241" level="INFO">13 items:
 .ICE-unix
 .Test-unix
 .X11-unix
@@ -205,15 +228,39 @@ hsperfdata_root
 ks-script-6u_dsgc2
 ks-script-j8i15gys
 systemd-private-67a4916a27904f8382e0693bfc9dcfa1-chronyd.service-wnbOx2
-test.txt</msg>
-<msg timestamp="20230927 18:51:44.172" level="INFO">${open_home} = ['.ICE-unix', '.Test-unix', '.X11-unix', '.XIM-unix', '.font-unix', '.viminfo', '.wget-hsts', 'hsperfdata_root', 'ks-script-6u_dsgc2', 'ks-script-j8i15gys', 'systemd-private-67a4916a27904f8382e0693bfc...</msg>
-<status status="PASS" starttime="20230927 18:51:43.985" endtime="20230927 18:51:44.172"/>
+test.txt
+test1.txt</msg>
+<msg timestamp="20230928 10:39:14.241" level="INFO">${open_home} = ['.ICE-unix', '.Test-unix', '.X11-unix', '.XIM-unix', '.font-unix', '.viminfo', '.wget-hsts', 'hsperfdata_root', 'ks-script-6u_dsgc2', 'ks-script-j8i15gys', 'systemd-private-67a4916a27904f8382e0693bfc...</msg>
+<status status="PASS" starttime="20230928 10:39:14.132" endtime="20230928 10:39:14.241"/>
 </kw>
 <kw name="Should Contain" library="BuiltIn">
 <arg>${open_home}</arg>
 <arg>${sender.file_name}</arg>
 <doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
-<status status="PASS" starttime="20230927 18:51:44.172" endtime="20230927 18:51:44.173"/>
+<status status="PASS" starttime="20230928 10:39:14.241" endtime="20230928 10:39:14.242"/>
+</kw>
+<msg timestamp="20230928 10:39:14.243" level="INFO">${status} = None</msg>
+<status status="PASS" starttime="20230928 10:39:05.653" endtime="20230928 10:39:14.243"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${status}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230928 10:39:14.244" level="INFO">None</msg>
+<status status="PASS" starttime="20230928 10:39:14.243" endtime="20230928 10:39:14.244"/>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<arg>'${status}' == '${False}'</arg>
+<arg>fail</arg>
+<arg>Test case is Failed</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" starttime="20230928 10:39:14.245" endtime="20230928 10:39:14.245"/>
+</kw>
+<kw name="test teardown demo" library="grpc_keywords" type="TEARDOWN">
+<kw name="Log" library="BuiltIn">
+<arg>the test teardown keyword is executed</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230928 10:39:14.246" level="INFO">the test teardown keyword is executed</msg>
+<status status="PASS" starttime="20230928 10:39:14.246" endtime="20230928 10:39:14.246"/>
 </kw>
 <kw name="Kill the Process" library="grpc_keywords">
 <kw name="Execute Command" library="SSHLibrary">
@@ -221,26 +268,26 @@ test.txt</msg>
 <arg>lsof -i :${reciver.port}</arg>
 <arg>shell=True</arg>
 <doc>Executes ``command`` on the remote machine and returns its outputs.</doc>
-<msg timestamp="20230927 18:51:44.175" level="INFO">Executing command 'lsof -i :50051'.</msg>
-<msg timestamp="20230927 18:51:44.441" level="INFO">Command exited with return code 0.</msg>
-<msg timestamp="20230927 18:51:44.441" level="INFO">${output} = COMMAND    PID  USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
-grpc_rece 4545 admin    5u  IPv6  47448      0t0  TCP *:50051 (LISTEN)</msg>
-<status status="PASS" starttime="20230927 18:51:44.174" endtime="20230927 18:51:44.441"/>
+<msg timestamp="20230928 10:39:14.247" level="INFO">Executing command 'lsof -i :50051'.</msg>
+<msg timestamp="20230928 10:39:14.410" level="INFO">Command exited with return code 0.</msg>
+<msg timestamp="20230928 10:39:14.410" level="INFO">${output} = COMMAND    PID  USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
+grpc_rece 6789 admin    5u  IPv6  59797      0t0  TCP *:50051 (LISTEN)</msg>
+<status status="PASS" starttime="20230928 10:39:14.247" endtime="20230928 10:39:14.410"/>
 </kw>
 <kw name="Split String" library="String">
 <var>${lines}</var>
 <arg>${output}</arg>
 <arg>\n</arg>
 <doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
-<msg timestamp="20230927 18:51:44.442" level="INFO">${lines} = ['COMMAND    PID  USER   FD   TYPE DEVICE SIZE/OFF NODE NAME', 'grpc_rece 4545 admin    5u  IPv6  47448      0t0  TCP *:50051 (LISTEN)']</msg>
-<status status="PASS" starttime="20230927 18:51:44.441" endtime="20230927 18:51:44.442"/>
+<msg timestamp="20230928 10:39:14.411" level="INFO">${lines} = ['COMMAND    PID  USER   FD   TYPE DEVICE SIZE/OFF NODE NAME', 'grpc_rece 6789 admin    5u  IPv6  59797      0t0  TCP *:50051 (LISTEN)']</msg>
+<status status="PASS" starttime="20230928 10:39:14.410" endtime="20230928 10:39:14.411"/>
 </kw>
 <kw name="Set Variable" library="BuiltIn">
 <var>${pid_line}</var>
 <arg>${EMPTY}</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<msg timestamp="20230927 18:51:44.443" level="INFO">${pid_line} = </msg>
-<status status="PASS" starttime="20230927 18:51:44.442" endtime="20230927 18:51:44.443"/>
+<msg timestamp="20230928 10:39:14.411" level="INFO">${pid_line} = </msg>
+<status status="PASS" starttime="20230928 10:39:14.411" endtime="20230928 10:39:14.411"/>
 </kw>
 <for flavor="IN">
 <var>${line}</var>
@@ -252,63 +299,105 @@ grpc_rece 4545 admin    5u  IPv6  47448      0t0  TCP *:50051 (LISTEN)</msg>
 <arg>${line}</arg>
 <arg>${SPACE}</arg>
 <doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
-<msg timestamp="20230927 18:51:44.443" level="INFO">${parts} = ['COMMAND', '', '', '', 'PID', '', 'USER', '', '', 'FD', '', '', 'TYPE', 'DEVICE', 'SIZE/OFF', 'NODE', 'NAME']</msg>
-<status status="PASS" starttime="20230927 18:51:44.443" endtime="20230927 18:51:44.443"/>
+<msg timestamp="20230928 10:39:14.412" level="INFO">${parts} = ['COMMAND', '', '', '', 'PID', '', 'USER', '', '', 'FD', '', '', 'TYPE', 'DEVICE', 'SIZE/OFF', 'NODE', 'NAME']</msg>
+<status status="PASS" starttime="20230928 10:39:14.412" endtime="20230928 10:39:14.412"/>
 </kw>
-<status status="PASS" starttime="20230927 18:51:44.443" endtime="20230927 18:51:44.443"/>
+<status status="PASS" starttime="20230928 10:39:14.412" endtime="20230928 10:39:14.412"/>
 </iter>
 <iter>
-<var name="${line}">grpc_rece 4545 admin    5u  IPv6  47448      0t0  TCP *:50051 (LISTEN)</var>
+<var name="${line}">grpc_rece 6789 admin    5u  IPv6  59797      0t0  TCP *:50051 (LISTEN)</var>
 <kw name="Split String" library="String">
 <var>${parts}</var>
 <arg>${line}</arg>
 <arg>${SPACE}</arg>
 <doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
-<msg timestamp="20230927 18:51:44.445" level="INFO">${parts} = ['grpc_rece', '4545', 'admin', '', '', '', '5u', '', 'IPv6', '', '47448', '', '', '', '', '', '0t0', '', 'TCP', '*:50051', '(LISTEN)']</msg>
-<status status="PASS" starttime="20230927 18:51:44.443" endtime="20230927 18:51:44.445"/>
+<msg timestamp="20230928 10:39:14.413" level="INFO">${parts} = ['grpc_rece', '6789', 'admin', '', '', '', '5u', '', 'IPv6', '', '59797', '', '', '', '', '', '0t0', '', 'TCP', '*:50051', '(LISTEN)']</msg>
+<status status="PASS" starttime="20230928 10:39:14.412" endtime="20230928 10:39:14.413"/>
 </kw>
-<status status="PASS" starttime="20230927 18:51:44.443" endtime="20230927 18:51:44.445"/>
+<status status="PASS" starttime="20230928 10:39:14.412" endtime="20230928 10:39:14.413"/>
 </iter>
-<status status="PASS" starttime="20230927 18:51:44.443" endtime="20230927 18:51:44.445"/>
+<status status="PASS" starttime="20230928 10:39:14.412" endtime="20230928 10:39:14.413"/>
 </for>
 <kw name="Set Variable" library="BuiltIn">
 <var>${pid}</var>
 <arg>${parts[1]}</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<msg timestamp="20230927 18:51:44.446" level="INFO">${pid} = 4545</msg>
-<status status="PASS" starttime="20230927 18:51:44.445" endtime="20230927 18:51:44.446"/>
+<msg timestamp="20230928 10:39:14.413" level="INFO">${pid} = 6789</msg>
+<status status="PASS" starttime="20230928 10:39:14.413" endtime="20230928 10:39:14.413"/>
 </kw>
 <kw name="Execute Command" library="SSHLibrary">
 <var>${kill_pid}</var>
 <arg>kill -9 ${pid}</arg>
 <doc>Executes ``command`` on the remote machine and returns its outputs.</doc>
-<msg timestamp="20230927 18:51:44.447" level="INFO">Executing command 'kill -9 4545'.</msg>
-<msg timestamp="20230927 18:51:44.642" level="INFO">Command exited with return code 0.</msg>
-<msg timestamp="20230927 18:51:44.642" level="INFO">${kill_pid} = </msg>
-<status status="PASS" starttime="20230927 18:51:44.446" endtime="20230927 18:51:44.642"/>
+<msg timestamp="20230928 10:39:14.413" level="INFO">Executing command 'kill -9 6789'.</msg>
+<msg timestamp="20230928 10:39:14.542" level="INFO">Command exited with return code 0.</msg>
+<msg timestamp="20230928 10:39:14.542" level="INFO">${kill_pid} = </msg>
+<status status="PASS" starttime="20230928 10:39:14.413" endtime="20230928 10:39:14.542"/>
 </kw>
 <kw name="Read" library="SSHLibrary">
 <var>${output2}</var>
 <arg>delay=2s</arg>
 <doc>Consumes and returns everything available on the server output.</doc>
-<msg timestamp="20230927 18:51:46.644" level="INFO">${output2} = </msg>
-<status status="PASS" starttime="20230927 18:51:44.642" endtime="20230927 18:51:46.645"/>
+<msg timestamp="20230928 10:39:16.542" level="INFO">${output2} = </msg>
+<status status="PASS" starttime="20230928 10:39:14.542" endtime="20230928 10:39:16.542"/>
 </kw>
 <kw name="Log To Console" library="BuiltIn">
 <arg>${output2}</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" starttime="20230927 18:51:46.645" endtime="20230927 18:51:46.646"/>
+<status status="PASS" starttime="20230928 10:39:16.542" endtime="20230928 10:39:16.543"/>
 </kw>
 <kw name="Log To Console" library="BuiltIn">
 <arg>PID: ${pid}</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" starttime="20230927 18:51:46.647" endtime="20230927 18:51:46.648"/>
+<status status="PASS" starttime="20230928 10:39:16.543" endtime="20230928 10:39:16.543"/>
 </kw>
-<status status="PASS" starttime="20230927 18:51:44.174" endtime="20230927 18:51:46.649"/>
+<status status="PASS" starttime="20230928 10:39:14.246" endtime="20230928 10:39:16.543"/>
 </kw>
-<status status="PASS" starttime="20230927 18:51:35.722" endtime="20230927 18:51:46.650"/>
+<status status="PASS" starttime="20230928 10:39:14.246" endtime="20230928 10:39:16.543"/>
+</kw>
+<doc>DESIGN STEPS
+
+============
+
+gRPC Tool Testing Using Automation
+
+Step1:
+
+Login to Receiver VM and Execute the command to make receiver ready to accept the files.
+
+Step 2:
+
+Login to Sender VM and Execute the command to send a files
+
+Step 3:
+
+Check the eexcuted command is success or fail
+
+Step4:
+
+Login to Rceiver Command and check the file is recived at Receiver VM.
+
+*ASSIGNEE=#####*</doc>
+<tag>gRPC</tag>
+<tag>NewFeature</tag>
+<tag>Regression</tag>
+<timeout value="15 minutes"/>
+<status status="PASS" starttime="20230928 10:39:05.650" endtime="20230928 10:39:16.543"/>
 </test>
-<test id="s1-t2" name="Testcase2" line="25">
+<test id="s1-t2" name="GRPC_Test_02" line="46">
+<kw name="test setup demo" library="grpc_keywords" type="SETUP">
+<kw name="Log" library="BuiltIn">
+<arg>the test setup demo keyword is executed</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230928 10:39:16.547" level="INFO">the test setup demo keyword is executed</msg>
+<status status="PASS" starttime="20230928 10:39:16.547" endtime="20230928 10:39:16.548"/>
+</kw>
+<status status="PASS" starttime="20230928 10:39:16.546" endtime="20230928 10:39:16.548"/>
+</kw>
+<kw name="Transfer File With Unspecified Location Using gRPC Protocol Via SSH" library="grpc_keywords">
+<var>${status}</var>
+<arg>${sender}</arg>
+<arg>${reciver}</arg>
 <kw name="Reciver command" library="grpc_keywords">
 <var>${rec_res}</var>
 <arg>${reciver.host}</arg>
@@ -322,72 +411,73 @@ grpc_rece 4545 admin    5u  IPv6  47448      0t0  TCP *:50051 (LISTEN)</msg>
 <kw name="Open Connection" library="SSHLibrary">
 <arg>${host}</arg>
 <doc>Opens a new SSH connection to the given ``host`` and ``port``.</doc>
-<status status="PASS" starttime="20230927 18:51:46.655" endtime="20230927 18:51:46.656"/>
+<status status="PASS" starttime="20230928 10:39:16.553" endtime="20230928 10:39:16.554"/>
 </kw>
 <kw name="Login" library="SSHLibrary">
 <arg>${user}</arg>
 <arg>${pwd}</arg>
 <doc>Logs into the SSH server with the given ``username`` and ``password``.</doc>
-<msg timestamp="20230927 18:51:46.656" level="INFO">Logging into '192.168.29.11:22' as 'admin'.</msg>
-<msg timestamp="20230927 18:51:47.916" level="INFO">Read output: Activate the web console with: systemctl enable --now cockpit.socket
+<msg timestamp="20230928 10:39:16.555" level="INFO">Logging into '192.168.29.11:22' as 'admin'.</msg>
+<msg timestamp="20230928 10:39:17.759" level="INFO">Read output: Activate the web console with: systemctl enable --now cockpit.socket
 
-Last login: Wed Sep 27 09:21:56 2023 from 192.168.29.98
+Last login: Wed Sep 27 17:46:49 2023 from 192.168.29.98
 [admin@gRPCreceiver ~]$</msg>
-<status status="PASS" starttime="20230927 18:51:46.656" endtime="20230927 18:51:47.916"/>
+<status status="PASS" starttime="20230928 10:39:16.555" endtime="20230928 10:39:17.759"/>
 </kw>
-<status status="PASS" starttime="20230927 18:51:46.655" endtime="20230927 18:51:47.916"/>
+<status status="PASS" starttime="20230928 10:39:16.552" endtime="20230928 10:39:17.759"/>
 </kw>
 <kw name="Write" library="SSHLibrary">
 <arg>cd ${reciver.bin_dir}</arg>
 <doc>Writes the given ``text`` on the remote machine and appends a newline.</doc>
-<msg timestamp="20230927 18:51:47.921" level="INFO">cd /home/admin/project/bin</msg>
-<status status="PASS" starttime="20230927 18:51:47.916" endtime="20230927 18:51:47.921"/>
+<msg timestamp="20230928 10:39:17.764" level="INFO">cd /home/admin/project/bin</msg>
+<status status="PASS" starttime="20230928 10:39:17.759" endtime="20230928 10:39:17.764"/>
 </kw>
 <kw name="Write" library="SSHLibrary">
 <arg>${cmd}</arg>
 <doc>Writes the given ``text`` on the remote machine and appends a newline.</doc>
-<msg timestamp="20230927 18:51:47.926" level="INFO">[admin@gRPCreceiver bin]$ /home/admin/project/bin/grpc_receiver -c 1 -l 3 -D -d ..</msg>
-<status status="PASS" starttime="20230927 18:51:47.921" endtime="20230927 18:51:47.926"/>
+<msg timestamp="20230928 10:39:17.767" level="INFO">[admin@gRPCreceiver bin]$ /home/admin/project/bin/grpc_receiver -c 1 -l 3 -D -d ..</msg>
+<status status="PASS" starttime="20230928 10:39:17.764" endtime="20230928 10:39:17.767"/>
 </kw>
 <kw name="Read" library="SSHLibrary">
 <var>${output}</var>
 <arg>delay=2s</arg>
 <doc>Consumes and returns everything available on the server output.</doc>
-<msg timestamp="20230927 18:51:51.927" level="INFO">2023-09-27 09:22:01 [TRACE] log level is set to trace
-2023-09-27 09:22:01 [INFO] default receiving path is: .
-2023-09-27 09:22:01 [INFO] Starting GRPC Receiver...
-2023-09-27 09:22:01 [TRACE] set compression algorithm: GRPC_COMPRESS_DEFLATE, set compression level to: GRPC_COMPRESS_LEVEL_HIGH
-2023-09-27 09:22:01 [TRACE] The server has a default compression algorithm set
-2023-09-27 09:22:01 [INFO] Server listening on 0.0.0.0:50051 . Press Ctrl-C to end.</msg>
-<msg timestamp="20230927 18:51:51.928" level="INFO">${output} = 2023-09-27 09:22:01 [TRACE] log level is set to trace
-2023-09-27 09:22:01 [INFO] default receiving path is: .
-2023-09-27 09:22:01 [INFO] Starting GRPC Receiver...
-2023-09-27 09:22:01 [TRACE] set co...</msg>
-<status status="PASS" starttime="20230927 18:51:47.926" endtime="20230927 18:51:51.928"/>
+<msg timestamp="20230928 10:39:21.770" level="INFO">2023-09-27 17:46:54 [TRACE] log level is set to trace
+2023-09-27 17:46:54 [INFO] default receiving path is: .
+2023-09-27 17:46:54 [INFO] Starting GRPC Receiver...
+2023-09-27 17:46:54 [TRACE] set compression algorithm: GRPC_COMPRESS_DEFLATE, set compression level to: GRPC_COMPRESS_LEVEL_HIGH
+2023-09-27 17:46:54 [TRACE] The server has a default compression algorithm set
+2023-09-27 17:46:54 [INFO] Server listening on 0.0.0.0:50051 . Press Ctrl-C to end.</msg>
+<msg timestamp="20230928 10:39:21.770" level="INFO">${output} = 2023-09-27 17:46:54 [TRACE] log level is set to trace
+2023-09-27 17:46:54 [INFO] default receiving path is: .
+2023-09-27 17:46:54 [INFO] Starting GRPC Receiver...
+2023-09-27 17:46:54 [TRACE] set co...</msg>
+<status status="PASS" starttime="20230928 10:39:17.767" endtime="20230928 10:39:21.770"/>
 </kw>
 <kw name="Log To Console" library="BuiltIn">
 <arg>${output}</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" starttime="20230927 18:51:51.928" endtime="20230927 18:51:51.932"/>
+<status status="PASS" starttime="20230928 10:39:21.770" endtime="20230928 10:39:21.772"/>
 </kw>
 <kw name="List Directory" library="SSHLibrary">
 <var>${open_home}</var>
 <arg>${reciver.bin_dir}</arg>
 <doc>Returns and logs items in the remote ``path``, optionally filtered with ``pattern``.</doc>
-<msg timestamp="20230927 18:51:52.051" level="INFO">[chan 1] Opened sftp connection (server version 3)</msg>
-<msg timestamp="20230927 18:51:52.066" level="INFO">2 items:
+<msg timestamp="20230928 10:39:21.858" level="INFO">[chan 1] Opened sftp connection (server version 3)</msg>
+<msg timestamp="20230928 10:39:21.865" level="INFO">3 items:
 grpc_receiver
-grpc_sender</msg>
-<msg timestamp="20230927 18:51:52.067" level="INFO">${open_home} = ['grpc_receiver', 'grpc_sender']</msg>
-<status status="PASS" starttime="20230927 18:51:51.932" endtime="20230927 18:51:52.067"/>
+grpc_sender
+test.txt</msg>
+<msg timestamp="20230928 10:39:21.865" level="INFO">${open_home} = ['grpc_receiver', 'grpc_sender', 'test.txt']</msg>
+<status status="PASS" starttime="20230928 10:39:21.772" endtime="20230928 10:39:21.865"/>
 </kw>
-<msg timestamp="20230927 18:51:52.067" level="INFO">${rec_res} = ['grpc_receiver', 'grpc_sender']</msg>
-<status status="PASS" starttime="20230927 18:51:46.651" endtime="20230927 18:51:52.067"/>
+<msg timestamp="20230928 10:39:21.865" level="INFO">${rec_res} = ['grpc_receiver', 'grpc_sender', 'test.txt']</msg>
+<status status="PASS" starttime="20230928 10:39:16.548" endtime="20230928 10:39:21.865"/>
 </kw>
 <kw name="Log To Console" library="BuiltIn">
 <arg>${rec_res}</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" starttime="20230927 18:51:52.068" endtime="20230927 18:51:52.069"/>
+<status status="PASS" starttime="20230928 10:39:21.865" endtime="20230928 10:39:21.866"/>
 </kw>
 <kw name="Sender command unspecifed path" library="grpc_keywords">
 <var>${snd_result}</var>
@@ -401,8 +491,8 @@ grpc_sender</msg>
 <arg>${sender}</arg>
 <arg>${element}</arg>
 <doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
-<msg timestamp="20230927 18:51:52.070" level="INFO">${sender_info} = {'usr1': 'admin', 'pwd': 'admin123', 'file_name': 'test.txt'}</msg>
-<status status="PASS" starttime="20230927 18:51:52.070" endtime="20230927 18:51:52.070"/>
+<msg timestamp="20230928 10:39:21.868" level="INFO">${sender_info} = {'usr1': 'admin', 'pwd': 'admin123', 'file_name': 'test.txt'}</msg>
+<status status="PASS" starttime="20230928 10:39:21.868" endtime="20230928 10:39:21.868"/>
 </kw>
 <kw name="Establish SSH Connection" library="grpc_keywords">
 <arg>${element}</arg>
@@ -411,20 +501,20 @@ grpc_sender</msg>
 <kw name="Open Connection" library="SSHLibrary">
 <arg>${host}</arg>
 <doc>Opens a new SSH connection to the given ``host`` and ``port``.</doc>
-<status status="PASS" starttime="20230927 18:51:52.071" endtime="20230927 18:51:52.072"/>
+<status status="PASS" starttime="20230928 10:39:21.869" endtime="20230928 10:39:21.884"/>
 </kw>
 <kw name="Login" library="SSHLibrary">
 <arg>${user}</arg>
 <arg>${pwd}</arg>
 <doc>Logs into the SSH server with the given ``username`` and ``password``.</doc>
-<msg timestamp="20230927 18:51:52.072" level="INFO">Logging into '192.168.29.141:22' as 'admin'.</msg>
-<msg timestamp="20230927 18:51:53.349" level="INFO">Read output: Activate the web console with: systemctl enable --now cockpit.socket
+<msg timestamp="20230928 10:39:21.885" level="INFO">Logging into '192.168.29.141:22' as 'admin'.</msg>
+<msg timestamp="20230928 10:39:23.120" level="INFO">Read output: Activate the web console with: systemctl enable --now cockpit.socket
 
-Last login: Wed Sep 27 09:21:54 2023 from 192.168.29.98
+Last login: Wed Sep 27 17:46:19 2023 from 192.168.29.98
 [admin@gRPCSender ~]$</msg>
-<status status="PASS" starttime="20230927 18:51:52.072" endtime="20230927 18:51:53.349"/>
+<status status="PASS" starttime="20230928 10:39:21.884" endtime="20230928 10:39:23.120"/>
 </kw>
-<status status="PASS" starttime="20230927 18:51:52.070" endtime="20230927 18:51:53.349"/>
+<status status="PASS" starttime="20230928 10:39:21.869" endtime="20230928 10:39:23.120"/>
 </kw>
 <kw name="Execute Command" library="SSHLibrary">
 <var>${stdout}</var>
@@ -432,25 +522,25 @@ Last login: Wed Sep 27 09:21:54 2023 from 192.168.29.98
 <arg>return_stdout=False</arg>
 <arg>return_stdout=True</arg>
 <doc>Executes ``command`` on the remote machine and returns its outputs.</doc>
-<msg timestamp="20230927 18:51:53.352" level="INFO">Executing command '/home/admin/project/bin/grpc_sender -D -s 192.168.29.11:50051 -f /home/admin/project/bin/test.txt -v 1 -b 1MB'.</msg>
-<msg timestamp="20230927 18:51:53.557" level="INFO">Command exited with return code 0.</msg>
-<msg timestamp="20230927 18:51:53.557" level="INFO">${stdout} = 2023-09-27 09:22:06 [INFO] Buffer chunk size is set to: 1MB
-2023-09-27 09:22:06 [INFO] GRPC destination pod service is: 192.168.29.11:50051
-2023-09-27 09:22:06 [INFO] Checksum validation is set to: md...</msg>
-<status status="PASS" starttime="20230927 18:51:53.350" endtime="20230927 18:51:53.557"/>
+<msg timestamp="20230928 10:39:23.124" level="INFO">Executing command '/home/admin/project/bin/grpc_sender -D -s 192.168.29.11:50051 -f /home/admin/project/bin/test.txt -v 1 -b 1MB'.</msg>
+<msg timestamp="20230928 10:39:23.239" level="INFO">Command exited with return code 0.</msg>
+<msg timestamp="20230928 10:39:23.239" level="INFO">${stdout} = 2023-09-27 17:46:32 [INFO] Buffer chunk size is set to: 1MB
+2023-09-27 17:46:32 [INFO] GRPC destination pod service is: 192.168.29.11:50051
+2023-09-27 17:46:32 [INFO] Checksum validation is set to: md...</msg>
+<status status="PASS" starttime="20230928 10:39:23.120" endtime="20230928 10:39:23.239"/>
 </kw>
 <kw name="Should Contain" library="BuiltIn">
 <arg>${stdout}</arg>
 <arg>File ${sender.bin_dir}/${sender_info.file_name} transfer succeeded.</arg>
 <doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
-<status status="PASS" starttime="20230927 18:51:53.557" endtime="20230927 18:51:53.558"/>
+<status status="PASS" starttime="20230928 10:39:23.239" endtime="20230928 10:39:23.240"/>
 </kw>
-<status status="PASS" starttime="20230927 18:51:52.070" endtime="20230927 18:51:53.558"/>
+<status status="PASS" starttime="20230928 10:39:21.868" endtime="20230928 10:39:23.240"/>
 </iter>
-<status status="PASS" starttime="20230927 18:51:52.069" endtime="20230927 18:51:53.558"/>
+<status status="PASS" starttime="20230928 10:39:21.867" endtime="20230928 10:39:23.240"/>
 </for>
-<msg timestamp="20230927 18:51:53.558" level="INFO">${snd_result} = None</msg>
-<status status="PASS" starttime="20230927 18:51:52.069" endtime="20230927 18:51:53.558"/>
+<msg timestamp="20230928 10:39:23.240" level="INFO">${snd_result} = None</msg>
+<status status="PASS" starttime="20230928 10:39:21.867" endtime="20230928 10:39:23.240"/>
 </kw>
 <kw name="Establish SSH Connection" library="grpc_keywords">
 <arg>${reciver.host}</arg>
@@ -459,38 +549,61 @@ Last login: Wed Sep 27 09:21:54 2023 from 192.168.29.98
 <kw name="Open Connection" library="SSHLibrary">
 <arg>${host}</arg>
 <doc>Opens a new SSH connection to the given ``host`` and ``port``.</doc>
-<status status="PASS" starttime="20230927 18:51:53.561" endtime="20230927 18:51:53.563"/>
+<status status="PASS" starttime="20230928 10:39:23.241" endtime="20230928 10:39:23.242"/>
 </kw>
 <kw name="Login" library="SSHLibrary">
 <arg>${user}</arg>
 <arg>${pwd}</arg>
 <doc>Logs into the SSH server with the given ``username`` and ``password``.</doc>
-<msg timestamp="20230927 18:51:53.564" level="INFO">Logging into '192.168.29.11:22' as 'admin'.</msg>
-<msg timestamp="20230927 18:51:54.816" level="INFO">Read output: Activate the web console with: systemctl enable --now cockpit.socket
+<msg timestamp="20230928 10:39:23.244" level="INFO">Logging into '192.168.29.11:22' as 'admin'.</msg>
+<msg timestamp="20230928 10:39:24.514" level="INFO">Read output: Activate the web console with: systemctl enable --now cockpit.socket
 
-Last login: Wed Sep 27 09:22:00 2023 from 192.168.29.98
+Last login: Wed Sep 27 17:46:53 2023 from 192.168.29.98
 [admin@gRPCreceiver ~]$</msg>
-<status status="PASS" starttime="20230927 18:51:53.563" endtime="20230927 18:51:54.816"/>
+<status status="PASS" starttime="20230928 10:39:23.243" endtime="20230928 10:39:24.514"/>
 </kw>
-<status status="PASS" starttime="20230927 18:51:53.560" endtime="20230927 18:51:54.816"/>
+<status status="PASS" starttime="20230928 10:39:23.240" endtime="20230928 10:39:24.514"/>
 </kw>
 <kw name="List Directory" library="SSHLibrary">
 <var>${open_home}</var>
 <arg>${reciver.bin_dir}</arg>
 <doc>Returns and logs items in the remote ``path``, optionally filtered with ``pattern``.</doc>
-<msg timestamp="20230927 18:51:54.968" level="INFO">[chan 1] Opened sftp connection (server version 3)</msg>
-<msg timestamp="20230927 18:51:54.986" level="INFO">3 items:
+<msg timestamp="20230928 10:39:24.615" level="INFO">[chan 1] Opened sftp connection (server version 3)</msg>
+<msg timestamp="20230928 10:39:24.625" level="INFO">3 items:
 grpc_receiver
 grpc_sender
 test.txt</msg>
-<msg timestamp="20230927 18:51:54.987" level="INFO">${open_home} = ['grpc_receiver', 'grpc_sender', 'test.txt']</msg>
-<status status="PASS" starttime="20230927 18:51:54.817" endtime="20230927 18:51:54.987"/>
+<msg timestamp="20230928 10:39:24.625" level="INFO">${open_home} = ['grpc_receiver', 'grpc_sender', 'test.txt']</msg>
+<status status="PASS" starttime="20230928 10:39:24.514" endtime="20230928 10:39:24.625"/>
 </kw>
 <kw name="Should Contain" library="BuiltIn">
 <arg>${open_home}</arg>
 <arg>${sender.file_name}</arg>
 <doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
-<status status="PASS" starttime="20230927 18:51:54.987" endtime="20230927 18:51:54.988"/>
+<status status="PASS" starttime="20230928 10:39:24.625" endtime="20230928 10:39:24.626"/>
+</kw>
+<msg timestamp="20230928 10:39:24.627" level="INFO">${status} = None</msg>
+<status status="PASS" starttime="20230928 10:39:16.548" endtime="20230928 10:39:24.627"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${status}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230928 10:39:24.629" level="INFO">None</msg>
+<status status="PASS" starttime="20230928 10:39:24.628" endtime="20230928 10:39:24.629"/>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<arg>'${status}' == '${False}'</arg>
+<arg>fail</arg>
+<arg>Test case is Failed</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" starttime="20230928 10:39:24.630" endtime="20230928 10:39:24.630"/>
+</kw>
+<kw name="test teardown demo" library="grpc_keywords" type="TEARDOWN">
+<kw name="Log" library="BuiltIn">
+<arg>the test teardown keyword is executed</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230928 10:39:24.631" level="INFO">the test teardown keyword is executed</msg>
+<status status="PASS" starttime="20230928 10:39:24.631" endtime="20230928 10:39:24.631"/>
 </kw>
 <kw name="Kill the Process" library="grpc_keywords">
 <kw name="Execute Command" library="SSHLibrary">
@@ -498,26 +611,26 @@ test.txt</msg>
 <arg>lsof -i :${reciver.port}</arg>
 <arg>shell=True</arg>
 <doc>Executes ``command`` on the remote machine and returns its outputs.</doc>
-<msg timestamp="20230927 18:51:54.989" level="INFO">Executing command 'lsof -i :50051'.</msg>
-<msg timestamp="20230927 18:51:55.162" level="INFO">Command exited with return code 0.</msg>
-<msg timestamp="20230927 18:51:55.163" level="INFO">${output} = COMMAND    PID  USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
-grpc_rece 4713 admin    5u  IPv6  48356      0t0  TCP *:50051 (LISTEN)</msg>
-<status status="PASS" starttime="20230927 18:51:54.989" endtime="20230927 18:51:55.163"/>
+<msg timestamp="20230928 10:39:24.632" level="INFO">Executing command 'lsof -i :50051'.</msg>
+<msg timestamp="20230928 10:39:24.717" level="INFO">Command exited with return code 0.</msg>
+<msg timestamp="20230928 10:39:24.717" level="INFO">${output} = COMMAND    PID  USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
+grpc_rece 6957 admin    5u  IPv6  60622      0t0  TCP *:50051 (LISTEN)</msg>
+<status status="PASS" starttime="20230928 10:39:24.631" endtime="20230928 10:39:24.717"/>
 </kw>
 <kw name="Split String" library="String">
 <var>${lines}</var>
 <arg>${output}</arg>
 <arg>\n</arg>
 <doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
-<msg timestamp="20230927 18:51:55.165" level="INFO">${lines} = ['COMMAND    PID  USER   FD   TYPE DEVICE SIZE/OFF NODE NAME', 'grpc_rece 4713 admin    5u  IPv6  48356      0t0  TCP *:50051 (LISTEN)']</msg>
-<status status="PASS" starttime="20230927 18:51:55.164" endtime="20230927 18:51:55.165"/>
+<msg timestamp="20230928 10:39:24.718" level="INFO">${lines} = ['COMMAND    PID  USER   FD   TYPE DEVICE SIZE/OFF NODE NAME', 'grpc_rece 6957 admin    5u  IPv6  60622      0t0  TCP *:50051 (LISTEN)']</msg>
+<status status="PASS" starttime="20230928 10:39:24.717" endtime="20230928 10:39:24.718"/>
 </kw>
 <kw name="Set Variable" library="BuiltIn">
 <var>${pid_line}</var>
 <arg>${EMPTY}</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<msg timestamp="20230927 18:51:55.165" level="INFO">${pid_line} = </msg>
-<status status="PASS" starttime="20230927 18:51:55.165" endtime="20230927 18:51:55.165"/>
+<msg timestamp="20230928 10:39:24.718" level="INFO">${pid_line} = </msg>
+<status status="PASS" starttime="20230928 10:39:24.718" endtime="20230928 10:39:24.718"/>
 </kw>
 <for flavor="IN">
 <var>${line}</var>
@@ -529,63 +642,105 @@ grpc_rece 4713 admin    5u  IPv6  48356      0t0  TCP *:50051 (LISTEN)</msg>
 <arg>${line}</arg>
 <arg>${SPACE}</arg>
 <doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
-<msg timestamp="20230927 18:51:55.166" level="INFO">${parts} = ['COMMAND', '', '', '', 'PID', '', 'USER', '', '', 'FD', '', '', 'TYPE', 'DEVICE', 'SIZE/OFF', 'NODE', 'NAME']</msg>
-<status status="PASS" starttime="20230927 18:51:55.166" endtime="20230927 18:51:55.166"/>
+<msg timestamp="20230928 10:39:24.720" level="INFO">${parts} = ['COMMAND', '', '', '', 'PID', '', 'USER', '', '', 'FD', '', '', 'TYPE', 'DEVICE', 'SIZE/OFF', 'NODE', 'NAME']</msg>
+<status status="PASS" starttime="20230928 10:39:24.720" endtime="20230928 10:39:24.720"/>
 </kw>
-<status status="PASS" starttime="20230927 18:51:55.166" endtime="20230927 18:51:55.166"/>
+<status status="PASS" starttime="20230928 10:39:24.718" endtime="20230928 10:39:24.720"/>
 </iter>
 <iter>
-<var name="${line}">grpc_rece 4713 admin    5u  IPv6  48356      0t0  TCP *:50051 (LISTEN)</var>
+<var name="${line}">grpc_rece 6957 admin    5u  IPv6  60622      0t0  TCP *:50051 (LISTEN)</var>
 <kw name="Split String" library="String">
 <var>${parts}</var>
 <arg>${line}</arg>
 <arg>${SPACE}</arg>
 <doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
-<msg timestamp="20230927 18:51:55.167" level="INFO">${parts} = ['grpc_rece', '4713', 'admin', '', '', '', '5u', '', 'IPv6', '', '48356', '', '', '', '', '', '0t0', '', 'TCP', '*:50051', '(LISTEN)']</msg>
-<status status="PASS" starttime="20230927 18:51:55.166" endtime="20230927 18:51:55.167"/>
+<msg timestamp="20230928 10:39:24.720" level="INFO">${parts} = ['grpc_rece', '6957', 'admin', '', '', '', '5u', '', 'IPv6', '', '60622', '', '', '', '', '', '0t0', '', 'TCP', '*:50051', '(LISTEN)']</msg>
+<status status="PASS" starttime="20230928 10:39:24.720" endtime="20230928 10:39:24.720"/>
 </kw>
-<status status="PASS" starttime="20230927 18:51:55.166" endtime="20230927 18:51:55.167"/>
+<status status="PASS" starttime="20230928 10:39:24.720" endtime="20230928 10:39:24.720"/>
 </iter>
-<status status="PASS" starttime="20230927 18:51:55.166" endtime="20230927 18:51:55.167"/>
+<status status="PASS" starttime="20230928 10:39:24.718" endtime="20230928 10:39:24.720"/>
 </for>
 <kw name="Set Variable" library="BuiltIn">
 <var>${pid}</var>
 <arg>${parts[1]}</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<msg timestamp="20230927 18:51:55.167" level="INFO">${pid} = 4713</msg>
-<status status="PASS" starttime="20230927 18:51:55.167" endtime="20230927 18:51:55.167"/>
+<msg timestamp="20230928 10:39:24.721" level="INFO">${pid} = 6957</msg>
+<status status="PASS" starttime="20230928 10:39:24.720" endtime="20230928 10:39:24.721"/>
 </kw>
 <kw name="Execute Command" library="SSHLibrary">
 <var>${kill_pid}</var>
 <arg>kill -9 ${pid}</arg>
 <doc>Executes ``command`` on the remote machine and returns its outputs.</doc>
-<msg timestamp="20230927 18:51:55.168" level="INFO">Executing command 'kill -9 4713'.</msg>
-<msg timestamp="20230927 18:51:55.359" level="INFO">Command exited with return code 0.</msg>
-<msg timestamp="20230927 18:51:55.360" level="INFO">${kill_pid} = </msg>
-<status status="PASS" starttime="20230927 18:51:55.167" endtime="20230927 18:51:55.360"/>
+<msg timestamp="20230928 10:39:24.721" level="INFO">Executing command 'kill -9 6957'.</msg>
+<msg timestamp="20230928 10:39:24.836" level="INFO">Command exited with return code 0.</msg>
+<msg timestamp="20230928 10:39:24.836" level="INFO">${kill_pid} = </msg>
+<status status="PASS" starttime="20230928 10:39:24.721" endtime="20230928 10:39:24.836"/>
 </kw>
 <kw name="Read" library="SSHLibrary">
 <var>${output2}</var>
 <arg>delay=2s</arg>
 <doc>Consumes and returns everything available on the server output.</doc>
-<msg timestamp="20230927 18:51:57.361" level="INFO">${output2} = </msg>
-<status status="PASS" starttime="20230927 18:51:55.360" endtime="20230927 18:51:57.361"/>
+<msg timestamp="20230928 10:39:26.838" level="INFO">${output2} = </msg>
+<status status="PASS" starttime="20230928 10:39:24.836" endtime="20230928 10:39:26.838"/>
 </kw>
 <kw name="Log To Console" library="BuiltIn">
 <arg>${output2}</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" starttime="20230927 18:51:57.361" endtime="20230927 18:51:57.364"/>
+<status status="PASS" starttime="20230928 10:39:26.838" endtime="20230928 10:39:26.839"/>
 </kw>
 <kw name="Log To Console" library="BuiltIn">
 <arg>PID: ${pid}</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" starttime="20230927 18:51:57.365" endtime="20230927 18:51:57.365"/>
+<status status="PASS" starttime="20230928 10:39:26.839" endtime="20230928 10:39:26.840"/>
 </kw>
-<status status="PASS" starttime="20230927 18:51:54.989" endtime="20230927 18:51:57.366"/>
+<status status="PASS" starttime="20230928 10:39:24.631" endtime="20230928 10:39:26.840"/>
 </kw>
-<status status="PASS" starttime="20230927 18:51:46.650" endtime="20230927 18:51:57.367"/>
+<status status="PASS" starttime="20230928 10:39:24.630" endtime="20230928 10:39:26.840"/>
+</kw>
+<doc>DESIGN STEPS
+
+============
+
+gRPC Tool Testing Using Automation
+
+Step1:
+
+Login to Receiver VM and Execute the command to make receiver ready to accept the files.
+
+Step 2:
+
+Login to Sender VM and Execute the command to send a files
+
+Step 3:
+
+Check the eexcuted command is success or fail
+
+Step4:
+
+Login to Rceiver Command and check the file is recived at Receiver VM.
+
+*ASSIGNEE=#####*</doc>
+<tag>gRPC</tag>
+<tag>NewFeature</tag>
+<tag>Regression</tag>
+<timeout value="15 minutes"/>
+<status status="PASS" starttime="20230928 10:39:16.546" endtime="20230928 10:39:26.840"/>
 </test>
-<test id="s1-t3" name="Testcase3" line="37">
+<test id="s1-t3" name="GRPC_Test_03" line="77">
+<kw name="test setup demo" library="grpc_keywords" type="SETUP">
+<kw name="Log" library="BuiltIn">
+<arg>the test setup demo keyword is executed</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230928 10:39:26.843" level="INFO">the test setup demo keyword is executed</msg>
+<status status="PASS" starttime="20230928 10:39:26.843" endtime="20230928 10:39:26.843"/>
+</kw>
+<status status="PASS" starttime="20230928 10:39:26.843" endtime="20230928 10:39:26.844"/>
+</kw>
+<kw name="Transfer Multiple Files With Specified Location Using gRPC Protocol Via SSH" library="grpc_keywords">
+<var>${status}</var>
+<arg>${sender}</arg>
+<arg>${reciver}</arg>
 <kw name="Reciver command" library="grpc_keywords">
 <var>${rec_res}</var>
 <arg>${reciver.host}</arg>
@@ -599,81 +754,81 @@ grpc_rece 4713 admin    5u  IPv6  48356      0t0  TCP *:50051 (LISTEN)</msg>
 <kw name="Open Connection" library="SSHLibrary">
 <arg>${host}</arg>
 <doc>Opens a new SSH connection to the given ``host`` and ``port``.</doc>
-<status status="PASS" starttime="20230927 18:51:57.378" endtime="20230927 18:51:57.378"/>
+<status status="PASS" starttime="20230928 10:39:26.848" endtime="20230928 10:39:26.849"/>
 </kw>
 <kw name="Login" library="SSHLibrary">
 <arg>${user}</arg>
 <arg>${pwd}</arg>
 <doc>Logs into the SSH server with the given ``username`` and ``password``.</doc>
-<msg timestamp="20230927 18:51:57.380" level="INFO">Logging into '192.168.29.11:22' as 'admin'.</msg>
-<msg timestamp="20230927 18:51:58.690" level="INFO">Read output: Activate the web console with: systemctl enable --now cockpit.socket
+<msg timestamp="20230928 10:39:26.850" level="INFO">Logging into '192.168.29.11:22' as 'admin'.</msg>
+<msg timestamp="20230928 10:39:28.068" level="INFO">Read output: Activate the web console with: systemctl enable --now cockpit.socket
 
-Last login: Wed Sep 27 09:22:07 2023 from 192.168.29.98
+Last login: Wed Sep 27 17:47:00 2023 from 192.168.29.98
 [admin@gRPCreceiver ~]$</msg>
-<status status="PASS" starttime="20230927 18:51:57.379" endtime="20230927 18:51:58.690"/>
+<status status="PASS" starttime="20230928 10:39:26.849" endtime="20230928 10:39:28.068"/>
 </kw>
-<status status="PASS" starttime="20230927 18:51:57.377" endtime="20230927 18:51:58.690"/>
+<status status="PASS" starttime="20230928 10:39:26.847" endtime="20230928 10:39:28.068"/>
 </kw>
 <kw name="Write" library="SSHLibrary">
 <arg>cd ${reciver.bin_dir}</arg>
 <doc>Writes the given ``text`` on the remote machine and appends a newline.</doc>
-<msg timestamp="20230927 18:51:58.695" level="INFO">cd /home/admin/project/bin</msg>
-<status status="PASS" starttime="20230927 18:51:58.690" endtime="20230927 18:51:58.695"/>
+<msg timestamp="20230928 10:39:28.071" level="INFO">cd /home/admin/project/bin</msg>
+<status status="PASS" starttime="20230928 10:39:28.068" endtime="20230928 10:39:28.071"/>
 </kw>
 <kw name="Write" library="SSHLibrary">
 <arg>${cmd}</arg>
 <doc>Writes the given ``text`` on the remote machine and appends a newline.</doc>
-<msg timestamp="20230927 18:51:58.702" level="INFO">[admin@gRPCreceiver bin]$ /home/admin/project/bin/grpc_receiver -c 1 -l 3 -D -d ..</msg>
-<status status="PASS" starttime="20230927 18:51:58.695" endtime="20230927 18:51:58.702"/>
+<msg timestamp="20230928 10:39:28.074" level="INFO">[admin@gRPCreceiver bin]$ /home/admin/project/bin/grpc_receiver -c 1 -l 3 -D -d ..</msg>
+<status status="PASS" starttime="20230928 10:39:28.071" endtime="20230928 10:39:28.075"/>
 </kw>
 <kw name="Read" library="SSHLibrary">
 <var>${output}</var>
 <arg>delay=2s</arg>
 <doc>Consumes and returns everything available on the server output.</doc>
-<msg timestamp="20230927 18:52:02.704" level="INFO">2023-09-27 09:22:12 [TRACE] log level is set to trace
-2023-09-27 09:22:12 [INFO] default receiving path is: .
-2023-09-27 09:22:12 [INFO] Starting GRPC Receiver...
-2023-09-27 09:22:12 [TRACE] set compression algorithm: GRPC_COMPRESS_DEFLATE, set compression level to: GRPC_COMPRESS_LEVEL_HIGH
-2023-09-27 09:22:12 [TRACE] The server has a default compression algorithm set
-2023-09-27 09:22:12 [INFO] Server listening on 0.0.0.0:50051 . Press Ctrl-C to end.</msg>
-<msg timestamp="20230927 18:52:02.704" level="INFO">${output} = 2023-09-27 09:22:12 [TRACE] log level is set to trace
-2023-09-27 09:22:12 [INFO] default receiving path is: .
-2023-09-27 09:22:12 [INFO] Starting GRPC Receiver...
-2023-09-27 09:22:12 [TRACE] set co...</msg>
-<status status="PASS" starttime="20230927 18:51:58.702" endtime="20230927 18:52:02.704"/>
+<msg timestamp="20230928 10:39:32.077" level="INFO">2023-09-27 17:47:05 [TRACE] log level is set to trace
+2023-09-27 17:47:05 [INFO] default receiving path is: .
+2023-09-27 17:47:05 [INFO] Starting GRPC Receiver...
+2023-09-27 17:47:05 [TRACE] set compression algorithm: GRPC_COMPRESS_DEFLATE, set compression level to: GRPC_COMPRESS_LEVEL_HIGH
+2023-09-27 17:47:05 [TRACE] The server has a default compression algorithm set
+2023-09-27 17:47:05 [INFO] Server listening on 0.0.0.0:50051 . Press Ctrl-C to end.</msg>
+<msg timestamp="20230928 10:39:32.077" level="INFO">${output} = 2023-09-27 17:47:05 [TRACE] log level is set to trace
+2023-09-27 17:47:05 [INFO] default receiving path is: .
+2023-09-27 17:47:05 [INFO] Starting GRPC Receiver...
+2023-09-27 17:47:05 [TRACE] set co...</msg>
+<status status="PASS" starttime="20230928 10:39:28.075" endtime="20230928 10:39:32.077"/>
 </kw>
 <kw name="Log To Console" library="BuiltIn">
 <arg>${output}</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" starttime="20230927 18:52:02.704" endtime="20230927 18:52:02.707"/>
+<status status="PASS" starttime="20230928 10:39:32.077" endtime="20230928 10:39:32.080"/>
 </kw>
 <kw name="List Directory" library="SSHLibrary">
 <var>${open_home}</var>
 <arg>${reciver.bin_dir}</arg>
 <doc>Returns and logs items in the remote ``path``, optionally filtered with ``pattern``.</doc>
-<msg timestamp="20230927 18:52:02.847" level="INFO">[chan 1] Opened sftp connection (server version 3)</msg>
-<msg timestamp="20230927 18:52:02.860" level="INFO">3 items:
+<msg timestamp="20230928 10:39:32.167" level="INFO">[chan 1] Opened sftp connection (server version 3)</msg>
+<msg timestamp="20230928 10:39:32.175" level="INFO">3 items:
 grpc_receiver
 grpc_sender
 test.txt</msg>
-<msg timestamp="20230927 18:52:02.861" level="INFO">${open_home} = ['grpc_receiver', 'grpc_sender', 'test.txt']</msg>
-<status status="PASS" starttime="20230927 18:52:02.707" endtime="20230927 18:52:02.861"/>
+<msg timestamp="20230928 10:39:32.176" level="INFO">${open_home} = ['grpc_receiver', 'grpc_sender', 'test.txt']</msg>
+<status status="PASS" starttime="20230928 10:39:32.080" endtime="20230928 10:39:32.176"/>
 </kw>
-<msg timestamp="20230927 18:52:02.861" level="INFO">${rec_res} = ['grpc_receiver', 'grpc_sender', 'test.txt']</msg>
-<status status="PASS" starttime="20230927 18:51:57.370" endtime="20230927 18:52:02.861"/>
+<msg timestamp="20230928 10:39:32.176" level="INFO">${rec_res} = ['grpc_receiver', 'grpc_sender', 'test.txt']</msg>
+<status status="PASS" starttime="20230928 10:39:26.844" endtime="20230928 10:39:32.176"/>
 </kw>
 <kw name="Log To Console" library="BuiltIn">
 <arg>${rec_res}</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" starttime="20230927 18:52:02.864" endtime="20230927 18:52:02.865"/>
+<status status="PASS" starttime="20230928 10:39:32.176" endtime="20230928 10:39:32.178"/>
 </kw>
 <kw name="Send multiple mutiple_files" library="grpc_keywords">
 <var>${snd_result}</var>
 <kw name="Create List" library="BuiltIn">
 <var>${files_with_prefix}</var>
 <doc>Returns a list containing given items.</doc>
-<msg timestamp="20230927 18:52:02.866" level="INFO">${files_with_prefix} = []</msg>
-<status status="PASS" starttime="20230927 18:52:02.866" endtime="20230927 18:52:02.866"/>
+<msg timestamp="20230928 10:39:32.180" level="INFO">${files_with_prefix} = []</msg>
+<status status="PASS" starttime="20230928 10:39:32.179" endtime="20230928 10:39:32.180"/>
 </kw>
 <for flavor="IN">
 <var>${file}</var>
@@ -684,16 +839,16 @@ test.txt</msg>
 <var>${file_with_prefix}</var>
 <arg>"${sender.bin_dir}/${file}"</arg>
 <doc>Evaluates the given expression in Python and returns the result.</doc>
-<msg timestamp="20230927 18:52:02.868" level="INFO">${file_with_prefix} = /home/admin/project/bin/test.txt</msg>
-<status status="PASS" starttime="20230927 18:52:02.867" endtime="20230927 18:52:02.868"/>
+<msg timestamp="20230928 10:39:32.182" level="INFO">${file_with_prefix} = /home/admin/project/bin/test.txt</msg>
+<status status="PASS" starttime="20230928 10:39:32.181" endtime="20230928 10:39:32.182"/>
 </kw>
 <kw name="Append To List" library="Collections">
 <arg>${files_with_prefix}</arg>
 <arg>${file_with_prefix}</arg>
 <doc>Adds ``values`` to the end of ``list``.</doc>
-<status status="PASS" starttime="20230927 18:52:02.868" endtime="20230927 18:52:02.869"/>
+<status status="PASS" starttime="20230928 10:39:32.182" endtime="20230928 10:39:32.183"/>
 </kw>
-<status status="PASS" starttime="20230927 18:52:02.867" endtime="20230927 18:52:02.869"/>
+<status status="PASS" starttime="20230928 10:39:32.181" endtime="20230928 10:39:32.183"/>
 </iter>
 <iter>
 <var name="${file}">test1.txt</var>
@@ -701,25 +856,25 @@ test.txt</msg>
 <var>${file_with_prefix}</var>
 <arg>"${sender.bin_dir}/${file}"</arg>
 <doc>Evaluates the given expression in Python and returns the result.</doc>
-<msg timestamp="20230927 18:52:02.871" level="INFO">${file_with_prefix} = /home/admin/project/bin/test1.txt</msg>
-<status status="PASS" starttime="20230927 18:52:02.869" endtime="20230927 18:52:02.871"/>
+<msg timestamp="20230928 10:39:32.184" level="INFO">${file_with_prefix} = /home/admin/project/bin/test1.txt</msg>
+<status status="PASS" starttime="20230928 10:39:32.183" endtime="20230928 10:39:32.184"/>
 </kw>
 <kw name="Append To List" library="Collections">
 <arg>${files_with_prefix}</arg>
 <arg>${file_with_prefix}</arg>
 <doc>Adds ``values`` to the end of ``list``.</doc>
-<status status="PASS" starttime="20230927 18:52:02.871" endtime="20230927 18:52:02.871"/>
+<status status="PASS" starttime="20230928 10:39:32.184" endtime="20230928 10:39:32.185"/>
 </kw>
-<status status="PASS" starttime="20230927 18:52:02.869" endtime="20230927 18:52:02.871"/>
+<status status="PASS" starttime="20230928 10:39:32.183" endtime="20230928 10:39:32.185"/>
 </iter>
-<status status="PASS" starttime="20230927 18:52:02.866" endtime="20230927 18:52:02.871"/>
+<status status="PASS" starttime="20230928 10:39:32.180" endtime="20230928 10:39:32.185"/>
 </for>
 <kw name="Evaluate" library="BuiltIn">
 <var>${result}</var>
 <arg>",".join(${files_with_prefix})</arg>
 <doc>Evaluates the given expression in Python and returns the result.</doc>
-<msg timestamp="20230927 18:52:02.871" level="INFO">${result} = /home/admin/project/bin/test.txt,/home/admin/project/bin/test1.txt</msg>
-<status status="PASS" starttime="20230927 18:52:02.871" endtime="20230927 18:52:02.871"/>
+<msg timestamp="20230928 10:39:32.187" level="INFO">${result} = /home/admin/project/bin/test.txt,/home/admin/project/bin/test1.txt</msg>
+<status status="PASS" starttime="20230928 10:39:32.186" endtime="20230928 10:39:32.187"/>
 </kw>
 <for flavor="IN">
 <var>${element}</var>
@@ -731,8 +886,8 @@ test.txt</msg>
 <arg>${sender}</arg>
 <arg>${element}</arg>
 <doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
-<msg timestamp="20230927 18:52:02.873" level="INFO">${sender_info} = {'usr1': 'admin', 'pwd': 'admin123', 'file_name': 'test.txt'}</msg>
-<status status="PASS" starttime="20230927 18:52:02.873" endtime="20230927 18:52:02.873"/>
+<msg timestamp="20230928 10:39:32.191" level="INFO">${sender_info} = {'usr1': 'admin', 'pwd': 'admin123', 'file_name': 'test.txt'}</msg>
+<status status="PASS" starttime="20230928 10:39:32.190" endtime="20230928 10:39:32.191"/>
 </kw>
 <kw name="Establish SSH Connection" library="grpc_keywords">
 <arg>${element}</arg>
@@ -741,20 +896,20 @@ test.txt</msg>
 <kw name="Open Connection" library="SSHLibrary">
 <arg>${host}</arg>
 <doc>Opens a new SSH connection to the given ``host`` and ``port``.</doc>
-<status status="PASS" starttime="20230927 18:52:02.875" endtime="20230927 18:52:02.875"/>
+<status status="PASS" starttime="20230928 10:39:32.193" endtime="20230928 10:39:32.195"/>
 </kw>
 <kw name="Login" library="SSHLibrary">
 <arg>${user}</arg>
 <arg>${pwd}</arg>
 <doc>Logs into the SSH server with the given ``username`` and ``password``.</doc>
-<msg timestamp="20230927 18:52:02.891" level="INFO">Logging into '192.168.29.141:22' as 'admin'.</msg>
-<msg timestamp="20230927 18:52:04.158" level="INFO">Read output: Activate the web console with: systemctl enable --now cockpit.socket
+<msg timestamp="20230928 10:39:32.196" level="INFO">Logging into '192.168.29.141:22' as 'admin'.</msg>
+<msg timestamp="20230928 10:39:33.423" level="INFO">Read output: Activate the web console with: systemctl enable --now cockpit.socket
 
-Last login: Wed Sep 27 09:22:05 2023 from 192.168.29.98
+Last login: Wed Sep 27 17:46:31 2023 from 192.168.29.98
 [admin@gRPCSender ~]$</msg>
-<status status="PASS" starttime="20230927 18:52:02.875" endtime="20230927 18:52:04.158"/>
+<status status="PASS" starttime="20230928 10:39:32.195" endtime="20230928 10:39:33.423"/>
 </kw>
-<status status="PASS" starttime="20230927 18:52:02.873" endtime="20230927 18:52:04.158"/>
+<status status="PASS" starttime="20230928 10:39:32.191" endtime="20230928 10:39:33.423"/>
 </kw>
 <kw name="Execute Command" library="SSHLibrary">
 <var>${stdout}</var>
@@ -762,31 +917,31 @@ Last login: Wed Sep 27 09:22:05 2023 from 192.168.29.98
 <arg>return_stdout=False</arg>
 <arg>return_stdout=True</arg>
 <doc>Executes ``command`` on the remote machine and returns its outputs.</doc>
-<msg timestamp="20230927 18:52:04.163" level="INFO">Executing command '/home/admin/project/bin/grpc_sender -D -s 192.168.29.11:50051 -f /home/admin/project/bin/test.txt,/home/admin/project/bin/test1.txt -v 1 -c 2 -l3 -o /tmp'.</msg>
-<msg timestamp="20230927 18:52:04.372" level="INFO">Command exited with return code 0.</msg>
-<msg timestamp="20230927 18:52:04.372" level="INFO">${stdout} = 2023-09-27 09:22:17 [INFO] Buffer chunk size is set with default to: 2MB
-2023-09-27 09:22:17 [INFO] GRPC destination pod service is: 192.168.29.11:50051
-2023-09-27 09:22:17 [INFO] Output Path: /tmp
+<msg timestamp="20230928 10:39:33.425" level="INFO">Executing command '/home/admin/project/bin/grpc_sender -D -s 192.168.29.11:50051 -f /home/admin/project/bin/test.txt,/home/admin/project/bin/test1.txt -v 1 -c 2 -l3 -o /tmp'.</msg>
+<msg timestamp="20230928 10:39:33.550" level="INFO">Command exited with return code 0.</msg>
+<msg timestamp="20230928 10:39:33.550" level="INFO">${stdout} = 2023-09-27 17:46:43 [INFO] Buffer chunk size is set with default to: 2MB
+2023-09-27 17:46:43 [INFO] GRPC destination pod service is: 192.168.29.11:50051
+2023-09-27 17:46:43 [INFO] Output Path: /tmp
 20...</msg>
-<status status="PASS" starttime="20230927 18:52:04.158" endtime="20230927 18:52:04.372"/>
+<status status="PASS" starttime="20230928 10:39:33.423" endtime="20230928 10:39:33.550"/>
 </kw>
 <kw name="Log To Console" library="BuiltIn">
 <arg>${stdout}</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" starttime="20230927 18:52:04.372" endtime="20230927 18:52:04.378"/>
+<status status="PASS" starttime="20230928 10:39:33.550" endtime="20230928 10:39:33.555"/>
 </kw>
 <kw name="Should Contain" library="BuiltIn">
 <arg>${stdout}</arg>
 <arg>Files ${result} transfer succeeded.</arg>
 <doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
-<status status="PASS" starttime="20230927 18:52:04.378" endtime="20230927 18:52:04.378"/>
+<status status="PASS" starttime="20230928 10:39:33.555" endtime="20230928 10:39:33.556"/>
 </kw>
-<status status="PASS" starttime="20230927 18:52:02.873" endtime="20230927 18:52:04.379"/>
+<status status="PASS" starttime="20230928 10:39:32.189" endtime="20230928 10:39:33.556"/>
 </iter>
-<status status="PASS" starttime="20230927 18:52:02.872" endtime="20230927 18:52:04.379"/>
+<status status="PASS" starttime="20230928 10:39:32.187" endtime="20230928 10:39:33.556"/>
 </for>
-<msg timestamp="20230927 18:52:04.379" level="INFO">${snd_result} = None</msg>
-<status status="PASS" starttime="20230927 18:52:02.865" endtime="20230927 18:52:04.379"/>
+<msg timestamp="20230928 10:39:33.556" level="INFO">${snd_result} = None</msg>
+<status status="PASS" starttime="20230928 10:39:32.179" endtime="20230928 10:39:33.556"/>
 </kw>
 <kw name="Establish SSH Connection" library="grpc_keywords">
 <arg>${reciver.host}</arg>
@@ -795,32 +950,55 @@ Last login: Wed Sep 27 09:22:05 2023 from 192.168.29.98
 <kw name="Open Connection" library="SSHLibrary">
 <arg>${host}</arg>
 <doc>Opens a new SSH connection to the given ``host`` and ``port``.</doc>
-<status status="PASS" starttime="20230927 18:52:04.384" endtime="20230927 18:52:04.385"/>
+<status status="PASS" starttime="20230928 10:39:33.557" endtime="20230928 10:39:33.558"/>
 </kw>
 <kw name="Login" library="SSHLibrary">
 <arg>${user}</arg>
 <arg>${pwd}</arg>
 <doc>Logs into the SSH server with the given ``username`` and ``password``.</doc>
-<msg timestamp="20230927 18:52:04.386" level="INFO">Logging into '192.168.29.11:22' as 'admin'.</msg>
-<msg timestamp="20230927 18:52:05.652" level="INFO">Read output: Activate the web console with: systemctl enable --now cockpit.socket
+<msg timestamp="20230928 10:39:33.559" level="INFO">Logging into '192.168.29.11:22' as 'admin'.</msg>
+<msg timestamp="20230928 10:39:34.757" level="INFO">Read output: Activate the web console with: systemctl enable --now cockpit.socket
 
-Last login: Wed Sep 27 09:22:11 2023 from 192.168.29.98
+Last login: Wed Sep 27 17:47:04 2023 from 192.168.29.98
 [admin@gRPCreceiver ~]$</msg>
-<status status="PASS" starttime="20230927 18:52:04.385" endtime="20230927 18:52:05.652"/>
+<status status="PASS" starttime="20230928 10:39:33.558" endtime="20230928 10:39:34.757"/>
 </kw>
-<status status="PASS" starttime="20230927 18:52:04.380" endtime="20230927 18:52:05.652"/>
+<status status="PASS" starttime="20230928 10:39:33.556" endtime="20230928 10:39:34.757"/>
 </kw>
 <kw name="List Directory" library="SSHLibrary">
 <var>${open_home}</var>
 <arg>${reciver.bin_dir}</arg>
 <doc>Returns and logs items in the remote ``path``, optionally filtered with ``pattern``.</doc>
-<msg timestamp="20230927 18:52:05.823" level="INFO">[chan 1] Opened sftp connection (server version 3)</msg>
-<msg timestamp="20230927 18:52:05.845" level="INFO">3 items:
+<msg timestamp="20230928 10:39:34.847" level="INFO">[chan 1] Opened sftp connection (server version 3)</msg>
+<msg timestamp="20230928 10:39:34.857" level="INFO">3 items:
 grpc_receiver
 grpc_sender
 test.txt</msg>
-<msg timestamp="20230927 18:52:05.845" level="INFO">${open_home} = ['grpc_receiver', 'grpc_sender', 'test.txt']</msg>
-<status status="PASS" starttime="20230927 18:52:05.653" endtime="20230927 18:52:05.846"/>
+<msg timestamp="20230928 10:39:34.857" level="INFO">${open_home} = ['grpc_receiver', 'grpc_sender', 'test.txt']</msg>
+<status status="PASS" starttime="20230928 10:39:34.757" endtime="20230928 10:39:34.857"/>
+</kw>
+<msg timestamp="20230928 10:39:34.857" level="INFO">${status} = None</msg>
+<status status="PASS" starttime="20230928 10:39:26.844" endtime="20230928 10:39:34.857"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${status}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230928 10:39:34.859" level="INFO">None</msg>
+<status status="PASS" starttime="20230928 10:39:34.858" endtime="20230928 10:39:34.859"/>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<arg>'${status}' == '${False}'</arg>
+<arg>fail</arg>
+<arg>Test case is Failed</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" starttime="20230928 10:39:34.859" endtime="20230928 10:39:34.860"/>
+</kw>
+<kw name="test teardown demo" library="grpc_keywords" type="TEARDOWN">
+<kw name="Log" library="BuiltIn">
+<arg>the test teardown keyword is executed</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230928 10:39:34.861" level="INFO">the test teardown keyword is executed</msg>
+<status status="PASS" starttime="20230928 10:39:34.860" endtime="20230928 10:39:34.861"/>
 </kw>
 <kw name="Kill the Process" library="grpc_keywords">
 <kw name="Execute Command" library="SSHLibrary">
@@ -828,26 +1006,26 @@ test.txt</msg>
 <arg>lsof -i :${reciver.port}</arg>
 <arg>shell=True</arg>
 <doc>Executes ``command`` on the remote machine and returns its outputs.</doc>
-<msg timestamp="20230927 18:52:05.849" level="INFO">Executing command 'lsof -i :50051'.</msg>
-<msg timestamp="20230927 18:52:06.032" level="INFO">Command exited with return code 0.</msg>
-<msg timestamp="20230927 18:52:06.032" level="INFO">${output} = COMMAND    PID  USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
-grpc_rece 4881 admin    5u  IPv6  49166      0t0  TCP *:50051 (LISTEN)</msg>
-<status status="PASS" starttime="20230927 18:52:05.848" endtime="20230927 18:52:06.032"/>
+<msg timestamp="20230928 10:39:34.862" level="INFO">Executing command 'lsof -i :50051'.</msg>
+<msg timestamp="20230928 10:39:34.944" level="INFO">Command exited with return code 0.</msg>
+<msg timestamp="20230928 10:39:34.944" level="INFO">${output} = COMMAND    PID  USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
+grpc_rece 7125 admin    5u  IPv6  61446      0t0  TCP *:50051 (LISTEN)</msg>
+<status status="PASS" starttime="20230928 10:39:34.861" endtime="20230928 10:39:34.944"/>
 </kw>
 <kw name="Split String" library="String">
 <var>${lines}</var>
 <arg>${output}</arg>
 <arg>\n</arg>
 <doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
-<msg timestamp="20230927 18:52:06.033" level="INFO">${lines} = ['COMMAND    PID  USER   FD   TYPE DEVICE SIZE/OFF NODE NAME', 'grpc_rece 4881 admin    5u  IPv6  49166      0t0  TCP *:50051 (LISTEN)']</msg>
-<status status="PASS" starttime="20230927 18:52:06.033" endtime="20230927 18:52:06.033"/>
+<msg timestamp="20230928 10:39:34.945" level="INFO">${lines} = ['COMMAND    PID  USER   FD   TYPE DEVICE SIZE/OFF NODE NAME', 'grpc_rece 7125 admin    5u  IPv6  61446      0t0  TCP *:50051 (LISTEN)']</msg>
+<status status="PASS" starttime="20230928 10:39:34.944" endtime="20230928 10:39:34.945"/>
 </kw>
 <kw name="Set Variable" library="BuiltIn">
 <var>${pid_line}</var>
 <arg>${EMPTY}</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<msg timestamp="20230927 18:52:06.034" level="INFO">${pid_line} = </msg>
-<status status="PASS" starttime="20230927 18:52:06.033" endtime="20230927 18:52:06.034"/>
+<msg timestamp="20230928 10:39:34.945" level="INFO">${pid_line} = </msg>
+<status status="PASS" starttime="20230928 10:39:34.945" endtime="20230928 10:39:34.945"/>
 </kw>
 <for flavor="IN">
 <var>${line}</var>
@@ -859,63 +1037,105 @@ grpc_rece 4881 admin    5u  IPv6  49166      0t0  TCP *:50051 (LISTEN)</msg>
 <arg>${line}</arg>
 <arg>${SPACE}</arg>
 <doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
-<msg timestamp="20230927 18:52:06.034" level="INFO">${parts} = ['COMMAND', '', '', '', 'PID', '', 'USER', '', '', 'FD', '', '', 'TYPE', 'DEVICE', 'SIZE/OFF', 'NODE', 'NAME']</msg>
-<status status="PASS" starttime="20230927 18:52:06.034" endtime="20230927 18:52:06.034"/>
+<msg timestamp="20230928 10:39:34.945" level="INFO">${parts} = ['COMMAND', '', '', '', 'PID', '', 'USER', '', '', 'FD', '', '', 'TYPE', 'DEVICE', 'SIZE/OFF', 'NODE', 'NAME']</msg>
+<status status="PASS" starttime="20230928 10:39:34.945" endtime="20230928 10:39:34.945"/>
 </kw>
-<status status="PASS" starttime="20230927 18:52:06.034" endtime="20230927 18:52:06.034"/>
+<status status="PASS" starttime="20230928 10:39:34.945" endtime="20230928 10:39:34.945"/>
 </iter>
 <iter>
-<var name="${line}">grpc_rece 4881 admin    5u  IPv6  49166      0t0  TCP *:50051 (LISTEN)</var>
+<var name="${line}">grpc_rece 7125 admin    5u  IPv6  61446      0t0  TCP *:50051 (LISTEN)</var>
 <kw name="Split String" library="String">
 <var>${parts}</var>
 <arg>${line}</arg>
 <arg>${SPACE}</arg>
 <doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
-<msg timestamp="20230927 18:52:06.034" level="INFO">${parts} = ['grpc_rece', '4881', 'admin', '', '', '', '5u', '', 'IPv6', '', '49166', '', '', '', '', '', '0t0', '', 'TCP', '*:50051', '(LISTEN)']</msg>
-<status status="PASS" starttime="20230927 18:52:06.034" endtime="20230927 18:52:06.035"/>
+<msg timestamp="20230928 10:39:34.946" level="INFO">${parts} = ['grpc_rece', '7125', 'admin', '', '', '', '5u', '', 'IPv6', '', '61446', '', '', '', '', '', '0t0', '', 'TCP', '*:50051', '(LISTEN)']</msg>
+<status status="PASS" starttime="20230928 10:39:34.946" endtime="20230928 10:39:34.946"/>
 </kw>
-<status status="PASS" starttime="20230927 18:52:06.034" endtime="20230927 18:52:06.035"/>
+<status status="PASS" starttime="20230928 10:39:34.945" endtime="20230928 10:39:34.946"/>
 </iter>
-<status status="PASS" starttime="20230927 18:52:06.034" endtime="20230927 18:52:06.036"/>
+<status status="PASS" starttime="20230928 10:39:34.945" endtime="20230928 10:39:34.946"/>
 </for>
 <kw name="Set Variable" library="BuiltIn">
 <var>${pid}</var>
 <arg>${parts[1]}</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<msg timestamp="20230927 18:52:06.036" level="INFO">${pid} = 4881</msg>
-<status status="PASS" starttime="20230927 18:52:06.036" endtime="20230927 18:52:06.037"/>
+<msg timestamp="20230928 10:39:34.946" level="INFO">${pid} = 7125</msg>
+<status status="PASS" starttime="20230928 10:39:34.946" endtime="20230928 10:39:34.946"/>
 </kw>
 <kw name="Execute Command" library="SSHLibrary">
 <var>${kill_pid}</var>
 <arg>kill -9 ${pid}</arg>
 <doc>Executes ``command`` on the remote machine and returns its outputs.</doc>
-<msg timestamp="20230927 18:52:06.037" level="INFO">Executing command 'kill -9 4881'.</msg>
-<msg timestamp="20230927 18:52:06.222" level="INFO">Command exited with return code 0.</msg>
-<msg timestamp="20230927 18:52:06.222" level="INFO">${kill_pid} = </msg>
-<status status="PASS" starttime="20230927 18:52:06.037" endtime="20230927 18:52:06.222"/>
+<msg timestamp="20230928 10:39:34.947" level="INFO">Executing command 'kill -9 7125'.</msg>
+<msg timestamp="20230928 10:39:35.065" level="INFO">Command exited with return code 0.</msg>
+<msg timestamp="20230928 10:39:35.065" level="INFO">${kill_pid} = </msg>
+<status status="PASS" starttime="20230928 10:39:34.947" endtime="20230928 10:39:35.065"/>
 </kw>
 <kw name="Read" library="SSHLibrary">
 <var>${output2}</var>
 <arg>delay=2s</arg>
 <doc>Consumes and returns everything available on the server output.</doc>
-<msg timestamp="20230927 18:52:08.223" level="INFO">${output2} = </msg>
-<status status="PASS" starttime="20230927 18:52:06.222" endtime="20230927 18:52:08.223"/>
+<msg timestamp="20230928 10:39:37.065" level="INFO">${output2} = </msg>
+<status status="PASS" starttime="20230928 10:39:35.065" endtime="20230928 10:39:37.065"/>
 </kw>
 <kw name="Log To Console" library="BuiltIn">
 <arg>${output2}</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" starttime="20230927 18:52:08.223" endtime="20230927 18:52:08.224"/>
+<status status="PASS" starttime="20230928 10:39:37.065" endtime="20230928 10:39:37.066"/>
 </kw>
 <kw name="Log To Console" library="BuiltIn">
 <arg>PID: ${pid}</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" starttime="20230927 18:52:08.224" endtime="20230927 18:52:08.225"/>
+<status status="PASS" starttime="20230928 10:39:37.066" endtime="20230928 10:39:37.067"/>
 </kw>
-<status status="PASS" starttime="20230927 18:52:05.848" endtime="20230927 18:52:08.225"/>
+<status status="PASS" starttime="20230928 10:39:34.861" endtime="20230928 10:39:37.067"/>
 </kw>
-<status status="PASS" starttime="20230927 18:51:57.369" endtime="20230927 18:52:08.226"/>
+<status status="PASS" starttime="20230928 10:39:34.860" endtime="20230928 10:39:37.067"/>
+</kw>
+<doc>DESIGN STEPS
+
+============
+
+gRPC Tool Testing Using Automation
+
+Step1:
+
+Login to Receiver VM and Execute the command to make receiver ready to accept the files.
+
+Step 2:
+
+Login to Sender VM and Execute the command to send a files
+
+Step 3:
+
+Check the eexcuted command is success or fail
+
+Step4:
+
+Login to Rceiver Command and check the file is recived at Receiver VM.
+
+*ASSIGNEE=#####*</doc>
+<tag>gRPC</tag>
+<tag>NewFeature</tag>
+<tag>Regression</tag>
+<timeout value="15 minutes"/>
+<status status="PASS" starttime="20230928 10:39:26.842" endtime="20230928 10:39:37.068"/>
 </test>
-<test id="s1-t4" name="Testcase4" line="50">
+<test id="s1-t4" name="GRPC_Test_04" line="108">
+<kw name="test setup demo" library="grpc_keywords" type="SETUP">
+<kw name="Log" library="BuiltIn">
+<arg>the test setup demo keyword is executed</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230928 10:39:37.071" level="INFO">the test setup demo keyword is executed</msg>
+<status status="PASS" starttime="20230928 10:39:37.070" endtime="20230928 10:39:37.071"/>
+</kw>
+<status status="PASS" starttime="20230928 10:39:37.070" endtime="20230928 10:39:37.071"/>
+</kw>
+<kw name="Receiver Compress Disabled Using gRPC Protocol Via SSH" library="grpc_keywords">
+<var>${status}</var>
+<arg>${sender}</arg>
+<arg>${reciver}</arg>
 <kw name="Reciver command" library="grpc_keywords">
 <var>${rec_res}</var>
 <arg>${reciver.host}</arg>
@@ -929,72 +1149,72 @@ grpc_rece 4881 admin    5u  IPv6  49166      0t0  TCP *:50051 (LISTEN)</msg>
 <kw name="Open Connection" library="SSHLibrary">
 <arg>${host}</arg>
 <doc>Opens a new SSH connection to the given ``host`` and ``port``.</doc>
-<status status="PASS" starttime="20230927 18:52:08.233" endtime="20230927 18:52:08.233"/>
+<status status="PASS" starttime="20230928 10:39:37.075" endtime="20230928 10:39:37.076"/>
 </kw>
 <kw name="Login" library="SSHLibrary">
 <arg>${user}</arg>
 <arg>${pwd}</arg>
 <doc>Logs into the SSH server with the given ``username`` and ``password``.</doc>
-<msg timestamp="20230927 18:52:08.234" level="INFO">Logging into '192.168.29.11:22' as 'admin'.</msg>
-<msg timestamp="20230927 18:52:09.491" level="INFO">Read output: Activate the web console with: systemctl enable --now cockpit.socket
+<msg timestamp="20230928 10:39:37.078" level="INFO">Logging into '192.168.29.11:22' as 'admin'.</msg>
+<msg timestamp="20230928 10:39:38.260" level="INFO">Read output: Activate the web console with: systemctl enable --now cockpit.socket
 
-Last login: Wed Sep 27 09:22:18 2023 from 192.168.29.98
+Last login: Wed Sep 27 17:47:11 2023 from 192.168.29.98
 [admin@gRPCreceiver ~]$</msg>
-<status status="PASS" starttime="20230927 18:52:08.234" endtime="20230927 18:52:09.492"/>
+<status status="PASS" starttime="20230928 10:39:37.077" endtime="20230928 10:39:38.260"/>
 </kw>
-<status status="PASS" starttime="20230927 18:52:08.233" endtime="20230927 18:52:09.492"/>
+<status status="PASS" starttime="20230928 10:39:37.074" endtime="20230928 10:39:38.260"/>
 </kw>
 <kw name="Write" library="SSHLibrary">
 <arg>cd ${reciver.bin_dir}</arg>
 <doc>Writes the given ``text`` on the remote machine and appends a newline.</doc>
-<msg timestamp="20230927 18:52:09.498" level="INFO">cd /home/admin/project/bin</msg>
-<status status="PASS" starttime="20230927 18:52:09.492" endtime="20230927 18:52:09.498"/>
+<msg timestamp="20230928 10:39:38.264" level="INFO">cd /home/admin/project/bin</msg>
+<status status="PASS" starttime="20230928 10:39:38.260" endtime="20230928 10:39:38.264"/>
 </kw>
 <kw name="Write" library="SSHLibrary">
 <arg>${cmd}</arg>
 <doc>Writes the given ``text`` on the remote machine and appends a newline.</doc>
-<msg timestamp="20230927 18:52:09.504" level="INFO">[admin@gRPCreceiver bin]$ /home/admin/project/bin/grpc_receiver -D -d .</msg>
-<status status="PASS" starttime="20230927 18:52:09.499" endtime="20230927 18:52:09.504"/>
+<msg timestamp="20230928 10:39:38.269" level="INFO">[admin@gRPCreceiver bin]$ /home/admin/project/bin/grpc_receiver -D -d .</msg>
+<status status="PASS" starttime="20230928 10:39:38.264" endtime="20230928 10:39:38.269"/>
 </kw>
 <kw name="Read" library="SSHLibrary">
 <var>${output}</var>
 <arg>delay=2s</arg>
 <doc>Consumes and returns everything available on the server output.</doc>
-<msg timestamp="20230927 18:52:13.505" level="INFO">2023-09-27 09:22:22 [TRACE] log level is set to trace
-2023-09-27 09:22:22 [INFO] default receiving path is: .
-2023-09-27 09:22:22 [INFO] Starting GRPC Receiver...
-2023-09-27 09:22:22 [TRACE] The server does not have a default compression algorithm set
-2023-09-27 09:22:22 [INFO] Server listening on 0.0.0.0:50051 . Press Ctrl-C to end.</msg>
-<msg timestamp="20230927 18:52:13.505" level="INFO">${output} = 2023-09-27 09:22:22 [TRACE] log level is set to trace
-2023-09-27 09:22:22 [INFO] default receiving path is: .
-2023-09-27 09:22:22 [INFO] Starting GRPC Receiver...
-2023-09-27 09:22:22 [TRACE] The se...</msg>
-<status status="PASS" starttime="20230927 18:52:09.504" endtime="20230927 18:52:13.505"/>
+<msg timestamp="20230928 10:39:42.270" level="INFO">2023-09-27 17:47:16 [TRACE] log level is set to trace
+2023-09-27 17:47:16 [INFO] default receiving path is: .
+2023-09-27 17:47:16 [INFO] Starting GRPC Receiver...
+2023-09-27 17:47:16 [TRACE] The server does not have a default compression algorithm set
+2023-09-27 17:47:16 [INFO] Server listening on 0.0.0.0:50051 . Press Ctrl-C to end.</msg>
+<msg timestamp="20230928 10:39:42.270" level="INFO">${output} = 2023-09-27 17:47:16 [TRACE] log level is set to trace
+2023-09-27 17:47:16 [INFO] default receiving path is: .
+2023-09-27 17:47:16 [INFO] Starting GRPC Receiver...
+2023-09-27 17:47:16 [TRACE] The se...</msg>
+<status status="PASS" starttime="20230928 10:39:38.269" endtime="20230928 10:39:42.270"/>
 </kw>
 <kw name="Log To Console" library="BuiltIn">
 <arg>${output}</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" starttime="20230927 18:52:13.505" endtime="20230927 18:52:13.507"/>
+<status status="PASS" starttime="20230928 10:39:42.270" endtime="20230928 10:39:42.273"/>
 </kw>
 <kw name="List Directory" library="SSHLibrary">
 <var>${open_home}</var>
 <arg>${reciver.bin_dir}</arg>
 <doc>Returns and logs items in the remote ``path``, optionally filtered with ``pattern``.</doc>
-<msg timestamp="20230927 18:52:13.678" level="INFO">[chan 1] Opened sftp connection (server version 3)</msg>
-<msg timestamp="20230927 18:52:13.691" level="INFO">3 items:
+<msg timestamp="20230928 10:39:42.355" level="INFO">[chan 1] Opened sftp connection (server version 3)</msg>
+<msg timestamp="20230928 10:39:42.360" level="INFO">3 items:
 grpc_receiver
 grpc_sender
 test.txt</msg>
-<msg timestamp="20230927 18:52:13.691" level="INFO">${open_home} = ['grpc_receiver', 'grpc_sender', 'test.txt']</msg>
-<status status="PASS" starttime="20230927 18:52:13.508" endtime="20230927 18:52:13.691"/>
+<msg timestamp="20230928 10:39:42.361" level="INFO">${open_home} = ['grpc_receiver', 'grpc_sender', 'test.txt']</msg>
+<status status="PASS" starttime="20230928 10:39:42.273" endtime="20230928 10:39:42.361"/>
 </kw>
-<msg timestamp="20230927 18:52:13.691" level="INFO">${rec_res} = ['grpc_receiver', 'grpc_sender', 'test.txt']</msg>
-<status status="PASS" starttime="20230927 18:52:08.230" endtime="20230927 18:52:13.691"/>
+<msg timestamp="20230928 10:39:42.361" level="INFO">${rec_res} = ['grpc_receiver', 'grpc_sender', 'test.txt']</msg>
+<status status="PASS" starttime="20230928 10:39:37.072" endtime="20230928 10:39:42.361"/>
 </kw>
 <kw name="Log To Console" library="BuiltIn">
 <arg>${rec_res}</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" starttime="20230927 18:52:13.693" endtime="20230927 18:52:13.694"/>
+<status status="PASS" starttime="20230928 10:39:42.361" endtime="20230928 10:39:42.362"/>
 </kw>
 <kw name="Sender command unspecifed path" library="grpc_keywords">
 <var>${snd_result}</var>
@@ -1008,8 +1228,8 @@ test.txt</msg>
 <arg>${sender}</arg>
 <arg>${element}</arg>
 <doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
-<msg timestamp="20230927 18:52:13.695" level="INFO">${sender_info} = {'usr1': 'admin', 'pwd': 'admin123', 'file_name': 'test.txt'}</msg>
-<status status="PASS" starttime="20230927 18:52:13.695" endtime="20230927 18:52:13.695"/>
+<msg timestamp="20230928 10:39:42.365" level="INFO">${sender_info} = {'usr1': 'admin', 'pwd': 'admin123', 'file_name': 'test.txt'}</msg>
+<status status="PASS" starttime="20230928 10:39:42.364" endtime="20230928 10:39:42.365"/>
 </kw>
 <kw name="Establish SSH Connection" library="grpc_keywords">
 <arg>${element}</arg>
@@ -1018,20 +1238,20 @@ test.txt</msg>
 <kw name="Open Connection" library="SSHLibrary">
 <arg>${host}</arg>
 <doc>Opens a new SSH connection to the given ``host`` and ``port``.</doc>
-<status status="PASS" starttime="20230927 18:52:13.697" endtime="20230927 18:52:13.697"/>
+<status status="PASS" starttime="20230928 10:39:42.366" endtime="20230928 10:39:42.366"/>
 </kw>
 <kw name="Login" library="SSHLibrary">
 <arg>${user}</arg>
 <arg>${pwd}</arg>
 <doc>Logs into the SSH server with the given ``username`` and ``password``.</doc>
-<msg timestamp="20230927 18:52:13.697" level="INFO">Logging into '192.168.29.141:22' as 'admin'.</msg>
-<msg timestamp="20230927 18:52:14.976" level="INFO">Read output: Activate the web console with: systemctl enable --now cockpit.socket
+<msg timestamp="20230928 10:39:42.367" level="INFO">Logging into '192.168.29.141:22' as 'admin'.</msg>
+<msg timestamp="20230928 10:39:43.605" level="INFO">Read output: Activate the web console with: systemctl enable --now cockpit.socket
 
-Last login: Wed Sep 27 09:22:16 2023 from 192.168.29.98
+Last login: Wed Sep 27 17:46:42 2023 from 192.168.29.98
 [admin@gRPCSender ~]$</msg>
-<status status="PASS" starttime="20230927 18:52:13.697" endtime="20230927 18:52:14.976"/>
+<status status="PASS" starttime="20230928 10:39:42.367" endtime="20230928 10:39:43.605"/>
 </kw>
-<status status="PASS" starttime="20230927 18:52:13.696" endtime="20230927 18:52:14.977"/>
+<status status="PASS" starttime="20230928 10:39:42.365" endtime="20230928 10:39:43.605"/>
 </kw>
 <kw name="Execute Command" library="SSHLibrary">
 <var>${stdout}</var>
@@ -1039,25 +1259,25 @@ Last login: Wed Sep 27 09:22:16 2023 from 192.168.29.98
 <arg>return_stdout=False</arg>
 <arg>return_stdout=True</arg>
 <doc>Executes ``command`` on the remote machine and returns its outputs.</doc>
-<msg timestamp="20230927 18:52:14.979" level="INFO">Executing command '/home/admin/project/bin/grpc_sender -D -s 192.168.29.11:50051 -f /home/admin/project/bin/test.txt -v 1 -b 1MB'.</msg>
-<msg timestamp="20230927 18:52:15.237" level="INFO">Command exited with return code 0.</msg>
-<msg timestamp="20230927 18:52:15.237" level="INFO">${stdout} = 2023-09-27 09:22:28 [INFO] Buffer chunk size is set to: 1MB
-2023-09-27 09:22:28 [INFO] GRPC destination pod service is: 192.168.29.11:50051
-2023-09-27 09:22:28 [INFO] Checksum validation is set to: md...</msg>
-<status status="PASS" starttime="20230927 18:52:14.977" endtime="20230927 18:52:15.237"/>
+<msg timestamp="20230928 10:39:43.609" level="INFO">Executing command '/home/admin/project/bin/grpc_sender -D -s 192.168.29.11:50051 -f /home/admin/project/bin/test.txt -v 1 -b 1MB'.</msg>
+<msg timestamp="20230928 10:39:43.751" level="INFO">Command exited with return code 0.</msg>
+<msg timestamp="20230928 10:39:43.751" level="INFO">${stdout} = 2023-09-27 17:46:54 [INFO] Buffer chunk size is set to: 1MB
+2023-09-27 17:46:54 [INFO] GRPC destination pod service is: 192.168.29.11:50051
+2023-09-27 17:46:54 [INFO] Checksum validation is set to: md...</msg>
+<status status="PASS" starttime="20230928 10:39:43.606" endtime="20230928 10:39:43.751"/>
 </kw>
 <kw name="Should Contain" library="BuiltIn">
 <arg>${stdout}</arg>
 <arg>File ${sender.bin_dir}/${sender_info.file_name} transfer succeeded.</arg>
 <doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
-<status status="PASS" starttime="20230927 18:52:15.237" endtime="20230927 18:52:15.239"/>
+<status status="PASS" starttime="20230928 10:39:43.751" endtime="20230928 10:39:43.753"/>
 </kw>
-<status status="PASS" starttime="20230927 18:52:13.695" endtime="20230927 18:52:15.239"/>
+<status status="PASS" starttime="20230928 10:39:42.364" endtime="20230928 10:39:43.753"/>
 </iter>
-<status status="PASS" starttime="20230927 18:52:13.695" endtime="20230927 18:52:15.239"/>
+<status status="PASS" starttime="20230928 10:39:42.363" endtime="20230928 10:39:43.753"/>
 </for>
-<msg timestamp="20230927 18:52:15.239" level="INFO">${snd_result} = None</msg>
-<status status="PASS" starttime="20230927 18:52:13.694" endtime="20230927 18:52:15.239"/>
+<msg timestamp="20230928 10:39:43.753" level="INFO">${snd_result} = None</msg>
+<status status="PASS" starttime="20230928 10:39:42.362" endtime="20230928 10:39:43.753"/>
 </kw>
 <kw name="Establish SSH Connection" library="grpc_keywords">
 <arg>${reciver.host}</arg>
@@ -1066,38 +1286,61 @@ Last login: Wed Sep 27 09:22:16 2023 from 192.168.29.98
 <kw name="Open Connection" library="SSHLibrary">
 <arg>${host}</arg>
 <doc>Opens a new SSH connection to the given ``host`` and ``port``.</doc>
-<status status="PASS" starttime="20230927 18:52:15.245" endtime="20230927 18:52:15.246"/>
+<status status="PASS" starttime="20230928 10:39:43.755" endtime="20230928 10:39:43.755"/>
 </kw>
 <kw name="Login" library="SSHLibrary">
 <arg>${user}</arg>
 <arg>${pwd}</arg>
 <doc>Logs into the SSH server with the given ``username`` and ``password``.</doc>
-<msg timestamp="20230927 18:52:15.247" level="INFO">Logging into '192.168.29.11:22' as 'admin'.</msg>
-<msg timestamp="20230927 18:52:16.569" level="INFO">Read output: Activate the web console with: systemctl enable --now cockpit.socket
+<msg timestamp="20230928 10:39:43.757" level="INFO">Logging into '192.168.29.11:22' as 'admin'.</msg>
+<msg timestamp="20230928 10:39:45.003" level="INFO">Read output: Activate the web console with: systemctl enable --now cockpit.socket
 
-Last login: Wed Sep 27 09:22:21 2023 from 192.168.29.98
+Last login: Wed Sep 27 17:47:15 2023 from 192.168.29.98
 [admin@gRPCreceiver ~]$</msg>
-<status status="PASS" starttime="20230927 18:52:15.246" endtime="20230927 18:52:16.569"/>
+<status status="PASS" starttime="20230928 10:39:43.756" endtime="20230928 10:39:45.003"/>
 </kw>
-<status status="PASS" starttime="20230927 18:52:15.241" endtime="20230927 18:52:16.569"/>
+<status status="PASS" starttime="20230928 10:39:43.754" endtime="20230928 10:39:45.003"/>
 </kw>
 <kw name="List Directory" library="SSHLibrary">
 <var>${open_home}</var>
 <arg>${reciver.bin_dir}</arg>
 <doc>Returns and logs items in the remote ``path``, optionally filtered with ``pattern``.</doc>
-<msg timestamp="20230927 18:52:16.690" level="INFO">[chan 1] Opened sftp connection (server version 3)</msg>
-<msg timestamp="20230927 18:52:16.705" level="INFO">3 items:
+<msg timestamp="20230928 10:39:45.108" level="INFO">[chan 1] Opened sftp connection (server version 3)</msg>
+<msg timestamp="20230928 10:39:45.120" level="INFO">3 items:
 grpc_receiver
 grpc_sender
 test.txt</msg>
-<msg timestamp="20230927 18:52:16.705" level="INFO">${open_home} = ['grpc_receiver', 'grpc_sender', 'test.txt']</msg>
-<status status="PASS" starttime="20230927 18:52:16.570" endtime="20230927 18:52:16.706"/>
+<msg timestamp="20230928 10:39:45.120" level="INFO">${open_home} = ['grpc_receiver', 'grpc_sender', 'test.txt']</msg>
+<status status="PASS" starttime="20230928 10:39:45.003" endtime="20230928 10:39:45.120"/>
 </kw>
 <kw name="Should Contain" library="BuiltIn">
 <arg>${open_home}</arg>
 <arg>${sender.file_name}</arg>
 <doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
-<status status="PASS" starttime="20230927 18:52:16.706" endtime="20230927 18:52:16.708"/>
+<status status="PASS" starttime="20230928 10:39:45.120" endtime="20230928 10:39:45.121"/>
+</kw>
+<msg timestamp="20230928 10:39:45.121" level="INFO">${status} = None</msg>
+<status status="PASS" starttime="20230928 10:39:37.071" endtime="20230928 10:39:45.121"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${status}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230928 10:39:45.123" level="INFO">None</msg>
+<status status="PASS" starttime="20230928 10:39:45.122" endtime="20230928 10:39:45.123"/>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<arg>'${status}' == '${False}'</arg>
+<arg>fail</arg>
+<arg>Test case is Failed</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" starttime="20230928 10:39:45.124" endtime="20230928 10:39:45.124"/>
+</kw>
+<kw name="test teardown demo" library="grpc_keywords" type="TEARDOWN">
+<kw name="Log" library="BuiltIn">
+<arg>the test teardown keyword is executed</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230928 10:39:45.125" level="INFO">the test teardown keyword is executed</msg>
+<status status="PASS" starttime="20230928 10:39:45.125" endtime="20230928 10:39:45.125"/>
 </kw>
 <kw name="Kill the Process" library="grpc_keywords">
 <kw name="Execute Command" library="SSHLibrary">
@@ -1105,26 +1348,26 @@ test.txt</msg>
 <arg>lsof -i :${reciver.port}</arg>
 <arg>shell=True</arg>
 <doc>Executes ``command`` on the remote machine and returns its outputs.</doc>
-<msg timestamp="20230927 18:52:16.710" level="INFO">Executing command 'lsof -i :50051'.</msg>
-<msg timestamp="20230927 18:52:16.839" level="INFO">Command exited with return code 0.</msg>
-<msg timestamp="20230927 18:52:16.839" level="INFO">${output} = COMMAND    PID  USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
-grpc_rece 5049 admin    5u  IPv6  49988      0t0  TCP *:50051 (LISTEN)</msg>
-<status status="PASS" starttime="20230927 18:52:16.709" endtime="20230927 18:52:16.839"/>
+<msg timestamp="20230928 10:39:45.126" level="INFO">Executing command 'lsof -i :50051'.</msg>
+<msg timestamp="20230928 10:39:45.209" level="INFO">Command exited with return code 0.</msg>
+<msg timestamp="20230928 10:39:45.209" level="INFO">${output} = COMMAND    PID  USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
+grpc_rece 7293 admin    5u  IPv6  62277      0t0  TCP *:50051 (LISTEN)</msg>
+<status status="PASS" starttime="20230928 10:39:45.125" endtime="20230928 10:39:45.209"/>
 </kw>
 <kw name="Split String" library="String">
 <var>${lines}</var>
 <arg>${output}</arg>
 <arg>\n</arg>
 <doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
-<msg timestamp="20230927 18:52:16.839" level="INFO">${lines} = ['COMMAND    PID  USER   FD   TYPE DEVICE SIZE/OFF NODE NAME', 'grpc_rece 5049 admin    5u  IPv6  49988      0t0  TCP *:50051 (LISTEN)']</msg>
-<status status="PASS" starttime="20230927 18:52:16.839" endtime="20230927 18:52:16.839"/>
+<msg timestamp="20230928 10:39:45.209" level="INFO">${lines} = ['COMMAND    PID  USER   FD   TYPE DEVICE SIZE/OFF NODE NAME', 'grpc_rece 7293 admin    5u  IPv6  62277      0t0  TCP *:50051 (LISTEN)']</msg>
+<status status="PASS" starttime="20230928 10:39:45.209" endtime="20230928 10:39:45.209"/>
 </kw>
 <kw name="Set Variable" library="BuiltIn">
 <var>${pid_line}</var>
 <arg>${EMPTY}</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<msg timestamp="20230927 18:52:16.841" level="INFO">${pid_line} = </msg>
-<status status="PASS" starttime="20230927 18:52:16.839" endtime="20230927 18:52:16.841"/>
+<msg timestamp="20230928 10:39:45.211" level="INFO">${pid_line} = </msg>
+<status status="PASS" starttime="20230928 10:39:45.209" endtime="20230928 10:39:45.211"/>
 </kw>
 <for flavor="IN">
 <var>${line}</var>
@@ -1136,63 +1379,105 @@ grpc_rece 5049 admin    5u  IPv6  49988      0t0  TCP *:50051 (LISTEN)</msg>
 <arg>${line}</arg>
 <arg>${SPACE}</arg>
 <doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
-<msg timestamp="20230927 18:52:16.844" level="INFO">${parts} = ['COMMAND', '', '', '', 'PID', '', 'USER', '', '', 'FD', '', '', 'TYPE', 'DEVICE', 'SIZE/OFF', 'NODE', 'NAME']</msg>
-<status status="PASS" starttime="20230927 18:52:16.842" endtime="20230927 18:52:16.844"/>
+<msg timestamp="20230928 10:39:45.211" level="INFO">${parts} = ['COMMAND', '', '', '', 'PID', '', 'USER', '', '', 'FD', '', '', 'TYPE', 'DEVICE', 'SIZE/OFF', 'NODE', 'NAME']</msg>
+<status status="PASS" starttime="20230928 10:39:45.211" endtime="20230928 10:39:45.211"/>
 </kw>
-<status status="PASS" starttime="20230927 18:52:16.842" endtime="20230927 18:52:16.844"/>
+<status status="PASS" starttime="20230928 10:39:45.211" endtime="20230928 10:39:45.211"/>
 </iter>
 <iter>
-<var name="${line}">grpc_rece 5049 admin    5u  IPv6  49988      0t0  TCP *:50051 (LISTEN)</var>
+<var name="${line}">grpc_rece 7293 admin    5u  IPv6  62277      0t0  TCP *:50051 (LISTEN)</var>
 <kw name="Split String" library="String">
 <var>${parts}</var>
 <arg>${line}</arg>
 <arg>${SPACE}</arg>
 <doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
-<msg timestamp="20230927 18:52:16.845" level="INFO">${parts} = ['grpc_rece', '5049', 'admin', '', '', '', '5u', '', 'IPv6', '', '49988', '', '', '', '', '', '0t0', '', 'TCP', '*:50051', '(LISTEN)']</msg>
-<status status="PASS" starttime="20230927 18:52:16.845" endtime="20230927 18:52:16.845"/>
+<msg timestamp="20230928 10:39:45.211" level="INFO">${parts} = ['grpc_rece', '7293', 'admin', '', '', '', '5u', '', 'IPv6', '', '62277', '', '', '', '', '', '0t0', '', 'TCP', '*:50051', '(LISTEN)']</msg>
+<status status="PASS" starttime="20230928 10:39:45.211" endtime="20230928 10:39:45.211"/>
 </kw>
-<status status="PASS" starttime="20230927 18:52:16.844" endtime="20230927 18:52:16.845"/>
+<status status="PASS" starttime="20230928 10:39:45.211" endtime="20230928 10:39:45.211"/>
 </iter>
-<status status="PASS" starttime="20230927 18:52:16.841" endtime="20230927 18:52:16.845"/>
+<status status="PASS" starttime="20230928 10:39:45.211" endtime="20230928 10:39:45.211"/>
 </for>
 <kw name="Set Variable" library="BuiltIn">
 <var>${pid}</var>
 <arg>${parts[1]}</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<msg timestamp="20230927 18:52:16.846" level="INFO">${pid} = 5049</msg>
-<status status="PASS" starttime="20230927 18:52:16.845" endtime="20230927 18:52:16.846"/>
+<msg timestamp="20230928 10:39:45.212" level="INFO">${pid} = 7293</msg>
+<status status="PASS" starttime="20230928 10:39:45.211" endtime="20230928 10:39:45.212"/>
 </kw>
 <kw name="Execute Command" library="SSHLibrary">
 <var>${kill_pid}</var>
 <arg>kill -9 ${pid}</arg>
 <doc>Executes ``command`` on the remote machine and returns its outputs.</doc>
-<msg timestamp="20230927 18:52:16.846" level="INFO">Executing command 'kill -9 5049'.</msg>
-<msg timestamp="20230927 18:52:17.002" level="INFO">Command exited with return code 0.</msg>
-<msg timestamp="20230927 18:52:17.002" level="INFO">${kill_pid} = </msg>
-<status status="PASS" starttime="20230927 18:52:16.846" endtime="20230927 18:52:17.002"/>
+<msg timestamp="20230928 10:39:45.212" level="INFO">Executing command 'kill -9 7293'.</msg>
+<msg timestamp="20230928 10:39:45.332" level="INFO">Command exited with return code 0.</msg>
+<msg timestamp="20230928 10:39:45.332" level="INFO">${kill_pid} = </msg>
+<status status="PASS" starttime="20230928 10:39:45.212" endtime="20230928 10:39:45.332"/>
 </kw>
 <kw name="Read" library="SSHLibrary">
 <var>${output2}</var>
 <arg>delay=2s</arg>
 <doc>Consumes and returns everything available on the server output.</doc>
-<msg timestamp="20230927 18:52:19.003" level="INFO">${output2} = </msg>
-<status status="PASS" starttime="20230927 18:52:17.002" endtime="20230927 18:52:19.003"/>
+<msg timestamp="20230928 10:39:47.332" level="INFO">${output2} = </msg>
+<status status="PASS" starttime="20230928 10:39:45.332" endtime="20230928 10:39:47.332"/>
 </kw>
 <kw name="Log To Console" library="BuiltIn">
 <arg>${output2}</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" starttime="20230927 18:52:19.003" endtime="20230927 18:52:19.004"/>
+<status status="PASS" starttime="20230928 10:39:47.332" endtime="20230928 10:39:47.333"/>
 </kw>
 <kw name="Log To Console" library="BuiltIn">
 <arg>PID: ${pid}</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" starttime="20230927 18:52:19.004" endtime="20230927 18:52:19.005"/>
+<status status="PASS" starttime="20230928 10:39:47.333" endtime="20230928 10:39:47.334"/>
 </kw>
-<status status="PASS" starttime="20230927 18:52:16.708" endtime="20230927 18:52:19.005"/>
+<status status="PASS" starttime="20230928 10:39:45.125" endtime="20230928 10:39:47.334"/>
 </kw>
-<status status="PASS" starttime="20230927 18:52:08.229" endtime="20230927 18:52:19.006"/>
+<status status="PASS" starttime="20230928 10:39:45.125" endtime="20230928 10:39:47.334"/>
+</kw>
+<doc>DESIGN STEPS
+
+============
+
+gRPC Tool Testing Using Automation
+
+Step1:
+
+Login to Receiver VM and Execute the command to make receiver ready to accept the files.
+
+Step 2:
+
+Login to Sender VM and Execute the command to send a files
+
+Step 3:
+
+Check the eexcuted command is success or fail
+
+Step4:
+
+Login to Rceiver Command and check the file is recived at Receiver VM.
+
+*ASSIGNEE=#####*</doc>
+<tag>gRPC</tag>
+<tag>NewFeature</tag>
+<tag>Regression</tag>
+<timeout value="15 minutes"/>
+<status status="PASS" starttime="20230928 10:39:37.069" endtime="20230928 10:39:47.335"/>
 </test>
-<test id="s1-t5" name="Testcase5" line="63">
+<test id="s1-t5" name="GRPC_Test_05" line="139">
+<kw name="test setup demo" library="grpc_keywords" type="SETUP">
+<kw name="Log" library="BuiltIn">
+<arg>the test setup demo keyword is executed</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230928 10:39:47.338" level="INFO">the test setup demo keyword is executed</msg>
+<status status="PASS" starttime="20230928 10:39:47.337" endtime="20230928 10:39:47.338"/>
+</kw>
+<status status="PASS" starttime="20230928 10:39:47.337" endtime="20230928 10:39:47.338"/>
+</kw>
+<kw name="Receiver Compress Enabled Using gRPC Protocol Via SSH" library="grpc_keywords">
+<var>${status}</var>
+<arg>${sender}</arg>
+<arg>${reciver}</arg>
 <kw name="Reciver command" library="grpc_keywords">
 <var>${rec_res}</var>
 <arg>${reciver.host}</arg>
@@ -1206,73 +1491,73 @@ grpc_rece 5049 admin    5u  IPv6  49988      0t0  TCP *:50051 (LISTEN)</msg>
 <kw name="Open Connection" library="SSHLibrary">
 <arg>${host}</arg>
 <doc>Opens a new SSH connection to the given ``host`` and ``port``.</doc>
-<status status="PASS" starttime="20230927 18:52:19.017" endtime="20230927 18:52:19.017"/>
+<status status="PASS" starttime="20230928 10:39:47.342" endtime="20230928 10:39:47.343"/>
 </kw>
 <kw name="Login" library="SSHLibrary">
 <arg>${user}</arg>
 <arg>${pwd}</arg>
 <doc>Logs into the SSH server with the given ``username`` and ``password``.</doc>
-<msg timestamp="20230927 18:52:19.017" level="INFO">Logging into '192.168.29.11:22' as 'admin'.</msg>
-<msg timestamp="20230927 18:52:20.307" level="INFO">Read output: Activate the web console with: systemctl enable --now cockpit.socket
+<msg timestamp="20230928 10:39:47.344" level="INFO">Logging into '192.168.29.11:22' as 'admin'.</msg>
+<msg timestamp="20230928 10:39:48.544" level="INFO">Read output: Activate the web console with: systemctl enable --now cockpit.socket
 
-Last login: Wed Sep 27 09:22:29 2023 from 192.168.29.98
+Last login: Wed Sep 27 17:47:22 2023 from 192.168.29.98
 [admin@gRPCreceiver ~]$</msg>
-<status status="PASS" starttime="20230927 18:52:19.017" endtime="20230927 18:52:20.308"/>
+<status status="PASS" starttime="20230928 10:39:47.343" endtime="20230928 10:39:48.544"/>
 </kw>
-<status status="PASS" starttime="20230927 18:52:19.016" endtime="20230927 18:52:20.308"/>
+<status status="PASS" starttime="20230928 10:39:47.342" endtime="20230928 10:39:48.544"/>
 </kw>
 <kw name="Write" library="SSHLibrary">
 <arg>cd ${reciver.bin_dir}</arg>
 <doc>Writes the given ``text`` on the remote machine and appends a newline.</doc>
-<msg timestamp="20230927 18:52:20.313" level="INFO">cd /home/admin/project/bin</msg>
-<status status="PASS" starttime="20230927 18:52:20.308" endtime="20230927 18:52:20.313"/>
+<msg timestamp="20230928 10:39:48.548" level="INFO">cd /home/admin/project/bin</msg>
+<status status="PASS" starttime="20230928 10:39:48.544" endtime="20230928 10:39:48.548"/>
 </kw>
 <kw name="Write" library="SSHLibrary">
 <arg>${cmd}</arg>
 <doc>Writes the given ``text`` on the remote machine and appends a newline.</doc>
-<msg timestamp="20230927 18:52:20.319" level="INFO">[admin@gRPCreceiver bin]$ /home/admin/project/bin/grpc_receiver -c 1 -l 3 -D -d ..</msg>
-<status status="PASS" starttime="20230927 18:52:20.313" endtime="20230927 18:52:20.319"/>
+<msg timestamp="20230928 10:39:48.552" level="INFO">[admin@gRPCreceiver bin]$ /home/admin/project/bin/grpc_receiver -c 1 -l 3 -D -d ..</msg>
+<status status="PASS" starttime="20230928 10:39:48.548" endtime="20230928 10:39:48.552"/>
 </kw>
 <kw name="Read" library="SSHLibrary">
 <var>${output}</var>
 <arg>delay=2s</arg>
 <doc>Consumes and returns everything available on the server output.</doc>
-<msg timestamp="20230927 18:52:24.325" level="INFO">2023-09-27 09:22:33 [TRACE] log level is set to trace
-2023-09-27 09:22:33 [INFO] default receiving path is: .
-2023-09-27 09:22:33 [INFO] Starting GRPC Receiver...
-2023-09-27 09:22:33 [TRACE] set compression algorithm: GRPC_COMPRESS_DEFLATE, set compression level to: GRPC_COMPRESS_LEVEL_HIGH
-2023-09-27 09:22:33 [TRACE] The server has a default compression algorithm set
-2023-09-27 09:22:33 [INFO] Server listening on 0.0.0.0:50051 . Press Ctrl-C to end.</msg>
-<msg timestamp="20230927 18:52:24.327" level="INFO">${output} = 2023-09-27 09:22:33 [TRACE] log level is set to trace
-2023-09-27 09:22:33 [INFO] default receiving path is: .
-2023-09-27 09:22:33 [INFO] Starting GRPC Receiver...
-2023-09-27 09:22:33 [TRACE] set co...</msg>
-<status status="PASS" starttime="20230927 18:52:20.319" endtime="20230927 18:52:24.327"/>
+<msg timestamp="20230928 10:39:52.554" level="INFO">2023-09-27 17:47:27 [TRACE] log level is set to trace
+2023-09-27 17:47:27 [INFO] default receiving path is: .
+2023-09-27 17:47:27 [INFO] Starting GRPC Receiver...
+2023-09-27 17:47:27 [TRACE] set compression algorithm: GRPC_COMPRESS_DEFLATE, set compression level to: GRPC_COMPRESS_LEVEL_HIGH
+2023-09-27 17:47:27 [TRACE] The server has a default compression algorithm set
+2023-09-27 17:47:27 [INFO] Server listening on 0.0.0.0:50051 . Press Ctrl-C to end.</msg>
+<msg timestamp="20230928 10:39:52.554" level="INFO">${output} = 2023-09-27 17:47:27 [TRACE] log level is set to trace
+2023-09-27 17:47:27 [INFO] default receiving path is: .
+2023-09-27 17:47:27 [INFO] Starting GRPC Receiver...
+2023-09-27 17:47:27 [TRACE] set co...</msg>
+<status status="PASS" starttime="20230928 10:39:48.552" endtime="20230928 10:39:52.554"/>
 </kw>
 <kw name="Log To Console" library="BuiltIn">
 <arg>${output}</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" starttime="20230927 18:52:24.328" endtime="20230927 18:52:24.342"/>
+<status status="PASS" starttime="20230928 10:39:52.554" endtime="20230928 10:39:52.557"/>
 </kw>
 <kw name="List Directory" library="SSHLibrary">
 <var>${open_home}</var>
 <arg>${reciver.bin_dir}</arg>
 <doc>Returns and logs items in the remote ``path``, optionally filtered with ``pattern``.</doc>
-<msg timestamp="20230927 18:52:24.533" level="INFO">[chan 1] Opened sftp connection (server version 3)</msg>
-<msg timestamp="20230927 18:52:24.550" level="INFO">3 items:
+<msg timestamp="20230928 10:39:52.644" level="INFO">[chan 1] Opened sftp connection (server version 3)</msg>
+<msg timestamp="20230928 10:39:52.651" level="INFO">3 items:
 grpc_receiver
 grpc_sender
 test.txt</msg>
-<msg timestamp="20230927 18:52:24.550" level="INFO">${open_home} = ['grpc_receiver', 'grpc_sender', 'test.txt']</msg>
-<status status="PASS" starttime="20230927 18:52:24.342" endtime="20230927 18:52:24.550"/>
+<msg timestamp="20230928 10:39:52.651" level="INFO">${open_home} = ['grpc_receiver', 'grpc_sender', 'test.txt']</msg>
+<status status="PASS" starttime="20230928 10:39:52.557" endtime="20230928 10:39:52.651"/>
 </kw>
-<msg timestamp="20230927 18:52:24.551" level="INFO">${rec_res} = ['grpc_receiver', 'grpc_sender', 'test.txt']</msg>
-<status status="PASS" starttime="20230927 18:52:19.011" endtime="20230927 18:52:24.551"/>
+<msg timestamp="20230928 10:39:52.651" level="INFO">${rec_res} = ['grpc_receiver', 'grpc_sender', 'test.txt']</msg>
+<status status="PASS" starttime="20230928 10:39:47.339" endtime="20230928 10:39:52.651"/>
 </kw>
 <kw name="Log To Console" library="BuiltIn">
 <arg>${rec_res}</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" starttime="20230927 18:52:24.552" endtime="20230927 18:52:24.553"/>
+<status status="PASS" starttime="20230928 10:39:52.651" endtime="20230928 10:39:52.652"/>
 </kw>
 <kw name="Receiver compress enabled" library="grpc_keywords">
 <var>${snd_result}</var>
@@ -1286,8 +1571,8 @@ test.txt</msg>
 <arg>${sender}</arg>
 <arg>${element}</arg>
 <doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
-<msg timestamp="20230927 18:52:24.554" level="INFO">${sender_info} = {'usr1': 'admin', 'pwd': 'admin123', 'file_name': 'test.txt'}</msg>
-<status status="PASS" starttime="20230927 18:52:24.554" endtime="20230927 18:52:24.554"/>
+<msg timestamp="20230928 10:39:52.654" level="INFO">${sender_info} = {'usr1': 'admin', 'pwd': 'admin123', 'file_name': 'test.txt'}</msg>
+<status status="PASS" starttime="20230928 10:39:52.653" endtime="20230928 10:39:52.654"/>
 </kw>
 <kw name="Establish SSH Connection" library="grpc_keywords">
 <arg>${element}</arg>
@@ -1296,20 +1581,20 @@ test.txt</msg>
 <kw name="Open Connection" library="SSHLibrary">
 <arg>${host}</arg>
 <doc>Opens a new SSH connection to the given ``host`` and ``port``.</doc>
-<status status="PASS" starttime="20230927 18:52:24.555" endtime="20230927 18:52:24.556"/>
+<status status="PASS" starttime="20230928 10:39:52.655" endtime="20230928 10:39:52.656"/>
 </kw>
 <kw name="Login" library="SSHLibrary">
 <arg>${user}</arg>
 <arg>${pwd}</arg>
 <doc>Logs into the SSH server with the given ``username`` and ``password``.</doc>
-<msg timestamp="20230927 18:52:24.556" level="INFO">Logging into '192.168.29.141:22' as 'admin'.</msg>
-<msg timestamp="20230927 18:52:25.840" level="INFO">Read output: Activate the web console with: systemctl enable --now cockpit.socket
+<msg timestamp="20230928 10:39:52.657" level="INFO">Logging into '192.168.29.141:22' as 'admin'.</msg>
+<msg timestamp="20230928 10:39:53.852" level="INFO">Read output: Activate the web console with: systemctl enable --now cockpit.socket
 
-Last login: Wed Sep 27 09:22:27 2023 from 192.168.29.98
+Last login: Wed Sep 27 17:46:53 2023 from 192.168.29.98
 [admin@gRPCSender ~]$</msg>
-<status status="PASS" starttime="20230927 18:52:24.556" endtime="20230927 18:52:25.840"/>
+<status status="PASS" starttime="20230928 10:39:52.656" endtime="20230928 10:39:53.852"/>
 </kw>
-<status status="PASS" starttime="20230927 18:52:24.554" endtime="20230927 18:52:25.840"/>
+<status status="PASS" starttime="20230928 10:39:52.654" endtime="20230928 10:39:53.852"/>
 </kw>
 <kw name="Execute Command" library="SSHLibrary">
 <var>${stdout}</var>
@@ -1317,87 +1602,229 @@ Last login: Wed Sep 27 09:22:27 2023 from 192.168.29.98
 <arg>return_stdout=False</arg>
 <arg>return_stdout=True</arg>
 <doc>Executes ``command`` on the remote machine and returns its outputs.</doc>
-<msg timestamp="20230927 18:52:25.846" level="INFO">Executing command '/home/admin/project/bin/grpc_sender -D -s 192.168.29.11:50051 -f /home/admin/project/bin/test.txt -v 1 -c 2 -l3 -o /tmp'.</msg>
-<msg timestamp="20230927 18:52:26.072" level="INFO">Command exited with return code 0.</msg>
-<msg timestamp="20230927 18:52:26.072" level="INFO">${stdout} = 2023-09-27 09:22:39 [INFO] Buffer chunk size is set with default to: 2MB
-2023-09-27 09:22:39 [INFO] GRPC destination pod service is: 192.168.29.11:50051
-2023-09-27 09:22:39 [INFO] Output Path: /tmp
+<msg timestamp="20230928 10:39:53.854" level="INFO">Executing command '/home/admin/project/bin/grpc_sender -D -s 192.168.29.11:50051 -f /home/admin/project/bin/test.txt -v 1 -c 2 -l3 -o /tmp'.</msg>
+<msg timestamp="20230928 10:39:53.972" level="INFO">Command exited with return code 0.</msg>
+<msg timestamp="20230928 10:39:53.972" level="INFO">${stdout} = 2023-09-27 17:47:05 [INFO] Buffer chunk size is set with default to: 2MB
+2023-09-27 17:47:05 [INFO] GRPC destination pod service is: 192.168.29.11:50051
+2023-09-27 17:47:05 [INFO] Output Path: /tmp
 20...</msg>
-<status status="PASS" starttime="20230927 18:52:25.841" endtime="20230927 18:52:26.072"/>
+<status status="PASS" starttime="20230928 10:39:53.852" endtime="20230928 10:39:53.972"/>
 </kw>
 <kw name="Should Not Contain" library="BuiltIn">
 <arg>${stdout}</arg>
 <arg>File ${sender.bin_dir}/${sender_info.file_name} transfer succeeded.</arg>
 <doc>Fails if ``container`` contains ``item`` one or more times.</doc>
-<msg timestamp="20230927 18:52:26.073" level="FAIL">'2023-09-27 09:22:39 [INFO] Buffer chunk size is set with default to: 2MB
-2023-09-27 09:22:39 [INFO] GRPC destination pod service is: 192.168.29.11:50051
-2023-09-27 09:22:39 [INFO] Output Path: /tmp
-2023-09-27 09:22:39 [INFO] Checksum validation is set to: md5
-2023-09-27 09:22:39 [TRACE] log level is set to trace
-2023-09-27 09:22:39 [TRACE] set compression algorithm: GRPC_COMPRESS_GZIP, set compression level to: GRPC_COMPRESS_LEVEL_HIGH
-2023-09-27 09:22:39 [TRACE] The file size of /home/admin/project/bin/test.txt is: 12 bytes.
-2023-09-27 09:22:39 [TRACE] Hashed md5 value of /home/admin/project/bin/test.txt: 6f5902ac237024bdd0c176cb93063dc4
-2023-09-27 09:22:39 [TRACE] MetaData is:
+<msg timestamp="20230928 10:39:53.974" level="FAIL">'2023-09-27 17:47:05 [INFO] Buffer chunk size is set with default to: 2MB
+2023-09-27 17:47:05 [INFO] GRPC destination pod service is: 192.168.29.11:50051
+2023-09-27 17:47:05 [INFO] Output Path: /tmp
+2023-09-27 17:47:05 [INFO] Checksum validation is set to: md5
+2023-09-27 17:47:05 [TRACE] log level is set to trace
+2023-09-27 17:47:05 [TRACE] set compression algorithm: GRPC_COMPRESS_GZIP, set compression level to: GRPC_COMPRESS_LEVEL_HIGH
+2023-09-27 17:47:05 [TRACE] The file size of /home/admin/project/bin/test.txt is: 12 bytes.
+2023-09-27 17:47:05 [TRACE] Hashed md5 value of /home/admin/project/bin/test.txt: 6f5902ac237024bdd0c176cb93063dc4
+2023-09-27 17:47:05 [TRACE] MetaData is:
 file name transfered: /home/admin/project/bin/test.txt
 digest: 6f5902ac237024bdd0c176cb93063dc4
 call type: 1
 file size: 12
 target path: /tmp
 checksum algorithm: 1
-2023-09-27 09:22:39 [TRACE] chunk size is set to 2097152
-2023-09-27 09:22:39 [INFO] File /home/admin/project/bin/test.txt transfer succeeded.
+2023-09-27 17:47:05 [TRACE] chunk size is set to 2097152
+2023-09-27 17:47:05 [INFO] File /home/admin/project/bin/test.txt transfer succeeded.
 
-2023-09-27 09:22:39 [INFO] Latency: 30694us' contains 'File /home/admin/project/bin/test.txt transfer succeeded.'</msg>
-<status status="FAIL" starttime="20230927 18:52:26.072" endtime="20230927 18:52:26.073"/>
+2023-09-27 17:47:05 [INFO] Latency: 16861us' contains 'File /home/admin/project/bin/test.txt transfer succeeded.'</msg>
+<status status="FAIL" starttime="20230928 10:39:53.972" endtime="20230928 10:39:53.974"/>
 </kw>
-<status status="FAIL" starttime="20230927 18:52:24.554" endtime="20230927 18:52:26.073"/>
+<status status="FAIL" starttime="20230928 10:39:52.653" endtime="20230928 10:39:53.974"/>
 </iter>
-<status status="FAIL" starttime="20230927 18:52:24.553" endtime="20230927 18:52:26.074"/>
+<status status="FAIL" starttime="20230928 10:39:52.653" endtime="20230928 10:39:53.974"/>
 </for>
-<status status="FAIL" starttime="20230927 18:52:24.553" endtime="20230927 18:52:26.074"/>
+<status status="FAIL" starttime="20230928 10:39:52.652" endtime="20230928 10:39:53.975"/>
 </kw>
 <kw name="Establish SSH Connection" library="grpc_keywords">
 <arg>${reciver.host}</arg>
 <arg>${reciver.user}</arg>
 <arg>${reciver.pwd}</arg>
-<status status="NOT RUN" starttime="20230927 18:52:26.075" endtime="20230927 18:52:26.075"/>
+<status status="NOT RUN" starttime="20230928 10:39:53.975" endtime="20230928 10:39:53.975"/>
 </kw>
 <kw name="List Directory" library="SSHLibrary">
 <var>${open_home}</var>
 <arg>${reciver.bin_dir}</arg>
 <doc>Returns and logs items in the remote ``path``, optionally filtered with ``pattern``.</doc>
-<status status="NOT RUN" starttime="20230927 18:52:26.076" endtime="20230927 18:52:26.076"/>
+<status status="NOT RUN" starttime="20230928 10:39:53.975" endtime="20230928 10:39:53.975"/>
 </kw>
 <kw name="Should Contain" library="BuiltIn">
 <arg>${open_home}</arg>
 <arg>${sender.file_name}</arg>
 <doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
-<status status="NOT RUN" starttime="20230927 18:52:26.076" endtime="20230927 18:52:26.076"/>
+<status status="NOT RUN" starttime="20230928 10:39:53.975" endtime="20230928 10:39:53.975"/>
+</kw>
+<status status="FAIL" starttime="20230928 10:39:47.339" endtime="20230928 10:39:53.976"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${status}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" starttime="20230928 10:39:53.977" endtime="20230928 10:39:53.977"/>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<arg>'${status}' == '${False}'</arg>
+<arg>fail</arg>
+<arg>Test case is Failed</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="NOT RUN" starttime="20230928 10:39:53.977" endtime="20230928 10:39:53.977"/>
+</kw>
+<kw name="test teardown demo" library="grpc_keywords" type="TEARDOWN">
+<kw name="Log" library="BuiltIn">
+<arg>the test teardown keyword is executed</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230928 10:39:53.978" level="INFO">the test teardown keyword is executed</msg>
+<status status="PASS" starttime="20230928 10:39:53.978" endtime="20230928 10:39:53.978"/>
 </kw>
 <kw name="Kill the Process" library="grpc_keywords">
-<status status="NOT RUN" starttime="20230927 18:52:26.078" endtime="20230927 18:52:26.078"/>
+<kw name="Execute Command" library="SSHLibrary">
+<var>${output}</var>
+<arg>lsof -i :${reciver.port}</arg>
+<arg>shell=True</arg>
+<doc>Executes ``command`` on the remote machine and returns its outputs.</doc>
+<msg timestamp="20230928 10:39:53.979" level="INFO">Executing command 'lsof -i :50051'.</msg>
+<msg timestamp="20230928 10:39:54.136" level="INFO">Command exited with return code 1.</msg>
+<msg timestamp="20230928 10:39:54.136" level="INFO">${output} = </msg>
+<status status="PASS" starttime="20230928 10:39:53.979" endtime="20230928 10:39:54.136"/>
 </kw>
-<status status="FAIL" starttime="20230927 18:52:19.008" endtime="20230927 18:52:26.078">'2023-09-27 09:22:39 [INFO] Buffer chunk size is set with default to: 2MB
-2023-09-27 09:22:39 [INFO] GRPC destination pod service is: 192.168.29.11:50051
-2023-09-27 09:22:39 [INFO] Output Path: /tmp
-2023-09-27 09:22:39 [INFO] Checksum validation is set to: md5
-2023-09-27 09:22:39 [TRACE] log level is set to trace
-2023-09-27 09:22:39 [TRACE] set compression algorithm: GRPC_COMPRESS_GZIP, set compression level to: GRPC_COMPRESS_LEVEL_HIGH
-2023-09-27 09:22:39 [TRACE] The file size of /home/admin/project/bin/test.txt is: 12 bytes.
-2023-09-27 09:22:39 [TRACE] Hashed md5 value of /home/admin/project/bin/test.txt: 6f5902ac237024bdd0c176cb93063dc4
-2023-09-27 09:22:39 [TRACE] MetaData is:
+<kw name="Split String" library="String">
+<var>${lines}</var>
+<arg>${output}</arg>
+<arg>\n</arg>
+<doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
+<msg timestamp="20230928 10:39:54.136" level="INFO">${lines} = ['']</msg>
+<status status="PASS" starttime="20230928 10:39:54.136" endtime="20230928 10:39:54.136"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${pid_line}</var>
+<arg>${EMPTY}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230928 10:39:54.137" level="INFO">${pid_line} = </msg>
+<status status="PASS" starttime="20230928 10:39:54.136" endtime="20230928 10:39:54.137"/>
+</kw>
+<for flavor="IN">
+<var>${line}</var>
+<value>@{lines}</value>
+<iter>
+<var name="${line}"/>
+<kw name="Split String" library="String">
+<var>${parts}</var>
+<arg>${line}</arg>
+<arg>${SPACE}</arg>
+<doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
+<msg timestamp="20230928 10:39:54.137" level="INFO">${parts} = ['']</msg>
+<status status="PASS" starttime="20230928 10:39:54.137" endtime="20230928 10:39:54.138"/>
+</kw>
+<status status="PASS" starttime="20230928 10:39:54.137" endtime="20230928 10:39:54.138"/>
+</iter>
+<status status="PASS" starttime="20230928 10:39:54.137" endtime="20230928 10:39:54.138"/>
+</for>
+<kw name="Set Variable" library="BuiltIn">
+<var>${pid}</var>
+<arg>${parts[1]}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230928 10:39:54.138" level="INFO">${pid} = None</msg>
+<msg timestamp="20230928 10:39:54.139" level="FAIL">Resolving variable '${parts[1]}' failed: IndexError: list index out of range</msg>
+<status status="FAIL" starttime="20230928 10:39:54.138" endtime="20230928 10:39:54.139"/>
+</kw>
+<kw name="Execute Command" library="SSHLibrary">
+<var>${kill_pid}</var>
+<arg>kill -9 ${pid}</arg>
+<doc>Executes ``command`` on the remote machine and returns its outputs.</doc>
+<msg timestamp="20230928 10:39:54.139" level="INFO">Executing command 'kill -9 None'.</msg>
+<msg timestamp="20230928 10:39:54.252" level="INFO">Command exited with return code 1.</msg>
+<msg timestamp="20230928 10:39:54.252" level="INFO">${kill_pid} = </msg>
+<status status="PASS" starttime="20230928 10:39:54.139" endtime="20230928 10:39:54.252"/>
+</kw>
+<kw name="Read" library="SSHLibrary">
+<var>${output2}</var>
+<arg>delay=2s</arg>
+<doc>Consumes and returns everything available on the server output.</doc>
+<msg timestamp="20230928 10:39:56.252" level="INFO">${output2} = </msg>
+<status status="PASS" starttime="20230928 10:39:54.252" endtime="20230928 10:39:56.252"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${output2}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230928 10:39:56.253" endtime="20230928 10:39:56.253"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>PID: ${pid}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230928 10:39:56.254" endtime="20230928 10:39:56.254"/>
+</kw>
+<status status="FAIL" starttime="20230928 10:39:53.978" endtime="20230928 10:39:56.254"/>
+</kw>
+<status status="FAIL" starttime="20230928 10:39:53.978" endtime="20230928 10:39:56.255">Resolving variable '${parts[1]}' failed: IndexError: list index out of range</status>
+</kw>
+<doc>DESIGN STEPS
+
+============
+
+gRPC Tool Testing Using Automation
+
+Step1:
+
+Login to Receiver VM and Execute the command to make receiver ready to accept the files.
+
+Step 2:
+
+Login to Sender VM and Execute the command to send a files
+
+Step 3:
+
+Check the eexcuted command is success or fail
+
+Step4:
+
+Login to Rceiver Command and check the file is recived at Receiver VM.
+
+*ASSIGNEE=#####*</doc>
+<tag>gRPC</tag>
+<tag>NewFeature</tag>
+<tag>Regression</tag>
+<timeout value="15 minutes"/>
+<status status="FAIL" starttime="20230928 10:39:47.336" endtime="20230928 10:39:56.255">'2023-09-27 17:47:05 [INFO] Buffer chunk size is set with default to: 2MB
+2023-09-27 17:47:05 [INFO] GRPC destination pod service is: 192.168.29.11:50051
+2023-09-27 17:47:05 [INFO] Output Path: /tmp
+2023-09-27 17:47:05 [INFO] Checksum validation is set to: md5
+2023-09-27 17:47:05 [TRACE] log level is set to trace
+2023-09-27 17:47:05 [TRACE] set compression algorithm: GRPC_COMPRESS_GZIP, set compression level to: GRPC_COMPRESS_LEVEL_HIGH
+2023-09-27 17:47:05 [TRACE] The file size of /home/admin/project/bin/test.txt is: 12 bytes.
+2023-09-27 17:47:05 [TRACE] Hashed md5 value of /home/admin/project/bin/test.txt: 6f5902ac237024bdd0c176cb93063dc4
+2023-09-27 17:47:05 [TRACE] MetaData is:
 file name transfered: /home/admin/project/bin/test.txt
 digest: 6f5902ac237024bdd0c176cb93063dc4
 call type: 1
 file size: 12
 target path: /tmp
 checksum algorithm: 1
-2023-09-27 09:22:39 [TRACE] chunk size is set to 2097152
-2023-09-27 09:22:39 [INFO] File /home/admin/project/bin/test.txt transfer succeeded.
+2023-09-27 17:47:05 [TRACE] chunk size is set to 2097152
+2023-09-27 17:47:05 [INFO] File /home/admin/project/bin/test.txt transfer succeeded.
 
-2023-09-27 09:22:39 [INFO] Latency: 30694us' contains 'File /home/admin/project/bin/test.txt transfer succeeded.'</status>
+2023-09-27 17:47:05 [INFO] Latency: 16861us' contains 'File /home/admin/project/bin/test.txt transfer succeeded.'
+
+Also teardown failed:
+Resolving variable '${parts[1]}' failed: IndexError: list index out of range</status>
 </test>
-<test id="s1-t6" name="Testcase6" line="76">
+<test id="s1-t6" name="GRPC_Test_06" line="170">
+<kw name="test setup demo" library="grpc_keywords" type="SETUP">
+<kw name="Log" library="BuiltIn">
+<arg>the test setup demo keyword is executed</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230928 10:39:56.261" level="INFO">the test setup demo keyword is executed</msg>
+<status status="PASS" starttime="20230928 10:39:56.260" endtime="20230928 10:39:56.261"/>
+</kw>
+<status status="PASS" starttime="20230928 10:39:56.260" endtime="20230928 10:39:56.261"/>
+</kw>
+<kw name="Checksum Validation Switchoff Using gRPC Protocol Via SSH" library="grpc_keywords">
+<var>${status}</var>
+<arg>${sender}</arg>
+<arg>${reciver}</arg>
 <kw name="Reciver command" library="grpc_keywords">
 <var>${rec_res}</var>
 <arg>${reciver.host}</arg>
@@ -1411,73 +1838,73 @@ checksum algorithm: 1
 <kw name="Open Connection" library="SSHLibrary">
 <arg>${host}</arg>
 <doc>Opens a new SSH connection to the given ``host`` and ``port``.</doc>
-<status status="PASS" starttime="20230927 18:52:26.087" endtime="20230927 18:52:26.087"/>
+<status status="PASS" starttime="20230928 10:39:56.267" endtime="20230928 10:39:56.270"/>
 </kw>
 <kw name="Login" library="SSHLibrary">
 <arg>${user}</arg>
 <arg>${pwd}</arg>
 <doc>Logs into the SSH server with the given ``username`` and ``password``.</doc>
-<msg timestamp="20230927 18:52:26.089" level="INFO">Logging into '192.168.29.11:22' as 'admin'.</msg>
-<msg timestamp="20230927 18:52:27.375" level="INFO">Read output: Activate the web console with: systemctl enable --now cockpit.socket
+<msg timestamp="20230928 10:39:56.271" level="INFO">Logging into '192.168.29.11:22' as 'admin'.</msg>
+<msg timestamp="20230928 10:39:57.492" level="INFO">Read output: Activate the web console with: systemctl enable --now cockpit.socket
 
-Last login: Wed Sep 27 09:22:32 2023 from 192.168.29.98
+Last login: Wed Sep 27 17:47:26 2023 from 192.168.29.98
 [admin@gRPCreceiver ~]$</msg>
-<status status="PASS" starttime="20230927 18:52:26.089" endtime="20230927 18:52:27.376"/>
+<status status="PASS" starttime="20230928 10:39:56.270" endtime="20230928 10:39:57.492"/>
 </kw>
-<status status="PASS" starttime="20230927 18:52:26.087" endtime="20230927 18:52:27.376"/>
+<status status="PASS" starttime="20230928 10:39:56.266" endtime="20230928 10:39:57.492"/>
 </kw>
 <kw name="Write" library="SSHLibrary">
 <arg>cd ${reciver.bin_dir}</arg>
 <doc>Writes the given ``text`` on the remote machine and appends a newline.</doc>
-<msg timestamp="20230927 18:52:27.383" level="INFO">cd /home/admin/project/bin</msg>
-<status status="PASS" starttime="20230927 18:52:27.377" endtime="20230927 18:52:27.383"/>
+<msg timestamp="20230928 10:39:57.498" level="INFO">cd /home/admin/project/bin</msg>
+<status status="PASS" starttime="20230928 10:39:57.492" endtime="20230928 10:39:57.498"/>
 </kw>
 <kw name="Write" library="SSHLibrary">
 <arg>${cmd}</arg>
 <doc>Writes the given ``text`` on the remote machine and appends a newline.</doc>
-<msg timestamp="20230927 18:52:27.391" level="INFO">[admin@gRPCreceiver bin]$ /home/admin/project/bin/grpc_receiver -c 1 -l 3 -D -d ..</msg>
-<status status="PASS" starttime="20230927 18:52:27.384" endtime="20230927 18:52:27.391"/>
+<msg timestamp="20230928 10:39:57.504" level="INFO">[admin@gRPCreceiver bin]$ /home/admin/project/bin/grpc_receiver -c 1 -l 3 -D -d ..</msg>
+<status status="PASS" starttime="20230928 10:39:57.498" endtime="20230928 10:39:57.504"/>
 </kw>
 <kw name="Read" library="SSHLibrary">
 <var>${output}</var>
 <arg>delay=2s</arg>
 <doc>Consumes and returns everything available on the server output.</doc>
-<msg timestamp="20230927 18:52:31.393" level="INFO">2023-09-27 09:22:40 [TRACE] log level is set to trace
-2023-09-27 09:22:40 [INFO] default receiving path is: .
-2023-09-27 09:22:40 [INFO] Starting GRPC Receiver...
-2023-09-27 09:22:40 [ERROR] Port 50051 is already in use
-2023-09-27 09:22:40 [ERROR] Port occupation detected. Exiting...
+<msg timestamp="20230928 10:40:01.507" level="INFO">2023-09-27 17:47:37 [TRACE] log level is set to trace
+2023-09-27 17:47:37 [INFO] default receiving path is: .
+2023-09-27 17:47:37 [INFO] Starting GRPC Receiver...
+2023-09-27 17:47:37 [ERROR] Port 50051 is already in use
+2023-09-27 17:47:37 [ERROR] Port occupation detected. Exiting...
 [admin@gRPCreceiver bin]$</msg>
-<msg timestamp="20230927 18:52:31.393" level="INFO">${output} = 2023-09-27 09:22:40 [TRACE] log level is set to trace
-2023-09-27 09:22:40 [INFO] default receiving path is: .
-2023-09-27 09:22:40 [INFO] Starting GRPC Receiver...
-2023-09-27 09:22:40 [ERROR] Port 5...</msg>
-<status status="PASS" starttime="20230927 18:52:27.391" endtime="20230927 18:52:31.393"/>
+<msg timestamp="20230928 10:40:01.507" level="INFO">${output} = 2023-09-27 17:47:37 [TRACE] log level is set to trace
+2023-09-27 17:47:37 [INFO] default receiving path is: .
+2023-09-27 17:47:37 [INFO] Starting GRPC Receiver...
+2023-09-27 17:47:37 [ERROR] Port 5...</msg>
+<status status="PASS" starttime="20230928 10:39:57.504" endtime="20230928 10:40:01.507"/>
 </kw>
 <kw name="Log To Console" library="BuiltIn">
 <arg>${output}</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" starttime="20230927 18:52:31.394" endtime="20230927 18:52:31.397"/>
+<status status="PASS" starttime="20230928 10:40:01.507" endtime="20230928 10:40:01.509"/>
 </kw>
 <kw name="List Directory" library="SSHLibrary">
 <var>${open_home}</var>
 <arg>${reciver.bin_dir}</arg>
 <doc>Returns and logs items in the remote ``path``, optionally filtered with ``pattern``.</doc>
-<msg timestamp="20230927 18:52:31.559" level="INFO">[chan 1] Opened sftp connection (server version 3)</msg>
-<msg timestamp="20230927 18:52:31.572" level="INFO">3 items:
+<msg timestamp="20230928 10:40:01.607" level="INFO">[chan 1] Opened sftp connection (server version 3)</msg>
+<msg timestamp="20230928 10:40:01.614" level="INFO">3 items:
 grpc_receiver
 grpc_sender
 test.txt</msg>
-<msg timestamp="20230927 18:52:31.573" level="INFO">${open_home} = ['grpc_receiver', 'grpc_sender', 'test.txt']</msg>
-<status status="PASS" starttime="20230927 18:52:31.397" endtime="20230927 18:52:31.573"/>
+<msg timestamp="20230928 10:40:01.614" level="INFO">${open_home} = ['grpc_receiver', 'grpc_sender', 'test.txt']</msg>
+<status status="PASS" starttime="20230928 10:40:01.509" endtime="20230928 10:40:01.614"/>
 </kw>
-<msg timestamp="20230927 18:52:31.573" level="INFO">${rec_res} = ['grpc_receiver', 'grpc_sender', 'test.txt']</msg>
-<status status="PASS" starttime="20230927 18:52:26.083" endtime="20230927 18:52:31.573"/>
+<msg timestamp="20230928 10:40:01.614" level="INFO">${rec_res} = ['grpc_receiver', 'grpc_sender', 'test.txt']</msg>
+<status status="PASS" starttime="20230928 10:39:56.262" endtime="20230928 10:40:01.614"/>
 </kw>
 <kw name="Log To Console" library="BuiltIn">
 <arg>${rec_res}</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" starttime="20230927 18:52:31.574" endtime="20230927 18:52:31.576"/>
+<status status="PASS" starttime="20230928 10:40:01.614" endtime="20230928 10:40:01.616"/>
 </kw>
 <kw name="Sender CheckSum OFF" library="grpc_keywords">
 <var>${snd_result}</var>
@@ -1491,8 +1918,8 @@ test.txt</msg>
 <arg>${sender}</arg>
 <arg>${element}</arg>
 <doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
-<msg timestamp="20230927 18:52:31.581" level="INFO">${sender_info} = {'usr1': 'admin', 'pwd': 'admin123', 'file_name': 'test.txt'}</msg>
-<status status="PASS" starttime="20230927 18:52:31.581" endtime="20230927 18:52:31.581"/>
+<msg timestamp="20230928 10:40:01.616" level="INFO">${sender_info} = {'usr1': 'admin', 'pwd': 'admin123', 'file_name': 'test.txt'}</msg>
+<status status="PASS" starttime="20230928 10:40:01.616" endtime="20230928 10:40:01.618"/>
 </kw>
 <kw name="Establish SSH Connection" library="grpc_keywords">
 <arg>${element}</arg>
@@ -1501,20 +1928,20 @@ test.txt</msg>
 <kw name="Open Connection" library="SSHLibrary">
 <arg>${host}</arg>
 <doc>Opens a new SSH connection to the given ``host`` and ``port``.</doc>
-<status status="PASS" starttime="20230927 18:52:31.582" endtime="20230927 18:52:31.583"/>
+<status status="PASS" starttime="20230928 10:40:01.619" endtime="20230928 10:40:01.619"/>
 </kw>
 <kw name="Login" library="SSHLibrary">
 <arg>${user}</arg>
 <arg>${pwd}</arg>
 <doc>Logs into the SSH server with the given ``username`` and ``password``.</doc>
-<msg timestamp="20230927 18:52:31.583" level="INFO">Logging into '192.168.29.141:22' as 'admin'.</msg>
-<msg timestamp="20230927 18:52:32.844" level="INFO">Read output: Activate the web console with: systemctl enable --now cockpit.socket
+<msg timestamp="20230928 10:40:01.620" level="INFO">Logging into '192.168.29.141:22' as 'admin'.</msg>
+<msg timestamp="20230928 10:40:02.845" level="INFO">Read output: Activate the web console with: systemctl enable --now cockpit.socket
 
-Last login: Wed Sep 27 09:22:38 2023 from 192.168.29.98
+Last login: Wed Sep 27 17:47:04 2023 from 192.168.29.98
 [admin@gRPCSender ~]$</msg>
-<status status="PASS" starttime="20230927 18:52:31.583" endtime="20230927 18:52:32.844"/>
+<status status="PASS" starttime="20230928 10:40:01.619" endtime="20230928 10:40:02.845"/>
 </kw>
-<status status="PASS" starttime="20230927 18:52:31.581" endtime="20230927 18:52:32.845"/>
+<status status="PASS" starttime="20230928 10:40:01.618" endtime="20230928 10:40:02.845"/>
 </kw>
 <kw name="Execute Command" library="SSHLibrary">
 <var>${stdout}</var>
@@ -1522,30 +1949,30 @@ Last login: Wed Sep 27 09:22:38 2023 from 192.168.29.98
 <arg>return_stdout=False</arg>
 <arg>return_stdout=True</arg>
 <doc>Executes ``command`` on the remote machine and returns its outputs.</doc>
-<msg timestamp="20230927 18:52:32.847" level="INFO">Executing command '/home/admin/project/bin/grpc_sender -D -s 192.168.29.11:50051 -f /home/admin/project/bin/test.txt -v 0 -b 10KB'.</msg>
-<msg timestamp="20230927 18:52:33.066" level="INFO">Command exited with return code 0.</msg>
-<msg timestamp="20230927 18:52:33.067" level="INFO">${stdout} = 2023-09-27 09:22:46 [INFO] Buffer chunk size is set to: 10KB
-2023-09-27 09:22:46 [INFO] GRPC destination pod service is: 192.168.29.11:50051
-2023-09-27 09:22:46 [INFO] Checksum validation is set to: o...</msg>
-<status status="PASS" starttime="20230927 18:52:32.845" endtime="20230927 18:52:33.067"/>
+<msg timestamp="20230928 10:40:02.849" level="INFO">Executing command '/home/admin/project/bin/grpc_sender -D -s 192.168.29.11:50051 -f /home/admin/project/bin/test.txt -v 0 -b 10KB'.</msg>
+<msg timestamp="20230928 10:40:02.941" level="INFO">Command exited with return code 0.</msg>
+<msg timestamp="20230928 10:40:02.941" level="INFO">${stdout} = 2023-09-27 17:47:15 [INFO] Buffer chunk size is set to: 10KB
+2023-09-27 17:47:15 [INFO] GRPC destination pod service is: 192.168.29.11:50051
+2023-09-27 17:47:15 [INFO] Checksum validation is set to: o...</msg>
+<status status="PASS" starttime="20230928 10:40:02.845" endtime="20230928 10:40:02.941"/>
 </kw>
 <kw name="Log To Console" library="BuiltIn">
 <arg>${stdout}</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" starttime="20230927 18:52:33.067" endtime="20230927 18:52:33.073"/>
+<status status="PASS" starttime="20230928 10:40:02.942" endtime="20230928 10:40:02.944"/>
 </kw>
 <kw name="Should Contain" library="BuiltIn">
 <arg>${stdout}</arg>
 <arg>checksum algorithm: 0</arg>
 <doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
-<status status="PASS" starttime="20230927 18:52:33.073" endtime="20230927 18:52:33.073"/>
+<status status="PASS" starttime="20230928 10:40:02.945" endtime="20230928 10:40:02.945"/>
 </kw>
-<status status="PASS" starttime="20230927 18:52:31.580" endtime="20230927 18:52:33.073"/>
+<status status="PASS" starttime="20230928 10:40:01.616" endtime="20230928 10:40:02.945"/>
 </iter>
-<status status="PASS" starttime="20230927 18:52:31.578" endtime="20230927 18:52:33.074"/>
+<status status="PASS" starttime="20230928 10:40:01.616" endtime="20230928 10:40:02.946"/>
 </for>
-<msg timestamp="20230927 18:52:33.074" level="INFO">${snd_result} = None</msg>
-<status status="PASS" starttime="20230927 18:52:31.577" endtime="20230927 18:52:33.074"/>
+<msg timestamp="20230928 10:40:02.946" level="INFO">${snd_result} = None</msg>
+<status status="PASS" starttime="20230928 10:40:01.616" endtime="20230928 10:40:02.946"/>
 </kw>
 <kw name="Establish SSH Connection" library="grpc_keywords">
 <arg>${reciver.host}</arg>
@@ -1554,38 +1981,61 @@ Last login: Wed Sep 27 09:22:38 2023 from 192.168.29.98
 <kw name="Open Connection" library="SSHLibrary">
 <arg>${host}</arg>
 <doc>Opens a new SSH connection to the given ``host`` and ``port``.</doc>
-<status status="PASS" starttime="20230927 18:52:33.077" endtime="20230927 18:52:33.080"/>
+<status status="PASS" starttime="20230928 10:40:02.947" endtime="20230928 10:40:02.948"/>
 </kw>
 <kw name="Login" library="SSHLibrary">
 <arg>${user}</arg>
 <arg>${pwd}</arg>
 <doc>Logs into the SSH server with the given ``username`` and ``password``.</doc>
-<msg timestamp="20230927 18:52:33.081" level="INFO">Logging into '192.168.29.11:22' as 'admin'.</msg>
-<msg timestamp="20230927 18:52:34.388" level="INFO">Read output: Activate the web console with: systemctl enable --now cockpit.socket
+<msg timestamp="20230928 10:40:02.948" level="INFO">Logging into '192.168.29.11:22' as 'admin'.</msg>
+<msg timestamp="20230928 10:40:04.159" level="INFO">Read output: Activate the web console with: systemctl enable --now cockpit.socket
 
-Last login: Wed Sep 27 09:22:39 2023 from 192.168.29.98
+Last login: Wed Sep 27 17:47:36 2023 from 192.168.29.98
 [admin@gRPCreceiver ~]$</msg>
-<status status="PASS" starttime="20230927 18:52:33.080" endtime="20230927 18:52:34.389"/>
+<status status="PASS" starttime="20230928 10:40:02.948" endtime="20230928 10:40:04.159"/>
 </kw>
-<status status="PASS" starttime="20230927 18:52:33.074" endtime="20230927 18:52:34.389"/>
+<status status="PASS" starttime="20230928 10:40:02.946" endtime="20230928 10:40:04.159"/>
 </kw>
 <kw name="List Directory" library="SSHLibrary">
 <var>${open_home}</var>
 <arg>${reciver.bin_dir}</arg>
 <doc>Returns and logs items in the remote ``path``, optionally filtered with ``pattern``.</doc>
-<msg timestamp="20230927 18:52:34.535" level="INFO">[chan 1] Opened sftp connection (server version 3)</msg>
-<msg timestamp="20230927 18:52:34.555" level="INFO">3 items:
+<msg timestamp="20230928 10:40:04.226" level="INFO">[chan 1] Opened sftp connection (server version 3)</msg>
+<msg timestamp="20230928 10:40:04.243" level="INFO">3 items:
 grpc_receiver
 grpc_sender
 test.txt</msg>
-<msg timestamp="20230927 18:52:34.555" level="INFO">${open_home} = ['grpc_receiver', 'grpc_sender', 'test.txt']</msg>
-<status status="PASS" starttime="20230927 18:52:34.391" endtime="20230927 18:52:34.555"/>
+<msg timestamp="20230928 10:40:04.243" level="INFO">${open_home} = ['grpc_receiver', 'grpc_sender', 'test.txt']</msg>
+<status status="PASS" starttime="20230928 10:40:04.159" endtime="20230928 10:40:04.244"/>
 </kw>
 <kw name="Should Contain" library="BuiltIn">
 <arg>${open_home}</arg>
 <arg>${sender.file_name}</arg>
 <doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
-<status status="PASS" starttime="20230927 18:52:34.556" endtime="20230927 18:52:34.557"/>
+<status status="PASS" starttime="20230928 10:40:04.244" endtime="20230928 10:40:04.246"/>
+</kw>
+<msg timestamp="20230928 10:40:04.246" level="INFO">${status} = None</msg>
+<status status="PASS" starttime="20230928 10:39:56.262" endtime="20230928 10:40:04.246"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${status}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230928 10:40:04.250" level="INFO">None</msg>
+<status status="PASS" starttime="20230928 10:40:04.248" endtime="20230928 10:40:04.250"/>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<arg>'${status}' == '${False}'</arg>
+<arg>fail</arg>
+<arg>Test case is Failed</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" starttime="20230928 10:40:04.250" endtime="20230928 10:40:04.250"/>
+</kw>
+<kw name="test teardown demo" library="grpc_keywords" type="TEARDOWN">
+<kw name="Log" library="BuiltIn">
+<arg>the test teardown keyword is executed</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230928 10:40:04.251" level="INFO">the test teardown keyword is executed</msg>
+<status status="PASS" starttime="20230928 10:40:04.251" endtime="20230928 10:40:04.251"/>
 </kw>
 <kw name="Kill the Process" library="grpc_keywords">
 <kw name="Execute Command" library="SSHLibrary">
@@ -1593,26 +2043,26 @@ test.txt</msg>
 <arg>lsof -i :${reciver.port}</arg>
 <arg>shell=True</arg>
 <doc>Executes ``command`` on the remote machine and returns its outputs.</doc>
-<msg timestamp="20230927 18:52:34.560" level="INFO">Executing command 'lsof -i :50051'.</msg>
-<msg timestamp="20230927 18:52:34.731" level="INFO">Command exited with return code 0.</msg>
-<msg timestamp="20230927 18:52:34.731" level="INFO">${output} = COMMAND    PID  USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
-grpc_rece 5217 admin    5u  IPv6  50817      0t0  TCP *:50051 (LISTEN)</msg>
-<status status="PASS" starttime="20230927 18:52:34.559" endtime="20230927 18:52:34.731"/>
+<msg timestamp="20230928 10:40:04.252" level="INFO">Executing command 'lsof -i :50051'.</msg>
+<msg timestamp="20230928 10:40:04.363" level="INFO">Command exited with return code 0.</msg>
+<msg timestamp="20230928 10:40:04.363" level="INFO">${output} = COMMAND    PID  USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
+grpc_rece 7461 admin    5u  IPv6  63111      0t0  TCP *:50051 (LISTEN)</msg>
+<status status="PASS" starttime="20230928 10:40:04.252" endtime="20230928 10:40:04.363"/>
 </kw>
 <kw name="Split String" library="String">
 <var>${lines}</var>
 <arg>${output}</arg>
 <arg>\n</arg>
 <doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
-<msg timestamp="20230927 18:52:34.731" level="INFO">${lines} = ['COMMAND    PID  USER   FD   TYPE DEVICE SIZE/OFF NODE NAME', 'grpc_rece 5217 admin    5u  IPv6  50817      0t0  TCP *:50051 (LISTEN)']</msg>
-<status status="PASS" starttime="20230927 18:52:34.731" endtime="20230927 18:52:34.731"/>
+<msg timestamp="20230928 10:40:04.364" level="INFO">${lines} = ['COMMAND    PID  USER   FD   TYPE DEVICE SIZE/OFF NODE NAME', 'grpc_rece 7461 admin    5u  IPv6  63111      0t0  TCP *:50051 (LISTEN)']</msg>
+<status status="PASS" starttime="20230928 10:40:04.363" endtime="20230928 10:40:04.364"/>
 </kw>
 <kw name="Set Variable" library="BuiltIn">
 <var>${pid_line}</var>
 <arg>${EMPTY}</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<msg timestamp="20230927 18:52:34.732" level="INFO">${pid_line} = </msg>
-<status status="PASS" starttime="20230927 18:52:34.732" endtime="20230927 18:52:34.732"/>
+<msg timestamp="20230928 10:40:04.365" level="INFO">${pid_line} = </msg>
+<status status="PASS" starttime="20230928 10:40:04.364" endtime="20230928 10:40:04.365"/>
 </kw>
 <for flavor="IN">
 <var>${line}</var>
@@ -1624,63 +2074,105 @@ grpc_rece 5217 admin    5u  IPv6  50817      0t0  TCP *:50051 (LISTEN)</msg>
 <arg>${line}</arg>
 <arg>${SPACE}</arg>
 <doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
-<msg timestamp="20230927 18:52:34.733" level="INFO">${parts} = ['COMMAND', '', '', '', 'PID', '', 'USER', '', '', 'FD', '', '', 'TYPE', 'DEVICE', 'SIZE/OFF', 'NODE', 'NAME']</msg>
-<status status="PASS" starttime="20230927 18:52:34.733" endtime="20230927 18:52:34.733"/>
+<msg timestamp="20230928 10:40:04.365" level="INFO">${parts} = ['COMMAND', '', '', '', 'PID', '', 'USER', '', '', 'FD', '', '', 'TYPE', 'DEVICE', 'SIZE/OFF', 'NODE', 'NAME']</msg>
+<status status="PASS" starttime="20230928 10:40:04.365" endtime="20230928 10:40:04.365"/>
 </kw>
-<status status="PASS" starttime="20230927 18:52:34.732" endtime="20230927 18:52:34.733"/>
+<status status="PASS" starttime="20230928 10:40:04.365" endtime="20230928 10:40:04.365"/>
 </iter>
 <iter>
-<var name="${line}">grpc_rece 5217 admin    5u  IPv6  50817      0t0  TCP *:50051 (LISTEN)</var>
+<var name="${line}">grpc_rece 7461 admin    5u  IPv6  63111      0t0  TCP *:50051 (LISTEN)</var>
 <kw name="Split String" library="String">
 <var>${parts}</var>
 <arg>${line}</arg>
 <arg>${SPACE}</arg>
 <doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
-<msg timestamp="20230927 18:52:34.733" level="INFO">${parts} = ['grpc_rece', '5217', 'admin', '', '', '', '5u', '', 'IPv6', '', '50817', '', '', '', '', '', '0t0', '', 'TCP', '*:50051', '(LISTEN)']</msg>
-<status status="PASS" starttime="20230927 18:52:34.733" endtime="20230927 18:52:34.733"/>
+<msg timestamp="20230928 10:40:04.366" level="INFO">${parts} = ['grpc_rece', '7461', 'admin', '', '', '', '5u', '', 'IPv6', '', '63111', '', '', '', '', '', '0t0', '', 'TCP', '*:50051', '(LISTEN)']</msg>
+<status status="PASS" starttime="20230928 10:40:04.365" endtime="20230928 10:40:04.366"/>
 </kw>
-<status status="PASS" starttime="20230927 18:52:34.733" endtime="20230927 18:52:34.733"/>
+<status status="PASS" starttime="20230928 10:40:04.365" endtime="20230928 10:40:04.366"/>
 </iter>
-<status status="PASS" starttime="20230927 18:52:34.732" endtime="20230927 18:52:34.733"/>
+<status status="PASS" starttime="20230928 10:40:04.365" endtime="20230928 10:40:04.366"/>
 </for>
 <kw name="Set Variable" library="BuiltIn">
 <var>${pid}</var>
 <arg>${parts[1]}</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<msg timestamp="20230927 18:52:34.735" level="INFO">${pid} = 5217</msg>
-<status status="PASS" starttime="20230927 18:52:34.734" endtime="20230927 18:52:34.735"/>
+<msg timestamp="20230928 10:40:04.368" level="INFO">${pid} = 7461</msg>
+<status status="PASS" starttime="20230928 10:40:04.366" endtime="20230928 10:40:04.368"/>
 </kw>
 <kw name="Execute Command" library="SSHLibrary">
 <var>${kill_pid}</var>
 <arg>kill -9 ${pid}</arg>
 <doc>Executes ``command`` on the remote machine and returns its outputs.</doc>
-<msg timestamp="20230927 18:52:34.736" level="INFO">Executing command 'kill -9 5217'.</msg>
-<msg timestamp="20230927 18:52:34.892" level="INFO">Command exited with return code 0.</msg>
-<msg timestamp="20230927 18:52:34.893" level="INFO">${kill_pid} = </msg>
-<status status="PASS" starttime="20230927 18:52:34.735" endtime="20230927 18:52:34.893"/>
+<msg timestamp="20230928 10:40:04.368" level="INFO">Executing command 'kill -9 7461'.</msg>
+<msg timestamp="20230928 10:40:04.499" level="INFO">Command exited with return code 0.</msg>
+<msg timestamp="20230928 10:40:04.499" level="INFO">${kill_pid} = </msg>
+<status status="PASS" starttime="20230928 10:40:04.368" endtime="20230928 10:40:04.499"/>
 </kw>
 <kw name="Read" library="SSHLibrary">
 <var>${output2}</var>
 <arg>delay=2s</arg>
 <doc>Consumes and returns everything available on the server output.</doc>
-<msg timestamp="20230927 18:52:36.894" level="INFO">${output2} = </msg>
-<status status="PASS" starttime="20230927 18:52:34.893" endtime="20230927 18:52:36.894"/>
+<msg timestamp="20230928 10:40:06.500" level="INFO">${output2} = </msg>
+<status status="PASS" starttime="20230928 10:40:04.500" endtime="20230928 10:40:06.500"/>
 </kw>
 <kw name="Log To Console" library="BuiltIn">
 <arg>${output2}</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" starttime="20230927 18:52:36.895" endtime="20230927 18:52:36.895"/>
+<status status="PASS" starttime="20230928 10:40:06.500" endtime="20230928 10:40:06.500"/>
 </kw>
 <kw name="Log To Console" library="BuiltIn">
 <arg>PID: ${pid}</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" starttime="20230927 18:52:36.895" endtime="20230927 18:52:36.896"/>
+<status status="PASS" starttime="20230928 10:40:06.501" endtime="20230928 10:40:06.501"/>
 </kw>
-<status status="PASS" starttime="20230927 18:52:34.559" endtime="20230927 18:52:36.896"/>
+<status status="PASS" starttime="20230928 10:40:04.251" endtime="20230928 10:40:06.501"/>
 </kw>
-<status status="PASS" starttime="20230927 18:52:26.082" endtime="20230927 18:52:36.897"/>
+<status status="PASS" starttime="20230928 10:40:04.251" endtime="20230928 10:40:06.501"/>
+</kw>
+<doc>DESIGN STEPS
+
+============
+
+gRPC Tool Testing Using Automation
+
+Step1:
+
+Login to Receiver VM and Execute the command to make receiver ready to accept the files.
+
+Step 2:
+
+Login to Sender VM and Execute the command to send a files
+
+Step 3:
+
+Check the eexcuted command is success or fail
+
+Step4:
+
+Login to Rceiver Command and check the file is recived at Receiver VM.
+
+*ASSIGNEE=#####*</doc>
+<tag>gRPC</tag>
+<tag>NewFeature</tag>
+<tag>Regression</tag>
+<timeout value="15 minutes"/>
+<status status="PASS" starttime="20230928 10:39:56.259" endtime="20230928 10:40:06.502"/>
 </test>
-<test id="s1-t7" name="Testcase7" line="88">
+<test id="s1-t7" name="GRPC_Test_07" line="201">
+<kw name="test setup demo" library="grpc_keywords" type="SETUP">
+<kw name="Log" library="BuiltIn">
+<arg>the test setup demo keyword is executed</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230928 10:40:06.505" level="INFO">the test setup demo keyword is executed</msg>
+<status status="PASS" starttime="20230928 10:40:06.504" endtime="20230928 10:40:06.505"/>
+</kw>
+<status status="PASS" starttime="20230928 10:40:06.504" endtime="20230928 10:40:06.505"/>
+</kw>
+<kw name="Checksum Validation Switchon Using gRPC Protocol Via SSH" library="grpc_keywords">
+<var>${status}</var>
+<arg>${sender}</arg>
+<arg>${reciver}</arg>
 <kw name="Reciver command" library="grpc_keywords">
 <var>${rec_res}</var>
 <arg>${reciver.host}</arg>
@@ -1694,73 +2186,73 @@ grpc_rece 5217 admin    5u  IPv6  50817      0t0  TCP *:50051 (LISTEN)</msg>
 <kw name="Open Connection" library="SSHLibrary">
 <arg>${host}</arg>
 <doc>Opens a new SSH connection to the given ``host`` and ``port``.</doc>
-<status status="PASS" starttime="20230927 18:52:36.905" endtime="20230927 18:52:36.906"/>
+<status status="PASS" starttime="20230928 10:40:06.509" endtime="20230928 10:40:06.510"/>
 </kw>
 <kw name="Login" library="SSHLibrary">
 <arg>${user}</arg>
 <arg>${pwd}</arg>
 <doc>Logs into the SSH server with the given ``username`` and ``password``.</doc>
-<msg timestamp="20230927 18:52:36.908" level="INFO">Logging into '192.168.29.11:22' as 'admin'.</msg>
-<msg timestamp="20230927 18:52:38.153" level="INFO">Read output: Activate the web console with: systemctl enable --now cockpit.socket
+<msg timestamp="20230928 10:40:06.511" level="INFO">Logging into '192.168.29.11:22' as 'admin'.</msg>
+<msg timestamp="20230928 10:40:07.732" level="INFO">Read output: Activate the web console with: systemctl enable --now cockpit.socket
 
-Last login: Wed Sep 27 09:22:46 2023 from 192.168.29.98
+Last login: Wed Sep 27 17:47:43 2023 from 192.168.29.98
 [admin@gRPCreceiver ~]$</msg>
-<status status="PASS" starttime="20230927 18:52:36.906" endtime="20230927 18:52:38.154"/>
+<status status="PASS" starttime="20230928 10:40:06.510" endtime="20230928 10:40:07.732"/>
 </kw>
-<status status="PASS" starttime="20230927 18:52:36.905" endtime="20230927 18:52:38.154"/>
+<status status="PASS" starttime="20230928 10:40:06.508" endtime="20230928 10:40:07.732"/>
 </kw>
 <kw name="Write" library="SSHLibrary">
 <arg>cd ${reciver.bin_dir}</arg>
 <doc>Writes the given ``text`` on the remote machine and appends a newline.</doc>
-<msg timestamp="20230927 18:52:38.160" level="INFO">cd /home/admin/project/bin</msg>
-<status status="PASS" starttime="20230927 18:52:38.155" endtime="20230927 18:52:38.160"/>
+<msg timestamp="20230928 10:40:07.737" level="INFO">cd /home/admin/project/bin</msg>
+<status status="PASS" starttime="20230928 10:40:07.732" endtime="20230928 10:40:07.737"/>
 </kw>
 <kw name="Write" library="SSHLibrary">
 <arg>${cmd}</arg>
 <doc>Writes the given ``text`` on the remote machine and appends a newline.</doc>
-<msg timestamp="20230927 18:52:38.166" level="INFO">[admin@gRPCreceiver bin]$ /home/admin/project/bin/grpc_receiver -c 1 -l 3 -D -d ..</msg>
-<status status="PASS" starttime="20230927 18:52:38.161" endtime="20230927 18:52:38.166"/>
+<msg timestamp="20230928 10:40:07.742" level="INFO">[admin@gRPCreceiver bin]$ /home/admin/project/bin/grpc_receiver -c 1 -l 3 -D -d ..</msg>
+<status status="PASS" starttime="20230928 10:40:07.737" endtime="20230928 10:40:07.742"/>
 </kw>
 <kw name="Read" library="SSHLibrary">
 <var>${output}</var>
 <arg>delay=2s</arg>
 <doc>Consumes and returns everything available on the server output.</doc>
-<msg timestamp="20230927 18:52:42.168" level="INFO">2023-09-27 09:22:51 [TRACE] log level is set to trace
-2023-09-27 09:22:51 [INFO] default receiving path is: .
-2023-09-27 09:22:51 [INFO] Starting GRPC Receiver...
-2023-09-27 09:22:51 [TRACE] set compression algorithm: GRPC_COMPRESS_DEFLATE, set compression level to: GRPC_COMPRESS_LEVEL_HIGH
-2023-09-27 09:22:51 [TRACE] The server has a default compression algorithm set
-2023-09-27 09:22:51 [INFO] Server listening on 0.0.0.0:50051 . Press Ctrl-C to end.</msg>
-<msg timestamp="20230927 18:52:42.168" level="INFO">${output} = 2023-09-27 09:22:51 [TRACE] log level is set to trace
-2023-09-27 09:22:51 [INFO] default receiving path is: .
-2023-09-27 09:22:51 [INFO] Starting GRPC Receiver...
-2023-09-27 09:22:51 [TRACE] set co...</msg>
-<status status="PASS" starttime="20230927 18:52:38.166" endtime="20230927 18:52:42.168"/>
+<msg timestamp="20230928 10:40:11.744" level="INFO">2023-09-27 17:47:48 [TRACE] log level is set to trace
+2023-09-27 17:47:48 [INFO] default receiving path is: .
+2023-09-27 17:47:48 [INFO] Starting GRPC Receiver...
+2023-09-27 17:47:48 [TRACE] set compression algorithm: GRPC_COMPRESS_DEFLATE, set compression level to: GRPC_COMPRESS_LEVEL_HIGH
+2023-09-27 17:47:48 [TRACE] The server has a default compression algorithm set
+2023-09-27 17:47:48 [INFO] Server listening on 0.0.0.0:50051 . Press Ctrl-C to end.</msg>
+<msg timestamp="20230928 10:40:11.744" level="INFO">${output} = 2023-09-27 17:47:48 [TRACE] log level is set to trace
+2023-09-27 17:47:48 [INFO] default receiving path is: .
+2023-09-27 17:47:48 [INFO] Starting GRPC Receiver...
+2023-09-27 17:47:48 [TRACE] set co...</msg>
+<status status="PASS" starttime="20230928 10:40:07.742" endtime="20230928 10:40:11.744"/>
 </kw>
 <kw name="Log To Console" library="BuiltIn">
 <arg>${output}</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" starttime="20230927 18:52:42.168" endtime="20230927 18:52:42.170"/>
+<status status="PASS" starttime="20230928 10:40:11.744" endtime="20230928 10:40:11.747"/>
 </kw>
 <kw name="List Directory" library="SSHLibrary">
 <var>${open_home}</var>
 <arg>${reciver.bin_dir}</arg>
 <doc>Returns and logs items in the remote ``path``, optionally filtered with ``pattern``.</doc>
-<msg timestamp="20230927 18:52:42.342" level="INFO">[chan 1] Opened sftp connection (server version 3)</msg>
-<msg timestamp="20230927 18:52:42.359" level="INFO">3 items:
+<msg timestamp="20230928 10:40:11.828" level="INFO">[chan 1] Opened sftp connection (server version 3)</msg>
+<msg timestamp="20230928 10:40:11.835" level="INFO">3 items:
 grpc_receiver
 grpc_sender
 test.txt</msg>
-<msg timestamp="20230927 18:52:42.359" level="INFO">${open_home} = ['grpc_receiver', 'grpc_sender', 'test.txt']</msg>
-<status status="PASS" starttime="20230927 18:52:42.171" endtime="20230927 18:52:42.359"/>
+<msg timestamp="20230928 10:40:11.836" level="INFO">${open_home} = ['grpc_receiver', 'grpc_sender', 'test.txt']</msg>
+<status status="PASS" starttime="20230928 10:40:11.748" endtime="20230928 10:40:11.836"/>
 </kw>
-<msg timestamp="20230927 18:52:42.360" level="INFO">${rec_res} = ['grpc_receiver', 'grpc_sender', 'test.txt']</msg>
-<status status="PASS" starttime="20230927 18:52:36.899" endtime="20230927 18:52:42.360"/>
+<msg timestamp="20230928 10:40:11.836" level="INFO">${rec_res} = ['grpc_receiver', 'grpc_sender', 'test.txt']</msg>
+<status status="PASS" starttime="20230928 10:40:06.506" endtime="20230928 10:40:11.836"/>
 </kw>
 <kw name="Log To Console" library="BuiltIn">
 <arg>${rec_res}</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" starttime="20230927 18:52:42.360" endtime="20230927 18:52:42.362"/>
+<status status="PASS" starttime="20230928 10:40:11.836" endtime="20230928 10:40:11.838"/>
 </kw>
 <kw name="Sender CheckSum ON" library="grpc_keywords">
 <var>${snd_result}</var>
@@ -1774,8 +2266,8 @@ test.txt</msg>
 <arg>${sender}</arg>
 <arg>${element}</arg>
 <doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
-<msg timestamp="20230927 18:52:42.365" level="INFO">${sender_info} = {'usr1': 'admin', 'pwd': 'admin123', 'file_name': 'test.txt'}</msg>
-<status status="PASS" starttime="20230927 18:52:42.365" endtime="20230927 18:52:42.366"/>
+<msg timestamp="20230928 10:40:11.840" level="INFO">${sender_info} = {'usr1': 'admin', 'pwd': 'admin123', 'file_name': 'test.txt'}</msg>
+<status status="PASS" starttime="20230928 10:40:11.838" endtime="20230928 10:40:11.840"/>
 </kw>
 <kw name="Establish SSH Connection" library="grpc_keywords">
 <arg>${element}</arg>
@@ -1784,20 +2276,20 @@ test.txt</msg>
 <kw name="Open Connection" library="SSHLibrary">
 <arg>${host}</arg>
 <doc>Opens a new SSH connection to the given ``host`` and ``port``.</doc>
-<status status="PASS" starttime="20230927 18:52:42.367" endtime="20230927 18:52:42.368"/>
+<status status="PASS" starttime="20230928 10:40:11.842" endtime="20230928 10:40:11.843"/>
 </kw>
 <kw name="Login" library="SSHLibrary">
 <arg>${user}</arg>
 <arg>${pwd}</arg>
 <doc>Logs into the SSH server with the given ``username`` and ``password``.</doc>
-<msg timestamp="20230927 18:52:42.368" level="INFO">Logging into '192.168.29.141:22' as 'admin'.</msg>
-<msg timestamp="20230927 18:52:43.650" level="INFO">Read output: Activate the web console with: systemctl enable --now cockpit.socket
+<msg timestamp="20230928 10:40:11.843" level="INFO">Logging into '192.168.29.141:22' as 'admin'.</msg>
+<msg timestamp="20230928 10:40:13.093" level="INFO">Read output: Activate the web console with: systemctl enable --now cockpit.socket
 
-Last login: Wed Sep 27 09:22:45 2023 from 192.168.29.98
+Last login: Wed Sep 27 17:47:14 2023 from 192.168.29.98
 [admin@gRPCSender ~]$</msg>
-<status status="PASS" starttime="20230927 18:52:42.368" endtime="20230927 18:52:43.650"/>
+<status status="PASS" starttime="20230928 10:40:11.843" endtime="20230928 10:40:13.093"/>
 </kw>
-<status status="PASS" starttime="20230927 18:52:42.366" endtime="20230927 18:52:43.650"/>
+<status status="PASS" starttime="20230928 10:40:11.841" endtime="20230928 10:40:13.093"/>
 </kw>
 <kw name="Execute Command" library="SSHLibrary">
 <var>${stdout}</var>
@@ -1805,30 +2297,30 @@ Last login: Wed Sep 27 09:22:45 2023 from 192.168.29.98
 <arg>return_stdout=False</arg>
 <arg>return_stdout=True</arg>
 <doc>Executes ``command`` on the remote machine and returns its outputs.</doc>
-<msg timestamp="20230927 18:52:43.653" level="INFO">Executing command '/home/admin/project/bin/grpc_sender -D -s 192.168.29.11:50051 -f /home/admin/project/bin/test.txt -v 1 -b 20KB'.</msg>
-<msg timestamp="20230927 18:52:43.907" level="INFO">Command exited with return code 0.</msg>
-<msg timestamp="20230927 18:52:43.907" level="INFO">${stdout} = 2023-09-27 09:22:57 [INFO] Buffer chunk size is set to: 20KB
-2023-09-27 09:22:57 [INFO] GRPC destination pod service is: 192.168.29.11:50051
-2023-09-27 09:22:57 [INFO] Checksum validation is set to: m...</msg>
-<status status="PASS" starttime="20230927 18:52:43.651" endtime="20230927 18:52:43.907"/>
+<msg timestamp="20230928 10:40:13.097" level="INFO">Executing command '/home/admin/project/bin/grpc_sender -D -s 192.168.29.11:50051 -f /home/admin/project/bin/test.txt -v 1 -b 20KB'.</msg>
+<msg timestamp="20230928 10:40:13.204" level="INFO">Command exited with return code 0.</msg>
+<msg timestamp="20230928 10:40:13.204" level="INFO">${stdout} = 2023-09-27 17:47:26 [INFO] Buffer chunk size is set to: 20KB
+2023-09-27 17:47:26 [INFO] GRPC destination pod service is: 192.168.29.11:50051
+2023-09-27 17:47:26 [INFO] Checksum validation is set to: m...</msg>
+<status status="PASS" starttime="20230928 10:40:13.093" endtime="20230928 10:40:13.204"/>
 </kw>
 <kw name="Log To Console" library="BuiltIn">
 <arg>${stdout}</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" starttime="20230927 18:52:43.908" endtime="20230927 18:52:43.911"/>
+<status status="PASS" starttime="20230928 10:40:13.204" endtime="20230928 10:40:13.210"/>
 </kw>
 <kw name="Should Contain" library="BuiltIn">
 <arg>${stdout}</arg>
 <arg>checksum algorithm: 1</arg>
 <doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
-<status status="PASS" starttime="20230927 18:52:43.912" endtime="20230927 18:52:43.913"/>
+<status status="PASS" starttime="20230928 10:40:13.210" endtime="20230928 10:40:13.210"/>
 </kw>
-<status status="PASS" starttime="20230927 18:52:42.365" endtime="20230927 18:52:43.913"/>
+<status status="PASS" starttime="20230928 10:40:11.838" endtime="20230928 10:40:13.210"/>
 </iter>
-<status status="PASS" starttime="20230927 18:52:42.364" endtime="20230927 18:52:43.913"/>
+<status status="PASS" starttime="20230928 10:40:11.838" endtime="20230928 10:40:13.210"/>
 </for>
-<msg timestamp="20230927 18:52:43.913" level="INFO">${snd_result} = None</msg>
-<status status="PASS" starttime="20230927 18:52:42.362" endtime="20230927 18:52:43.913"/>
+<msg timestamp="20230928 10:40:13.210" level="INFO">${snd_result} = None</msg>
+<status status="PASS" starttime="20230928 10:40:11.838" endtime="20230928 10:40:13.210"/>
 </kw>
 <kw name="Establish SSH Connection" library="grpc_keywords">
 <arg>${reciver.host}</arg>
@@ -1837,38 +2329,61 @@ Last login: Wed Sep 27 09:22:45 2023 from 192.168.29.98
 <kw name="Open Connection" library="SSHLibrary">
 <arg>${host}</arg>
 <doc>Opens a new SSH connection to the given ``host`` and ``port``.</doc>
-<status status="PASS" starttime="20230927 18:52:43.916" endtime="20230927 18:52:43.917"/>
+<status status="PASS" starttime="20230928 10:40:13.214" endtime="20230928 10:40:13.215"/>
 </kw>
 <kw name="Login" library="SSHLibrary">
 <arg>${user}</arg>
 <arg>${pwd}</arg>
 <doc>Logs into the SSH server with the given ``username`` and ``password``.</doc>
-<msg timestamp="20230927 18:52:43.917" level="INFO">Logging into '192.168.29.11:22' as 'admin'.</msg>
-<msg timestamp="20230927 18:52:45.165" level="INFO">Read output: Activate the web console with: systemctl enable --now cockpit.socket
+<msg timestamp="20230928 10:40:13.217" level="INFO">Logging into '192.168.29.11:22' as 'admin'.</msg>
+<msg timestamp="20230928 10:40:14.503" level="INFO">Read output: Activate the web console with: systemctl enable --now cockpit.socket
 
-Last login: Wed Sep 27 09:22:50 2023 from 192.168.29.98
+Last login: Wed Sep 27 17:47:47 2023 from 192.168.29.98
 [admin@gRPCreceiver ~]$</msg>
-<status status="PASS" starttime="20230927 18:52:43.917" endtime="20230927 18:52:45.165"/>
+<status status="PASS" starttime="20230928 10:40:13.216" endtime="20230928 10:40:14.503"/>
 </kw>
-<status status="PASS" starttime="20230927 18:52:43.914" endtime="20230927 18:52:45.165"/>
+<status status="PASS" starttime="20230928 10:40:13.212" endtime="20230928 10:40:14.503"/>
 </kw>
 <kw name="List Directory" library="SSHLibrary">
 <var>${open_home}</var>
 <arg>${reciver.bin_dir}</arg>
 <doc>Returns and logs items in the remote ``path``, optionally filtered with ``pattern``.</doc>
-<msg timestamp="20230927 18:52:45.328" level="INFO">[chan 1] Opened sftp connection (server version 3)</msg>
-<msg timestamp="20230927 18:52:45.350" level="INFO">3 items:
+<msg timestamp="20230928 10:40:14.593" level="INFO">[chan 1] Opened sftp connection (server version 3)</msg>
+<msg timestamp="20230928 10:40:14.608" level="INFO">3 items:
 grpc_receiver
 grpc_sender
 test.txt</msg>
-<msg timestamp="20230927 18:52:45.350" level="INFO">${open_home} = ['grpc_receiver', 'grpc_sender', 'test.txt']</msg>
-<status status="PASS" starttime="20230927 18:52:45.166" endtime="20230927 18:52:45.351"/>
+<msg timestamp="20230928 10:40:14.608" level="INFO">${open_home} = ['grpc_receiver', 'grpc_sender', 'test.txt']</msg>
+<status status="PASS" starttime="20230928 10:40:14.503" endtime="20230928 10:40:14.608"/>
 </kw>
 <kw name="Should Contain" library="BuiltIn">
 <arg>${open_home}</arg>
 <arg>${sender.file_name}</arg>
 <doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
-<status status="PASS" starttime="20230927 18:52:45.352" endtime="20230927 18:52:45.353"/>
+<status status="PASS" starttime="20230928 10:40:14.608" endtime="20230928 10:40:14.610"/>
+</kw>
+<msg timestamp="20230928 10:40:14.610" level="INFO">${status} = None</msg>
+<status status="PASS" starttime="20230928 10:40:06.505" endtime="20230928 10:40:14.610"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${status}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230928 10:40:14.611" level="INFO">None</msg>
+<status status="PASS" starttime="20230928 10:40:14.611" endtime="20230928 10:40:14.612"/>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<arg>'${status}' == '${False}'</arg>
+<arg>fail</arg>
+<arg>Test case is Failed</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" starttime="20230928 10:40:14.613" endtime="20230928 10:40:14.614"/>
+</kw>
+<kw name="test teardown demo" library="grpc_keywords" type="TEARDOWN">
+<kw name="Log" library="BuiltIn">
+<arg>the test teardown keyword is executed</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230928 10:40:14.615" level="INFO">the test teardown keyword is executed</msg>
+<status status="PASS" starttime="20230928 10:40:14.615" endtime="20230928 10:40:14.615"/>
 </kw>
 <kw name="Kill the Process" library="grpc_keywords">
 <kw name="Execute Command" library="SSHLibrary">
@@ -1876,26 +2391,26 @@ test.txt</msg>
 <arg>lsof -i :${reciver.port}</arg>
 <arg>shell=True</arg>
 <doc>Executes ``command`` on the remote machine and returns its outputs.</doc>
-<msg timestamp="20230927 18:52:45.358" level="INFO">Executing command 'lsof -i :50051'.</msg>
-<msg timestamp="20230927 18:52:45.522" level="INFO">Command exited with return code 0.</msg>
-<msg timestamp="20230927 18:52:45.523" level="INFO">${output} = COMMAND    PID  USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
-grpc_rece 5445 admin    5u  IPv6  51953      0t0  TCP *:50051 (LISTEN)</msg>
-<status status="PASS" starttime="20230927 18:52:45.356" endtime="20230927 18:52:45.523"/>
+<msg timestamp="20230928 10:40:14.618" level="INFO">Executing command 'lsof -i :50051'.</msg>
+<msg timestamp="20230928 10:40:14.715" level="INFO">Command exited with return code 0.</msg>
+<msg timestamp="20230928 10:40:14.715" level="INFO">${output} = COMMAND    PID  USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
+grpc_rece 7689 admin    5u  IPv6  64255      0t0  TCP *:50051 (LISTEN)</msg>
+<status status="PASS" starttime="20230928 10:40:14.615" endtime="20230928 10:40:14.715"/>
 </kw>
 <kw name="Split String" library="String">
 <var>${lines}</var>
 <arg>${output}</arg>
 <arg>\n</arg>
 <doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
-<msg timestamp="20230927 18:52:45.523" level="INFO">${lines} = ['COMMAND    PID  USER   FD   TYPE DEVICE SIZE/OFF NODE NAME', 'grpc_rece 5445 admin    5u  IPv6  51953      0t0  TCP *:50051 (LISTEN)']</msg>
-<status status="PASS" starttime="20230927 18:52:45.523" endtime="20230927 18:52:45.523"/>
+<msg timestamp="20230928 10:40:14.715" level="INFO">${lines} = ['COMMAND    PID  USER   FD   TYPE DEVICE SIZE/OFF NODE NAME', 'grpc_rece 7689 admin    5u  IPv6  64255      0t0  TCP *:50051 (LISTEN)']</msg>
+<status status="PASS" starttime="20230928 10:40:14.715" endtime="20230928 10:40:14.715"/>
 </kw>
 <kw name="Set Variable" library="BuiltIn">
 <var>${pid_line}</var>
 <arg>${EMPTY}</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<msg timestamp="20230927 18:52:45.526" level="INFO">${pid_line} = </msg>
-<status status="PASS" starttime="20230927 18:52:45.524" endtime="20230927 18:52:45.526"/>
+<msg timestamp="20230928 10:40:14.716" level="INFO">${pid_line} = </msg>
+<status status="PASS" starttime="20230928 10:40:14.715" endtime="20230928 10:40:14.716"/>
 </kw>
 <for flavor="IN">
 <var>${line}</var>
@@ -1907,69 +2422,108 @@ grpc_rece 5445 admin    5u  IPv6  51953      0t0  TCP *:50051 (LISTEN)</msg>
 <arg>${line}</arg>
 <arg>${SPACE}</arg>
 <doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
-<msg timestamp="20230927 18:52:45.527" level="INFO">${parts} = ['COMMAND', '', '', '', 'PID', '', 'USER', '', '', 'FD', '', '', 'TYPE', 'DEVICE', 'SIZE/OFF', 'NODE', 'NAME']</msg>
-<status status="PASS" starttime="20230927 18:52:45.527" endtime="20230927 18:52:45.527"/>
+<msg timestamp="20230928 10:40:14.717" level="INFO">${parts} = ['COMMAND', '', '', '', 'PID', '', 'USER', '', '', 'FD', '', '', 'TYPE', 'DEVICE', 'SIZE/OFF', 'NODE', 'NAME']</msg>
+<status status="PASS" starttime="20230928 10:40:14.716" endtime="20230928 10:40:14.717"/>
 </kw>
-<status status="PASS" starttime="20230927 18:52:45.526" endtime="20230927 18:52:45.527"/>
+<status status="PASS" starttime="20230928 10:40:14.716" endtime="20230928 10:40:14.717"/>
 </iter>
 <iter>
-<var name="${line}">grpc_rece 5445 admin    5u  IPv6  51953      0t0  TCP *:50051 (LISTEN)</var>
+<var name="${line}">grpc_rece 7689 admin    5u  IPv6  64255      0t0  TCP *:50051 (LISTEN)</var>
 <kw name="Split String" library="String">
 <var>${parts}</var>
 <arg>${line}</arg>
 <arg>${SPACE}</arg>
 <doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
-<msg timestamp="20230927 18:52:45.527" level="INFO">${parts} = ['grpc_rece', '5445', 'admin', '', '', '', '5u', '', 'IPv6', '', '51953', '', '', '', '', '', '0t0', '', 'TCP', '*:50051', '(LISTEN)']</msg>
-<status status="PASS" starttime="20230927 18:52:45.527" endtime="20230927 18:52:45.527"/>
+<msg timestamp="20230928 10:40:14.718" level="INFO">${parts} = ['grpc_rece', '7689', 'admin', '', '', '', '5u', '', 'IPv6', '', '64255', '', '', '', '', '', '0t0', '', 'TCP', '*:50051', '(LISTEN)']</msg>
+<status status="PASS" starttime="20230928 10:40:14.717" endtime="20230928 10:40:14.718"/>
 </kw>
-<status status="PASS" starttime="20230927 18:52:45.527" endtime="20230927 18:52:45.527"/>
+<status status="PASS" starttime="20230928 10:40:14.717" endtime="20230928 10:40:14.718"/>
 </iter>
-<status status="PASS" starttime="20230927 18:52:45.526" endtime="20230927 18:52:45.527"/>
+<status status="PASS" starttime="20230928 10:40:14.716" endtime="20230928 10:40:14.718"/>
 </for>
 <kw name="Set Variable" library="BuiltIn">
 <var>${pid}</var>
 <arg>${parts[1]}</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<msg timestamp="20230927 18:52:45.528" level="INFO">${pid} = 5445</msg>
-<status status="PASS" starttime="20230927 18:52:45.527" endtime="20230927 18:52:45.528"/>
+<msg timestamp="20230928 10:40:14.718" level="INFO">${pid} = 7689</msg>
+<status status="PASS" starttime="20230928 10:40:14.718" endtime="20230928 10:40:14.718"/>
 </kw>
 <kw name="Execute Command" library="SSHLibrary">
 <var>${kill_pid}</var>
 <arg>kill -9 ${pid}</arg>
 <doc>Executes ``command`` on the remote machine and returns its outputs.</doc>
-<msg timestamp="20230927 18:52:45.528" level="INFO">Executing command 'kill -9 5445'.</msg>
-<msg timestamp="20230927 18:52:45.702" level="INFO">Command exited with return code 0.</msg>
-<msg timestamp="20230927 18:52:45.702" level="INFO">${kill_pid} = </msg>
-<status status="PASS" starttime="20230927 18:52:45.528" endtime="20230927 18:52:45.702"/>
+<msg timestamp="20230928 10:40:14.719" level="INFO">Executing command 'kill -9 7689'.</msg>
+<msg timestamp="20230928 10:40:14.825" level="INFO">Command exited with return code 0.</msg>
+<msg timestamp="20230928 10:40:14.825" level="INFO">${kill_pid} = </msg>
+<status status="PASS" starttime="20230928 10:40:14.719" endtime="20230928 10:40:14.825"/>
 </kw>
 <kw name="Read" library="SSHLibrary">
 <var>${output2}</var>
 <arg>delay=2s</arg>
 <doc>Consumes and returns everything available on the server output.</doc>
-<msg timestamp="20230927 18:52:47.702" level="INFO">${output2} = </msg>
-<status status="PASS" starttime="20230927 18:52:45.702" endtime="20230927 18:52:47.702"/>
+<msg timestamp="20230928 10:40:16.852" level="INFO">${output2} = </msg>
+<status status="PASS" starttime="20230928 10:40:14.826" endtime="20230928 10:40:16.852"/>
 </kw>
 <kw name="Log To Console" library="BuiltIn">
 <arg>${output2}</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" starttime="20230927 18:52:47.702" endtime="20230927 18:52:47.704"/>
+<status status="PASS" starttime="20230928 10:40:16.853" endtime="20230928 10:40:16.854"/>
 </kw>
 <kw name="Log To Console" library="BuiltIn">
 <arg>PID: ${pid}</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" starttime="20230927 18:52:47.704" endtime="20230927 18:52:47.706"/>
+<status status="PASS" starttime="20230928 10:40:16.855" endtime="20230928 10:40:16.856"/>
 </kw>
-<status status="PASS" starttime="20230927 18:52:45.355" endtime="20230927 18:52:47.706"/>
+<status status="PASS" starttime="20230928 10:40:14.615" endtime="20230928 10:40:16.856"/>
 </kw>
-<status status="PASS" starttime="20230927 18:52:36.899" endtime="20230927 18:52:47.707"/>
+<status status="PASS" starttime="20230928 10:40:14.614" endtime="20230928 10:40:16.856"/>
+</kw>
+<doc>DESIGN STEPS
+
+============
+
+gRPC Tool Testing Using Automation
+
+Step1:
+
+Login to Receiver VM and Execute the command to make receiver ready to accept the files.
+
+Step 2:
+
+Login to Sender VM and Execute the command to send a files
+
+Step 3:
+
+Check the eexcuted command is success or fail
+
+Step4:
+
+Login to Rceiver Command and check the file is recived at Receiver VM.
+
+*ASSIGNEE=#####*</doc>
+<tag>gRPC</tag>
+<tag>NewFeature</tag>
+<tag>Regression</tag>
+<timeout value="15 minutes"/>
+<status status="PASS" starttime="20230928 10:40:06.504" endtime="20230928 10:40:16.857"/>
 </test>
-<status status="FAIL" starttime="20230927 18:51:35.060" endtime="20230927 18:52:47.709"/>
+<kw name="Suite Teardown Demo" library="grpc_keywords" type="TEARDOWN">
+<kw name="Close All Connections" library="SSHLibrary">
+<doc>Closes all open connections.</doc>
+<status status="PASS" starttime="20230928 10:40:16.860" endtime="20230928 10:40:16.873"/>
+</kw>
+<status status="PASS" starttime="20230928 10:40:16.859" endtime="20230928 10:40:16.874"/>
+</kw>
+<status status="FAIL" starttime="20230928 10:39:04.947" endtime="20230928 10:40:16.874"/>
 </suite>
 <statistics>
 <total>
 <stat pass="6" fail="1" skip="0">All Tests</stat>
 </total>
 <tag>
+<stat pass="6" fail="1" skip="0">gRPC</stat>
+<stat pass="6" fail="1" skip="0">NewFeature</stat>
+<stat pass="6" fail="1" skip="0">Regression</stat>
 </tag>
 <suite>
 <stat pass="6" fail="1" skip="0" id="s1" name="gRPC Testing">gRPC Testing</stat>

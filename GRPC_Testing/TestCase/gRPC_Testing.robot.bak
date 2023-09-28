@@ -1,4 +1,4 @@
-*** Settings ****
+*** Settings ***
 Suite Setup       Suite Setup Demo
 Suite Teardown    Suite Teardown Demo
 Force Tags        gRPC    Regression
@@ -10,7 +10,7 @@ Variables         ../constant.yaml
 Resource          ../TestSuit/grpc_keywords.robot
 
 
-*** Test Cases ****
+*** Test Cases ***
 
 GRPC_Test_01
         [Documentation]    DESIGN STEPS

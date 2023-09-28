@@ -1,4 +1,4 @@
-*** Settings ***
+*** Settings ****
 Library           SSHLibrary
 Library           Collections
 Library           OperatingSystem
@@ -7,13 +7,90 @@ Library           Process
 Library           String
 
 
-*** Keywords ***
+*** Keywords ****
+
+Transfer File With Specified Location Using gRPC Protocol Via SSH
+    [Arguments]    ${sender}    ${receiver}
+    Log To Console    \n\n********* Establishing connection with the remote server ***********\n
+    ${rec_res}    Reciver command    ${reciver.host}    ${reciver.user}   ${reciver.pwd}   ${reciver.bin_dir}/grpc_receiver ${reciver.c_option} ${reciver.l_option} ${reciver.D_option} ${reciver.d_option} ${reciver.target_dir}
+    ${snd_result}    Sender command specifed path
+    Establish SSH Connection    ${reciver.host}    ${reciver.user}   ${reciver.pwd}
+    ${open_home}=    SSHLibrary.List Directory     ${reciver.target_dir}
+    Should Contain     ${open_home}    ${sender.file_name}
+
+
+Transfer File With Unspecified Location Using gRPC Protocol Via SSH
+    [Arguments]    ${sender}    ${receiver}
+    ${rec_res}    Reciver command    ${reciver.host}    ${reciver.user}   ${reciver.pwd}   ${reciver.bin_dir}/grpc_receiver ${reciver.c_option} ${reciver.l_option} ${reciver.D_option} ${reciver.d_option} .
+    Log To Console   ${rec_res}
+    ${snd_result}    Sender command unspecifed path
+    Establish SSH Connection    ${reciver.host}    ${reciver.user}   ${reciver.pwd}
+    ${open_home}=    SSHLibrary.List Directory     ${reciver.bin_dir}
+    Should Contain     ${open_home}    ${sender.file_name}
+
+Transfer Multiple Files With Specified Location Using gRPC Protocol Via SSH
+    [Arguments]    ${sender}    ${receiver}
+    ${rec_res}    Reciver command    ${reciver.host}    ${reciver.user}   ${reciver.pwd}   ${reciver.bin_dir}/grpc_receiver ${reciver.c_option} ${reciver.l_option} ${reciver.D_option} ${reciver.d_option} .
+    Log To Console   ${rec_res}
+    ${snd_result}    Send multiple mutiple_files
+    Establish SSH Connection    ${reciver.host}    ${reciver.user}   ${reciver.pwd}
+    ${open_home}=    SSHLibrary.List Directory     ${reciver.bin_dir}
+
+Receiver Compress Disabled Using gRPC Protocol Via SSH
+    [Arguments]    ${sender}    ${receiver}
+    ${rec_res}    Reciver command    ${reciver.host}    ${reciver.user}   ${reciver.pwd}   ${reciver.bin_dir}/grpc_receiver ${reciver.D_option} ${reciver.d_option} .
+    Log To Console   ${rec_res}
+    ${snd_result}    Sender command unspecifed path
+    Establish SSH Connection    ${reciver.host}    ${reciver.user}   ${reciver.pwd}
+    ${open_home}=    SSHLibrary.List Directory     ${reciver.bin_dir}
+    Should Contain     ${open_home}    ${sender.file_name}
+
+Receiver Compress Enabled Using gRPC Protocol Via SSH
+    [Arguments]    ${sender}    ${receiver}
+    ${rec_res}    Reciver command    ${reciver.host}    ${reciver.user}   ${reciver.pwd}   ${reciver.bin_dir}/grpc_receiver ${reciver.c_option} ${reciver.l_option} ${reciver.D_option} ${reciver.d_option} .
+    Log To Console   ${rec_res}
+    ${snd_result}    Receiver compress enabled
+    Establish SSH Connection    ${reciver.host}    ${reciver.user}   ${reciver.pwd}
+    ${open_home}=    SSHLibrary.List Directory     ${reciver.bin_dir}
+    Should Contain     ${open_home}    ${sender.file_name}
+
+Checksum Validation Switchoff Using gRPC Protocol Via SSH
+    [Arguments]    ${sender}    ${receiver}
+    ${rec_res}    Reciver command    ${reciver.host}    ${reciver.user}   ${reciver.pwd}   ${reciver.bin_dir}/grpc_receiver ${reciver.c_option} ${reciver.l_option} ${reciver.D_option} ${reciver.d_option} .
+    Log To Console   ${rec_res}
+    ${snd_result}    Sender CheckSum OFF
+    Establish SSH Connection    ${reciver.host}    ${reciver.user}   ${reciver.pwd}
+    ${open_home}=    SSHLibrary.List Directory     ${reciver.bin_dir}
+    Should Contain     ${open_home}    ${sender.file_name}
+
+Checksum Validation Switchon Using gRPC Protocol Via SSH
+    [Arguments]    ${sender}    ${receiver}
+    ${rec_res}    Reciver command    ${reciver.host}    ${reciver.user}   ${reciver.pwd}   ${reciver.bin_dir}/grpc_receiver ${reciver.c_option} ${reciver.l_option} ${reciver.D_option} ${reciver.d_option} .
+    Log To Console   ${rec_res}
+    ${snd_result}    Sender CheckSum ON
+    Establish SSH Connection    ${reciver.host}    ${reciver.user}   ${reciver.pwd}
+    ${open_home}=    SSHLibrary.List Directory     ${reciver.bin_dir}
+    Should Contain     ${open_home}    ${sender.file_name}
+
+Suite Setup Demo
+    log    Suite Setup Demo is executed
+
+
+test setup demo
+    log    the test setup demo keyword is executed
+test teardown demo
+    log    the test teardown keyword is executed
+    Kill the Process
+
+Suite Teardown Demo
+    Close All Connections
+
 Establish SSH Connection
     [Arguments]    ${host}    ${user}   ${pwd} 
     Open Connection    ${host}
     
     Login    ${user}    ${pwd} 
-    
+
 Reciver command
     [Arguments]    ${host}    ${user}   ${pwd}  ${cmd}
     Establish SSH Connection    ${host}    ${user}   ${pwd}  
