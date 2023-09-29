@@ -74,6 +74,14 @@ Checksum Validation Switchon Using gRPC Protocol Via SSH
 
 Suite Setup Demo
     log    Suite Setup Demo is executed
+    Establish SSH Connection    ${reciver.host}    ${reciver.user}    ${reciver.pwd}
+    write    su
+    write    ${reciver.pwd}
+    write    tcpdump -w grpc-chunk-2KB.pcap -i ${reciver.interface_name} port ${reciver.port}
+    Establish SSH Connection    ${sender.host}    ${sender.user}    ${sender.pwd}
+    write    su
+    write    ${sender.pwd}
+    write    tcpdump -w grpc-chunk-2KB.pcap -i ${sender.interface_name} port ${sender.port}
 
 
 test setup demo
