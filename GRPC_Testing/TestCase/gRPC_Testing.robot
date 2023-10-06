@@ -1,4 +1,4 @@
-*** Settings ****
+*** Settings ***
 Suite Setup       Suite Setup Demo
 Suite Teardown    Suite Teardown Demo
 Force Tags        gRPC    Regression
